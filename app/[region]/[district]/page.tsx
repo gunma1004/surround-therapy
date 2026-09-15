@@ -84,15 +84,48 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     
     const fullLocation = `${regionName} ${district}`;
 
+    // 스팸 키워드 없는 자연스러운 10가지 랜덤 순환 패턴
+    const charSum = fullLocation.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const variantIndex = charSum % 10;
+
+    const titleVariants = [
+      `${fullLocation} 프리미엄 힐링 테라피 안내 - 서라운드테라피`,
+      `${fullLocation} 맞춤형 웰니스 바디케어 서비스`,
+      `${fullLocation} 편안한 휴식을 위한 힐링 가이드`,
+      `서라운드테라피 | ${fullLocation} 전문 제휴 샵 안내`,
+      `${fullLocation} 일상 속 피로 회복을 위한 릴렉싱 케어`,
+      `${fullLocation} 프라이빗 맞춤형 웰니스 프로그램`,
+      `${fullLocation} 신속하고 편안한 방문 힐링 케어`,
+      `엄선된 제휴 네트워크 | ${fullLocation} 테라피 안내`,
+      `${fullLocation} 몸과 마음의 안정을 찾는 힐링 스페이스`,
+      `${fullLocation} 프리미엄 바디 릴렉싱 제휴 서비스`
+    ];
+
+    const descriptionVariants = [
+      `${fullLocation} 지역 검증된 프리미엄 힐링 테라피 가이드. 편안하고 신속한 제휴 서비스로 일상의 피로를 풀어보세요.`,
+      `${fullLocation} 맞춤형 웰니스 케어 플랫폼. 전문적인 바디케어 프로그램과 신속한 제휴 서비스를 안내해 드립니다.`,
+      `지친 일상에 편안한 휴식을 선사하는 ${fullLocation} 프리미엄 힐링 테라피 네트워크입니다.`,
+      `${fullLocation} 제휴 샵 실시간 안내 및 예약 가이드. 몸과 마음의 피로를 부드럽게 케어해 드립니다.`,
+      `투명하고 정직한 운영으로 신뢰를 더하는 ${fullLocation} 프리미엄 테라피 안내 플랫폼입니다.`,
+      `엄선된 전문 관리사의 손길로 ${fullLocation} 지역에서 누리는 품격 있는 힐링 타임.`,
+      `편안한 공간과 신속한 방문 서비스로 ${fullLocation} 주민분들께 최상의 휴식을 제안합니다.`,
+      `${fullLocation} 지역별 신속한 제휴 매칭 및 체계적인 피로 회복 프로그램을 만나보세요.`,
+      `일상의 긴장을 편안하게 풀어주는 ${fullLocation} 맞춤형 웰니스 바디케어 가이드.`,
+      `${fullLocation} 서라운드테라피가 엄선한 프리미엄 제휴점 안내 및 힐링 서비스.`
+    ];
+
+    const pageTitle = titleVariants[variantIndex];
+    const pageDescription = descriptionVariants[variantIndex];
+
     return {
-      title: `${fullLocation} 출장 전문 힐링 마사지 - 서라운드테라피`,
-      description: `${fullLocation} 프리미엄 힐링 테라피 제휴 안내. 신속한 매칭과 전신 근육 이완 서비스.`,
+      title: pageTitle,
+      description: pageDescription,
       alternates: {
         canonical: `https://surround-therapy.netlify.app/${region}/${rawDistrict}`,
       },
       openGraph: {
-        title: `${fullLocation} 출장 전문 힐링 마사지 - 서라운드테라피`,
-        description: `${fullLocation} 프리미엄 힐링 테라피 제휴 안내.`,
+        title: pageTitle,
+        description: pageDescription,
         url: `https://surround-therapy.netlify.app/${region}/${rawDistrict}`,
         siteName: "서라운드테라피(Surround Therapy)",
         locale: "ko_KR",
@@ -100,7 +133,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       },
     };
   } catch {
-    return { title: "서라운드테라피", description: "프리미엄 힐링 테라피" };
+    return { title: "서라운드테라피", description: "프리미엄 힐링 테라피 안내" };
   }
 }
 
