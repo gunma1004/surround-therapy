@@ -11,7 +11,7 @@ interface PageProps {
   }>;
 }
 
-// 🌟 인라인으로 선언하여 경로 에러 원천 차단
+// 🌟 인라인 클라이언트 텍스트 믹서
 function ClientTextMixerInline({ locationText }: { locationText: string }) {
   return (
     <div className="bg-white border border-pink-200 rounded-2xl p-4 text-center shadow-sm">
@@ -122,15 +122,11 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
 
   const titleVariants = [
     `${regionName} ${simpleLocation} 프리미엄 힐링 테라피 안내 - 서라운드테라피`,
-    `${simpleLocation} 맞춤형 웰니스 테라피 (${regionName}) 프라이빗 케어`,
-    `${regionName} ${simpleLocation} 프라이빗 아로마 & 스웨디시 가이드`,
-    `${simpleLocation} 프리미엄 제휴 테라피 · 서라운드테라피`,
-    `프리미엄 힐링 ${regionName} ${simpleLocation} 맞춤 테라피`
+    `${simpleLocation} 맞춤형 웰니스 테라피 (${regionName}) 프라이빗 케어`
   ];
 
   const descriptionVariants = [
-    `${regionName} ${simpleLocation} 프리미엄 힐링 테라피 안내. 편안하고 신속한 제휴 샵 방문 서비스를 서라운드테라피에서 확인하세요.`,
-    `프라이빗 힐링! ${simpleLocation} 감성 테라피 (${regionName}) 안내 가이드. 전문 관리사의 맞춤형 제휴 정보를 연결해 드립니다.`
+    `${regionName} ${simpleLocation} 프리미엄 힐링 테라피 안내. 편안하고 신속한 제휴 샵 방문 서비스를 서라운드테라피에서 확인하세요.`
   ];
 
   const finalTitle = titleVariants[variantIndex % titleVariants.length];
@@ -205,7 +201,12 @@ export default async function RegionalDetailPage({ params, searchParams }: PageP
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {localShops.map((lShop) => (
               <div key={lShop.id} className="bg-white border border-pink-200 hover:border-pink-400 rounded-2xl p-4 flex gap-4 items-center shadow-md transition-all group relative">
-                <Link href={`/${region}/${encodeURIComponent(districtName)}/SHOP/${lShop.slug}${dongName ? `?dong=${encodeURIComponent(dongName)}` : ""}`} className="absolute inset-0 z-10" aria-label={lShop.name} />
+                {/* 🌟 구 단위 페이지에서 샵 상세페이지로 연결되는 정확한 경로 매핑 */}
+                <Link 
+                  href={`/${region}/${encodeURIComponent(districtName)}/SHOP/${lShop.slug}${dongName ? `?dong=${encodeURIComponent(dongName)}` : ""}`} 
+                  className="absolute inset-0 z-10" 
+                  aria-label={lShop.name} 
+                />
                 <img src={lShop.image} alt={lShop.name} className="w-20 h-20 md:w-24 md:h-24 rounded-xl object-cover border border-pink-100" />
                 <div className="flex-1 min-w-0">
                   <h3 className="font-extrabold text-sm md:text-base text-gray-900 truncate group-hover:text-pink-600">{lShop.name}</h3>
@@ -219,6 +220,12 @@ export default async function RegionalDetailPage({ params, searchParams }: PageP
             ))}
           </div>
         </section>
+
+        <div className="text-center pt-2">
+          <Link href={`/${region}`} className="text-xs text-gray-500 hover:text-pink-600 transition-colors font-semibold">
+            ← 상위 지역 메인으로 돌아가기
+          </Link>
+        </div>
       </main>
     </div>
   );
