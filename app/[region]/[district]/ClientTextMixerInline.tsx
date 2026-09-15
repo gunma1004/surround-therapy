@@ -9,8 +9,8 @@ export function ClientTextMixerInline({ locationText }: { locationText: string }
   useEffect(() => {
     // 🌟 깔끔하고 신뢰감 있는 서비스 안내 패턴 적용
     setHeadline(`${locationText} 프리미엄 힐링 테라피 & 맞춤 홈케어`);
-    // 🌟 서브 텍스트에 '모먼트레스트' 브랜드 적용
-    setSubText("모먼트레스트 공식 제휴 · 신속하고 편안한 방문 서비스 · 프리미엄 웰니스 케어");
+    // 🌟 서브 텍스트에 '서라운드테라피' 브랜드 적용
+    setSubText("서라운드테라피 공식 제휴 · 신속하고 편안한 방문 서비스 · 프리미엄 웰니스 케어");
   }, [locationText]);
 
   return (

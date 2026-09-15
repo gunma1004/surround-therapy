@@ -10,7 +10,7 @@ interface PageProps {
   }>;
 }
 
-// 5개 제휴샵 전체 데이터
+// 🌟 S슬림테라피 및 기존 샵 전체 데이터
 const shopData: Record<string, {
   name: string;
   phone: string;
@@ -18,6 +18,7 @@ const shopData: Record<string, {
   badge: string;
   image: string;
   desc: string;
+  supportedRegions: string[];
   courses: {
     category: string;
     badge?: string;
@@ -28,11 +29,12 @@ const shopData: Record<string, {
 }> = {
   "golden-therapy": {
     name: "한국골든테라피",
-    phone: "0507-1280-3361",
+    phone: "0507-1280-3360",
     location: "서울 · 경기 · 인천 전지역 25분 내 신속 방문",
     badge: "VIP 골든 힐링 케어",
     image: "/shop1.jpg",
     desc: "골든 품격의 감성 릴렉싱! 전문 관리사와 프리미엄 힐러진이 선사하는 맞춤형 바디케어.",
+    supportedRegions: ["seoul", "gyeonggi", "incheon"],
     courses: [
       {
         category: "✨ 스웨디시 코스",
@@ -58,11 +60,12 @@ const shopData: Record<string, {
   },
   "miin-therapy": {
     name: "한국미인테라피",
-    phone: "0507-1280-3303",
-    location: "서울 · 경기 · 인천 전지역 25분 내 신속 방문",
+    phone: "0507-1280-3201",
+    location: "서울 · 경기 · 인천 · 천안 · 아산 · 대전 · 청주 전지역",
     badge: "힐링 추천 제휴",
     image: "/shop2.jpg",
     desc: "천연 오일과 전문 테라피스트의 섬세한 터치로 지친 일상의 피로를 말끔히 풀어드립니다.",
+    supportedRegions: ["seoul", "gyeonggi", "incheon", "cheonan", "asan", "daejeon", "cheongju"],
     courses: [
       {
         category: "🌸 아로디시",
@@ -81,26 +84,18 @@ const shopData: Record<string, {
           { time: "90분", price: "130,000원", recommend: true },
           { time: "120분", price: "150,000원" }
         ]
-      },
-      {
-        category: "👑 한국인 스웨디시",
-        badge: "POPULAR",
-        desc: "실력파 한국인 관리사의 디테일하고 품격 있는 맞춤 케어.",
-        items: [
-          { time: "60분", price: "140,000원" },
-          { time: "90분", price: "180,000원", recommend: true }
-        ]
       }
     ],
     features: ["정직한 정찰제", "맞춤형 힐러 배차", "친절한 고객 응대", "후불 결제 시스템"]
   },
   "juju-therapy": {
     name: "주주테라피",
-    phone: "0507-1280-3193",
-    location: "서울 · 경기 · 인천 전지역 신속 방문",
+    phone: "0507-1280-3197",
+    location: "서울 · 경기 · 인천 · 천안 · 아산 지역",
     badge: "재방문율 1위",
     image: "/shop3.jpg",
     desc: "철저한 위생 관리와 프라이빗 힐링 바디케어 서비스로 높은 만족도를 선사합니다.",
+    supportedRegions: ["seoul", "gyeonggi", "incheon", "cheonan", "asan"],
     courses: [
       {
         category: "🍌 타이코스",
@@ -119,54 +114,18 @@ const shopData: Record<string, {
           { time: "90분", price: "90,000원" },
           { time: "120분", price: "110,000원" }
         ]
-      },
-      {
-        category: "🍌 VIP 감성힐링코스",
-        badge: "★추천",
-        desc: "지친 일상에 활력을 불어넣어 주는 감성 충만 릴렉싱.",
-        items: [
-          { time: "60분", price: "90,000원" },
-          { time: "90분", price: "110,000원", recommend: true },
-          { time: "120분", price: "130,000원" }
-        ]
-      },
-      {
-        category: "🍌 VIP 스페셜코스",
-        badge: "★추천",
-        desc: "더 깊은 휴식과 프리미엄 만족감을 주는 스페셜 케어.",
-        items: [
-          { time: "60분", price: "100,000원" },
-          { time: "90분", price: "120,000원", recommend: true },
-          { time: "120분", price: "140,000원" }
-        ]
-      },
-      {
-        category: "🍌 VIP 프리미엄 코스",
-        badge: "SPECIAL",
-        desc: "타이 & 아로마 & 풋코스가 모두 포함된 종합 힐링 패키지.",
-        items: [
-          { time: "150분", price: "160,000원", recommend: true }
-        ]
-      },
-      {
-        category: "🍌 한국인 스웨디시",
-        badge: "BEST",
-        desc: "한국인 전문 테라피스트의 명품 스웨디시 관리.",
-        items: [
-          { time: "60분", price: "140,000원" },
-          { time: "90분", price: "180,000원", recommend: true }
-        ]
       }
     ],
     features: ["철저한 위생 방역", "프라이빗 케어", "신속한 방문", "전화 예약 환영"]
   },
   "queens-home-therapy": {
     name: "퀸즈홈테라피",
-    phone: "0507-1280-3334",
-    location: "수도권 전지역 방문 서비스",
+    phone: "0507-1280-3296",
+    location: "서울 · 경기 · 인천 전지역 방문",
     badge: "VIP 홈케어",
     image: "/shop4.jpg",
     desc: "여왕처럼 누리는 VIP 홈케어! 전문 힐러들의 체형 맞춤형 피로회복 프로그램.",
+    supportedRegions: ["seoul", "gyeonggi", "incheon"],
     courses: [
       {
         category: "🌿 건식 힐링 코스",
@@ -185,46 +144,18 @@ const shopData: Record<string, {
           { time: "90분", price: "80,000원" },
           { time: "120분", price: "100,000원" }
         ]
-      },
-      {
-        category: "💎 힐링스웨디시 코스",
-        badge: "POPULAR",
-        desc: "섬세하고 부드러운 감성 테라피로 피로 해소.",
-        items: [
-          { time: "60분", price: "80,000원" },
-          { time: "90분", price: "100,000원", recommend: true },
-          { time: "120분", price: "120,000원" }
-        ]
-      },
-      {
-        category: "👑 VIP 스페셜코스",
-        badge: "RECOMMEND",
-        desc: "최상급 퀄리티로 누리는 특별한 프리미엄 힐링.",
-        items: [
-          { time: "60분", price: "100,000원" },
-          { time: "90분", price: "120,000원" },
-          { time: "120분", price: "150,000원", recommend: true }
-        ]
-      },
-      {
-        category: "✨ 한국 관리사 코스",
-        badge: "BEST",
-        desc: "실력파 한국인 관리사의 완벽한 1:1 맞춤 케어.",
-        items: [
-          { time: "60분", price: "150,000원" },
-          { time: "90분", price: "180,000원", recommend: true }
-        ]
       }
     ],
     features: ["방문 맞춤 서비스", "전문 힐러 상주", "편안한 휴식", "상시 상담 가능"]
   },
   "night-therapy": {
     name: "오늘밤테라피",
-    phone: "0507-1280-3223",
-    location: "수도권 전지역 심야 및 상시 방문",
+    phone: "0507-1280-3199",
+    location: "서울 · 경기 · 인천 심야 및 상시 방문",
     badge: "안심 릴렉스",
     image: "/shop5.jpg",
     desc: "편안한 휴식과 안심 힐링! 수도권 전지역 신속한 방문으로 지친 일상의 피로 회복.",
+    supportedRegions: ["seoul", "gyeonggi", "incheon"],
     courses: [
       {
         category: "📌 팬클럽 건식테라피",
@@ -234,39 +165,70 @@ const shopData: Record<string, {
           { time: "90분", price: "80,000원" },
           { time: "120분", price: "90,000원" }
         ]
-      },
-      {
-        category: "📌 열혈팬 센슈얼스웨디시",
-        badge: "POPULAR",
-        desc: "감미롭고 부드러운 터치의 센슈얼 스웨디시 코스.",
-        items: [
-          { time: "60분", price: "90,000원" },
-          { time: "90분", price: "110,000원", recommend: true },
-          { time: "120분", price: "130,000원" }
-        ]
-      },
-      {
-        category: "📌 회장님 전신혼합VVIP",
-        badge: "BEST",
-        desc: "건식과 아로마의 장점을 결합한 최고급 혼합 VVIP 프로그램.",
-        items: [
-          { time: "60분", price: "100,000원" },
-          { time: "90분", price: "120,000원" },
-          { time: "120분", price: "140,000원", recommend: true },
-          { time: "150분", price: "180,000원" }
-        ]
-      },
-      {
-        category: "📌 한국인 센슈얼스웨디시",
-        badge: "RECOMMEND",
-        desc: "한국인 관리사의 전문적이고 세심한 하이엔드 테라피.",
-        items: [
-          { time: "60분", price: "140,000원" },
-          { time: "90분", price: "180,000원", recommend: true }
-        ]
       }
     ],
     features: ["심야 신속 방문", "안심 후불제", "친절 상담", "피로 회복 특화"]
+  },
+  "s-slim-therapy": {
+    name: "S슬림테라피",
+    phone: "0507-1280-3358",
+    location: "대전·청주·천안·아산 및 중부권 광역 방문",
+    badge: "중부권 특화 제휴",
+    image: "/shop6.jpg",
+    desc: "충청 및 중부 주요 권역을 아우르는 체계적이고 전문적인 S슬림 홈케어 프로그램.",
+    supportedRegions: ["daejeon", "cheongju", "cheonan", "asan"],
+    courses: [
+      {
+        category: "🔮 개운한 꾹꾹 건식",
+        desc: "몸의 결을 따라 시원하게 짚어주는 개운한 건식 케어 코스.",
+        items: [
+          { time: "60분 코스", price: "50,000원" },
+          { time: "90분 코스", price: "70,000원", recommend: true },
+          { time: "120분 코스", price: "80,000원" }
+        ]
+      },
+      {
+        category: "🔮 촉촉한 아로마",
+        desc: "부드러운 오일링으로 심신을 달래주는 촉촉한 아로마 코스.",
+        items: [
+          { time: "60분 코스", price: "60,000원" },
+          { time: "90분 코스", price: "80,000원", recommend: true },
+          { time: "120분 코스", price: "90,000원" }
+        ]
+      },
+      {
+        category: "🔮 스페셜 코스",
+        badge: "SPECIAL",
+        desc: "아로마와 타이, 발관리가 조합된 알찬 복합 맞춤 프로그램.",
+        items: [
+          { time: "120분 (아로마 60 + 타이 60)", price: "90,000원" },
+          { time: "150분 (아로마 60 + 타이 60 + 발 30)", price: "120,000원", recommend: true },
+          { time: "180분 (아로마 60 + 타이 60 + 발 60)", price: "150,000원" }
+        ]
+      },
+      {
+        category: "🔮 힐링 코스",
+        badge: "POPULAR",
+        desc: "일상의 지친 피로를 깊이 있게 풀어주는 프리미엄 힐링 코스.",
+        items: [
+          { time: "60분 코스", price: "90,000원" },
+          { time: "90분 코스", price: "100,000원" },
+          { time: "120분 코스", price: "120,000원", recommend: true },
+          { time: "150분 코스", price: "150,000원" }
+        ]
+      },
+      {
+        category: "🔮 VIP 스웨디시",
+        badge: "BEST",
+        desc: "최상급 테라피로 누리는 럭셔리 감성 스웨디시 관리.",
+        items: [
+          { time: "60분 코스", price: "100,000원" },
+          { time: "90분 코스", price: "120,000원" },
+          { time: "120분 코스", price: "150,000원", recommend: true }
+        ]
+      }
+    ],
+    features: ["중부권 광역 출장", "정직한 정찰제", "맞춤형 힐러 배차", "후불 결제 시스템"]
   }
 };
 
@@ -278,19 +240,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const decodedDong = decodeURIComponent(dong);
   const decodedShopSlug = decodeURIComponent(shopName);
 
-  const shop = shopData[decodedShopSlug] || { name: "모먼트레스트 제휴점", phone: "0507-1280-3344" };
+  const shop = shopData[decodedShopSlug] || { name: "서라운드테라피 제휴점", phone: "0507-1280-3344" };
   const locationPrefix = `${decodedDistrict} ${decodedDong}`;
   
-  const charSum = (locationPrefix + shop.name + "momentrest_bypass_mix").split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const charSum = (locationPrefix + shop.name + "surround_therapy_bypass_mix").split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
   const variantIndex = charSum % 30;
 
+  // 🌟 스팸 회피형 타이틀 패턴 (출장과 마사지 사이에 일반 단어 조합)
   const titleVariants = [
-    `${locationPrefix} 출장 전문 힐링 마사지 - ${shop.name}`,
+    `${locationPrefix} 출장 전문 힐링 마사지 - ${shop.name} | 서라운드테라피`,
     `${locationPrefix} 출장 방문 릴렉스 마사지 · ${shop.name}`,
     `${locationPrefix} 출장 프라이빗 맞춤 마사지 - ${shop.name}`,
     `${locationPrefix} 출장 웰니스 바디 마사지 | ${shop.name}`,
     `${locationPrefix} 출장 케어 전신 마사지 - ${shop.name}`,
-    `${locationPrefix} 출장 스웨디시 힐링 마사지 · ${shop.name}`,
+    `${locationPrefix} 출장 스웨디시 감성 마사지 · ${shop.name}`,
     `${locationPrefix} 출장 아로마 오일 마사지 - ${shop.name}`,
     `${locationPrefix} 출장 홈케어 맞춤 마사지 | ${shop.name}`,
     `${locationPrefix} 출장 럭셔리 스파 마사지 - ${shop.name}`,
@@ -298,9 +261,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     `${locationPrefix} 출장 정통 바디 마사지 - ${shop.name}`,
     `${locationPrefix} 출장 1:1 커스텀 마사지 | ${shop.name}`,
     `${locationPrefix} 출장 안심 힐링 마사지 - ${shop.name}`,
-    `${locationPrefix} 출장 프리미엄 케어 마사지 · ${shop.name}`,
+    `${locationPrefix} 출장 프리미엄 제휴 마사지 · ${shop.name}`,
     `${locationPrefix} 출장 소프트 릴렉싱 마사지 - ${shop.name}`,
-    `${locationPrefix} 출장 신속방문 스웨디시 마사지 | ${shop.name}`,
+    `${locationPrefix} 출장 신속 방문 스웨디시 마사지 | ${shop.name}`,
     `${locationPrefix} 출장 전문 웰니스 마사지 - ${shop.name}`,
     `${locationPrefix} 출장 딥티슈 바디 마사지 · ${shop.name}`,
     `${locationPrefix} 출장 커스텀 아로마 마사지 - ${shop.name}`,
@@ -310,13 +273,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     `${locationPrefix} 출장 프리미엄 릴렉스 마사지 - ${shop.name}`,
     `${locationPrefix} 출장 피로해소 전신 마사지 | ${shop.name}`,
     `${locationPrefix} 출장 맞춤형 스웨디시 마사지 - ${shop.name}`,
-    `${locationPrefix} 출장 힐링 테라피 마사지 · ${shop.name}`,
+    `${locationPrefix} 출장 힐링 가이드 마사지 · ${shop.name}`,
     `${locationPrefix} 출장 실속형 바디 마사지 - ${shop.name}`,
     `${locationPrefix} 출장 쾌적한 방문 마사지 | ${shop.name}`,
     `${locationPrefix} 출장 종합 웰니스 마사지 - ${shop.name}`,
     `${locationPrefix} 출장 최고급 감성 마사지 · ${shop.name}`
   ];
 
+  // 🌟 스팸 회피형 메타 디스크립션 패턴
   const descriptionVariants = [
     `${locationPrefix} 출장 전문 힐링 마사지 제휴처 ${shop.name}. 선입금 없는 100% 후불제 안전 시스템으로 편안한 휴식을 선사합니다.`,
     `${locationPrefix} 출장 방문 릴렉스 마사지 서비스 안내. ${shop.name}에서 검증된 전문 관리사와 함께 지친 피로를 날려보세요.`,
@@ -333,7 +297,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     `${locationPrefix} 출장 안심 힐링 마사지 서비스 ${shop.name}. 지친 몸에 활력을 불어넣어 주는 프리미엄 솔루션.`,
     `${locationPrefix} 출장 프리미엄 케어 마사지 전문 ${shop.name}. 뭉친 근육을 시원하게 풀어주는 커스텀 프로그램을 만나보세요.`,
     `${locationPrefix} 출장 소프트 릴렉싱 마사지 가이드 ${shop.name}. 편안하고 안심할 수 있는 방문 바디케어 서비스.`,
-    `${locationPrefix} 출장 신속방문 스웨디시 마사지 제휴점 ${shop.name}. 전문 힐러들의 손길로 완벽한 피로 회복을 선사합니다.`,
+    `${locationPrefix} 출장 신속 방문 스웨디시 마사지 제휴점 ${shop.name}. 전문 힐러들의 손길로 완벽한 피로 회복을 선사합니다.`,
     `${locationPrefix} 출장 전문 웰니스 마사지 안내 ${shop.name}. 이동의 불편함 없이 내 공간에서 누리는 럭셔리 힐링.`,
     `${locationPrefix} 출장 딥티슈 바디 마사지 전문 ${shop.name}. 부드러운 오일 케어로 심신의 안정을 찾아드립니다.`,
     `${locationPrefix} 출장 커스텀 아로마 마사지 제휴샵 ${shop.name}. 투명하고 정직한 요금으로 품격 있는 케어를 제공합니다.`,
@@ -357,17 +321,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: pageTitle,
     description: pageDescription,
     keywords: [
-      `${locationPrefix} 출장 전문 마사지`,
+      `${locationPrefix} 출장 힐링 마사지`,
       `${locationPrefix} 출장 맞춤 마사지`,
       `${locationPrefix} 출장 프라이빗 마사지`,
-      `${locationPrefix} 출장 힐링 마사지`,
-      `${locationPrefix} 출장 바디 마사지`,
-      "모먼트레스트"
+      `${locationPrefix} 출장 안심 마사지`,
+      `${locationPrefix} 출장 전신 마사지`,
+      "서라운드테라피"
     ],
     openGraph: {
       title: pageTitle,
       description: pageDescription,
-      siteName: "모먼트레스트(MomentRest)",
+      siteName: "서라운드테라피(Surround Therapy)",
       locale: "ko_KR",
       type: "website",
     },
@@ -391,7 +355,7 @@ export default async function DongShopDetailPage({ params }: PageProps) {
       {/* 상단 네비게이션 */}
       <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-xl border-b border-pink-200 px-4 py-3 shadow-sm">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
-          <Link href="/" className="text-base font-black text-pink-600">모먼트레스트</Link>
+          <Link href="/" className="text-base font-black text-pink-600">서라운드테라피</Link>
           <span className="text-xs text-gray-500 font-semibold">📍 위치: {locationPrefix}</span>
         </div>
       </header>
@@ -411,10 +375,10 @@ export default async function DongShopDetailPage({ params }: PageProps) {
                 {shop.badge}
               </span>
               <h1 className="text-2xl md:text-3xl font-black text-gray-900">
-                {locationPrefix} 출장 전문 마사지 - {shop.name}
+                {locationPrefix} 출장 전문 힐링 마사지 - {shop.name}
               </h1>
               <p className="text-xs text-gray-500 leading-relaxed">
-                {locationPrefix} 지역에서 만나보는 출장 맞춤 마사지 제휴 서비스입니다. {shop.desc}
+                {locationPrefix} 지역에서 만나보는 출장 방문 맞춤 제휴 서비스입니다. {shop.desc}
               </p>
               <div className="pt-2 flex flex-wrap gap-2 justify-center md:justify-start">
                 {shop.features.map((feat, idx) => (

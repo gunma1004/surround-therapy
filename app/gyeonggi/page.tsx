@@ -1,27 +1,73 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+// 🌟 경기 지역 지원 샵 데이터 및 공식 고유 번호 매칭
 const gyeonggiShops = [
-  { id: 1, slug: "golden-therapy", name: "✨ 한국골든테라피", desc: "경기 남·북부 전역 신속 방문 프리미엄 힐링 케어! VIP 골든 릴렉싱", phone: "0507-1280-3361", price: "80,000원부터~", image: "/shop1.jpg", badge: "BEST" },
-  { id: 2, slug: "miin-therapy", name: "🌸 한국미인테라피", desc: "수원, 성남, 분당, 일산 전지역 품격 있는 프라이빗 스웨디시 및 아로마 테라피", phone: "0507-1280-3303", price: "70,000원부터~", image: "/shop2.jpg", badge: "추천" },
-  { id: 3, slug: "juju-therapy", name: "💎 주주테라피", desc: "동탄, 용인, 평택 전역 신속 도착 아로마 마사지! 재방문율 높은 제휴점", phone: "0507-1280-3193", price: "60,000원부터~", image: "/shop3.jpg", badge: "인기" },
-  { id: 4, slug: "queens-home-therapy", name: "👑 퀸즈홈테라피", desc: "경기도 전역 전문 매니저의 1:1 맞춤형 프리미엄 바디케어 프로그램", phone: "0507-1280-3334", price: "60,000원부터~", image: "/shop4.jpg", badge: "VIP" },
-  { id: 5, slug: "night-therapy", name: "🌙 오늘밤테라피", desc: "편안한 휴식과 안심 힐링! 경기도 맞춤형 야간 웰니스 테라피", phone: "0507-1280-3223", price: "60,000원부터~", image: "/shop5.jpg", badge: "추천" }
+  { 
+    id: 1, 
+    slug: "golden-therapy", 
+    name: "✨ 한국골든테라피", 
+    desc: "경기 남·북부 전역 신속 방문 프리미엄 힐링 케어! VIP 골든 릴렉싱", 
+    phone: "0507-1280-3360", 
+    price: "80,000원부터~", 
+    image: "/shop1.jpg", 
+    badge: "BEST" 
+  },
+  { 
+    id: 2, 
+    slug: "miin-therapy", 
+    name: "🌸 한국미인테라피", 
+    desc: "수원, 성남, 분당, 일산 전지역 품격 있는 프라이빗 스웨디시 및 아로마 테라피", 
+    phone: "0507-1280-3201", 
+    price: "70,000원부터~", 
+    image: "/shop2.jpg", 
+    badge: "추천" 
+  },
+  { 
+    id: 3, 
+    slug: "juju-therapy", 
+    name: "💎 주주테라피", 
+    desc: "동탄, 용인, 평택 전역 신속 도착 아로마 마사지! 재방문율 높은 제휴점", 
+    phone: "0507-1280-3197", 
+    price: "60,000원부터~", 
+    image: "/shop3.jpg", 
+    badge: "인기" 
+  },
+  { 
+    id: 4, 
+    slug: "queens-home-therapy", 
+    name: "👑 퀸즈홈테라피", 
+    desc: "경기도 전역 전문 매니저의 1:1 맞춤형 프리미엄 바디케어 프로그램", 
+    phone: "0507-1280-3296", 
+    price: "60,000원부터~", 
+    image: "/shop4.jpg", 
+    badge: "VIP" 
+  },
+  { 
+    id: 5, 
+    slug: "night-therapy", 
+    name: "🌙 오늘밤테라피", 
+    desc: "편안한 휴식과 안심 힐링! 경기도 맞춤형 야간 웰니스 테라피", 
+    phone: "0507-1280-3199", 
+    price: "60,000원부터~", 
+    image: "/shop5.jpg", 
+    badge: "추천" 
+  }
 ];
 
 export const metadata: Metadata = {
-  title: "경기도 프리미엄 힐링 테라피 가격비교 | 모먼트레스트",
-  description: "수원, 성남 분당, 고양 일산, 화성 동탄 등 경기도 전역 신속한 방문과 편안한 휴식을 제공하는 모먼트레스트 제휴점 정보입니다.",
-  keywords: ["경기도힐링테라피", "경기스웨디시", "수원분당홈케어", "모먼트레스트경기"],
-  alternates: { canonical: "https://momentrest.netlify.app/gyeonggi" },
+  title: "경기도 프리미엄 힐링 테라피 가격비교 | 서라운드테라피",
+  description: "수원, 성남 분당, 고양 일산, 화성 동탄 등 경기도 전역 신속한 방문과 편안한 휴식을 제공하는 서라운드테라피 제휴점 정보입니다.",
+  keywords: ["경기도힐링테라피", "경기스웨디시", "수원분당홈케어", "서라운드테라피경기"],
+  alternates: { canonical: "https://surround-therapy.netlify.app/gyeonggi" },
   openGraph: {
-    title: "경기도 프리미엄 힐링 테라피 제휴샵 | 모먼트레스트",
+    title: "경기도 프리미엄 힐링 테라피 제휴샵 | 서라운드테라피",
     description: "경기도 전지역 실시간 방문 제휴 샵 안내. 편안한 휴식과 힐링을 누려보세요.",
-    url: "https://momentrest.netlify.app/gyeonggi",
-    siteName: "모먼트레스트(MomentRest)",
+    url: "https://surround-therapy.netlify.app/gyeonggi",
+    siteName: "서라운드테라피(Surround Therapy)",
     locale: "ko_KR",
     type: "website",
-    images: [{ url: "/og-main.png", width: 1200, height: 630, alt: "모먼트레스트 경기 제휴" }],
+    images: [{ url: "/og-main.png", width: 1200, height: 630, alt: "서라운드테라피 경기 제휴" }],
   },
 };
 
@@ -85,7 +131,7 @@ export default function GyeonggiMainPage() {
             🛡️ 경기 전지역 편안하고 안전한 프리미엄 웰니스 케어
           </h3>
           <p className="text-xs text-pink-100 max-w-md mx-auto leading-relaxed">
-            모먼트레스트는 투명하고 정직한 운영을 지향하며, 경기 남·북부 전역에 신속하고 편안한 힐링 서비스를 제공합니다.
+            서라운드테라피는 투명하고 정직한 운영을 지향하며, 경기 남·북부 전역에 신속하고 편안한 힐링 서비스를 제공합니다.
           </p>
           <div>
             <a 
@@ -99,7 +145,7 @@ export default function GyeonggiMainPage() {
 
         <div className="text-center pt-2">
           <Link href="/" className="text-xs text-gray-500 hover:text-pink-600 transition-colors font-semibold">
-            ← 모먼트레스트 메인 홈으로 돌아가기
+            ← 서라운드테라피 메인 홈으로 돌아가기
           </Link>
         </div>
       </div>

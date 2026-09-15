@@ -12,9 +12,9 @@ export default function ClientTextMixerInline({ locationText }: Props) {
 
   useEffect(() => {
     // 🌟 깔끔하고 신뢰감 있는 서비스 안내 패턴 적용
-    setHeadline(`${locationText} 프라이빗 맞춤 테라피 & 프리미엄 홈케어`);
-    // 🌟 '모먼트레스트' 브랜드 적용 및 신뢰도 서브 카피 설정
-    setSubText("모먼트레스트 공식 제휴 · 신속하고 편안한 방문 서비스 · 프리미엄 힐링 케어");
+    setHeadline(`${locationText} 프라이빗 맞춤 테라피 & 프리미엄 제휴`);
+    // 🌟 '서라운드테라피' 브랜드 적용 및 신뢰도 서브 카피 설정
+    setSubText("서라운드테라피 공식 제휴 · 신속하고 편안한 방문 서비스 · 프리미엄 힐링 케어");
   }, [locationText]);
 
   return (

@@ -1,8 +1,8 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // 🌐 모먼트레스트 Netlify 공식 도메인
-  const baseUrl = 'https://momentrest.netlify.app';
+  // 🌐 서라운드테라피 Netlify 공식 도메인
+  const baseUrl = 'https://surround-therapy.netlify.app';
 
   // 1. 메인 홈 페이지
   const mainRoute: MetadataRoute.Sitemap = [
@@ -14,11 +14,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // 2. 서울·경기·인천 시/도별 통합 랜딩 페이지 (핵심 SEO 타겟)
+  // 2. 주요 시/도별 통합 랜딩 페이지 (핵심 SEO 타겟)
   const integratedRegionRoutes: MetadataRoute.Sitemap = [
     { url: `${baseUrl}/seoul`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.95 },
     { url: `${baseUrl}/gyeonggi`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.95 },
     { url: `${baseUrl}/incheon`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.95 },
+    { url: `${baseUrl}/cheonan`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.95 },
+    { url: `${baseUrl}/asan`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.95 },
+    { url: `${baseUrl}/daejeon`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.95 },
+    { url: `${baseUrl}/cheongju`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.95 },
   ];
 
   // 3. 상단 카테고리 메인 페이지 (SEO 신뢰도 향상)
@@ -35,16 +39,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  // 4. 제휴업체 상세 페이지 (새로운 주소 체계 슬러그 매핑)
-  const shopSlugs = ['golden-therapy', 'miin-therapy', 'juju-therapy', 'queens-home-therapy', 'night-therapy'];
+  // 4. 제휴업체 상세 페이지 (슬러그 매핑)
+  const shopSlugs = ['golden-therapy', 'miin-therapy', 'juju-therapy', 'queens-home-therapy', 'night-therapy', 's-slim-therapy'];
   const shopRoutes: MetadataRoute.Sitemap = shopSlugs.map((slug) => ({
-    url: `${baseUrl}/seoul/강남구/${slug}`, // 대표 예시 경로 또는 각 지역별 경로 매핑
+    url: `${baseUrl}/seoul/강남구/SHOP/${slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly',
     priority: 0.8,
   }));
 
-  // 5. 서울·경기·인천 전지역 구·시·군 전체 목록 (최신 행정구역 반영 완벽 일치)
+  // 5. 수도권 및 중부권(대전·천안·아산·청주 포함) 전체 구·시·군 목록
   const regionList = [
     // ─── 서울특별시 (25개 구) ───
     { region: 'seoul', district: '종로구' },
@@ -73,7 +77,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { region: 'seoul', district: '송파구' },
     { region: 'seoul', district: '강동구' },
 
-    // ─── 경기도 (최신 시·군 및 세부 구 전체 반영) ───
+    // ─── 경기도 ───
     { region: 'gyeonggi', district: '수원시 장안구' },
     { region: 'gyeonggi', district: '수원시 권선구' },
     { region: 'gyeonggi', district: '수원시 팔달구' },
@@ -119,7 +123,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { region: 'gyeonggi', district: '가평군' },
     { region: 'gyeonggi', district: '양평군' },
 
-    // ─── 인천광역시 (최신 구·군 전체 반영) ───
+    // ─── 인천광역시 ───
     { region: 'incheon', district: '제물포구' },
     { region: 'incheon', district: '영종구' },
     { region: 'incheon', district: '미추홀구' },
@@ -131,6 +135,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { region: 'incheon', district: '검단동' },
     { region: 'incheon', district: '강화군' },
     { region: 'incheon', district: '옹진군' },
+
+    // ─── 천안시 ───
+    { region: 'cheonan', district: '동남구' },
+    { region: 'cheonan', district: '서북구' },
+
+    // ─── 아산시 ───
+    { region: 'asan', district: '아산시' },
+
+    // ─── 대전광역시 ───
+    { region: 'daejeon', district: '동구' },
+    { region: 'daejeon', district: '중구' },
+    { region: 'daejeon', district: '서구' },
+    { region: 'daejeon', district: '유성구' },
+    { region: 'daejeon', district: '대덕구' },
+
+    // ─── 청주시 ───
+    { region: 'cheongju', district: '상당구' },
+    { region: 'cheongju', district: '서원구' },
+    { region: 'cheongju', district: '흥덕구' },
+    { region: 'cheongju', district: '청원구' },
   ];
 
   // 구/시 단위 동적 라우트 매핑 (/[region]/[district])

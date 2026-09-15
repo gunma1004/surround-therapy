@@ -15,12 +15,12 @@ export default function NavigationHeader() {
         <Link href="/" className="flex items-center gap-2.5 group">
           <img 
             src="/logo.png" 
-            alt="모먼트레스트 로고" 
+            alt="서라운드테라피 로고" 
             className="w-9 h-9 rounded-xl object-cover border border-pink-300 shadow-[0_0_10px_rgba(255,107,129,0.3)] group-hover:scale-105 transition-transform" 
           />
           <div className="flex flex-col">
             <span className="text-lg font-black tracking-wider bg-gradient-to-r from-pink-600 via-rose-500 to-pink-500 bg-clip-text text-transparent leading-none">
-              모먼트레스트 <span className="text-xs text-pink-500/80 font-semibold tracking-normal">MomentRest</span>
+              서라운드테라피 <span className="text-xs text-pink-500/80 font-semibold tracking-normal">Surround Therapy</span>
             </span>
           </div>
         </Link>
@@ -60,7 +60,7 @@ export default function NavigationHeader() {
             </button>
 
             {isRegionOpen && (
-              <div className="absolute top-full left-0 w-36 bg-white border border-pink-200 rounded-2xl shadow-xl py-2 space-y-1 text-xs z-50 animate-in fade-in slide-in-from-top-1">
+              <div className="absolute top-full left-0 w-40 bg-white border border-pink-200 rounded-2xl shadow-xl py-2 space-y-1 text-xs z-50 animate-in fade-in slide-in-from-top-1">
                 <Link href="/seoul" className="block px-4 py-2 hover:bg-pink-50 hover:text-pink-600 transition-colors">
                   📍 서울 지역
                 </Link>
@@ -69,6 +69,12 @@ export default function NavigationHeader() {
                 </Link>
                 <Link href="/incheon" className="block px-4 py-2 hover:bg-pink-50 hover:text-pink-600 transition-colors">
                   📍 인천 지역
+                </Link>
+                <Link href="/cheonan" className="block px-4 py-2 hover:bg-pink-50 hover:text-pink-600 transition-colors">
+                  📍 천안·아산 지역
+                </Link>
+                <Link href="/daejeon" className="block px-4 py-2 hover:bg-pink-50 hover:text-pink-600 transition-colors">
+                  📍 대전·청주 지역
                 </Link>
               </div>
             )}
@@ -126,27 +132,41 @@ export default function NavigationHeader() {
           </Link>
           <div className="py-2 px-3 rounded-lg bg-pink-50/50 space-y-1">
             <span className="text-gray-500 text-[11px]">지역별 바로가기</span>
-            <div className="flex gap-2 pt-1">
+            <div className="grid grid-cols-2 gap-1.5 pt-1">
               <Link 
                 href="/seoul" 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex-1 text-center py-1.5 bg-white rounded-md border border-pink-200 hover:text-pink-600 text-[11px] shadow-sm"
+                className="text-center py-1.5 bg-white rounded-md border border-pink-200 hover:text-pink-600 text-[11px] shadow-sm"
               >
                 서울
               </Link>
               <Link 
                 href="/gyeonggi" 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex-1 text-center py-1.5 bg-white rounded-md border border-pink-200 hover:text-pink-600 text-[11px] shadow-sm"
+                className="text-center py-1.5 bg-white rounded-md border border-pink-200 hover:text-pink-600 text-[11px] shadow-sm"
               >
                 경기
               </Link>
               <Link 
                 href="/incheon" 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex-1 text-center py-1.5 bg-white rounded-md border border-pink-200 hover:text-pink-600 text-[11px] shadow-sm"
+                className="text-center py-1.5 bg-white rounded-md border border-pink-200 hover:text-pink-600 text-[11px] shadow-sm"
               >
                 인천
+              </Link>
+              <Link 
+                href="/cheonan" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-center py-1.5 bg-white rounded-md border border-pink-200 hover:text-pink-600 text-[11px] shadow-sm"
+              >
+                천안·아산
+              </Link>
+              <Link 
+                href="/daejeon" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="col-span-2 text-center py-1.5 bg-white rounded-md border border-pink-200 hover:text-pink-600 text-[11px] shadow-sm"
+              >
+                대전·청주
               </Link>
             </div>
           </div>

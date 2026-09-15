@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-// 서울·경기·인천 전체 지역 데이터 (모든 시/군/구 및 하위 구 완벽 반영)
+// 서울·경기·인천 및 천안·아산·대전·청주 전체 지역 데이터
 export const regionData: Record<string, { name: string; districts: Record<string, { name: string; dongs: string[] }> }> = {
   seoul: {
     name: "서울특별시",
@@ -99,22 +99,53 @@ export const regionData: Record<string, { name: string; districts: Record<string
       ganghwa: { name: "강화군", dongs: ["강화읍", "선원면", "불은면", "길상면", "화도면", "양도면", "내가면", "하점면", "양사면", "송해면", "교동면", "삼산면", "서도면"] },
       ongjin: { name: "옹진군", dongs: ["북도면", "연평면", "백령면", "대청면", "덕적면", "자월면", "영흥면"] }
     }
+  },
+  cheonan: {
+    name: "천안시",
+    districts: {
+      dongnam: { name: "동남구", dongs: ["중앙동", "문성동", "원성1동", "원성2동", "봉명동", "신안동", "구룡동", "풍세면", "광덕면", "동면", "북면", "성남면", "수신면", "병천면", "신방동", "청당동", "청수동", "삼룡동", "유량동"] },
+      seobuk: { name: "서북구", dongs: ["성환읍", "직산읍", "성거읍", "부성1동", "부성2동", "백석동", "두정동", "성정1동", "성정2동", "불당1동", "불당2동", "차암동", "쌍용1동", "쌍용2동", "쌍용3동"] }
+    }
+  },
+  asan: {
+    name: "아산시",
+    districts: {
+      asan_city: { name: "아산시", dongs: ["온양1동", "온양2동", "온양3동", "온양4동", "온양5동", "온양6동", "배방읍", "탕정면", "음봉면", "둔포면", "영인면", "인주면", "도고면", "신창면", "송악면"] }
+    }
+  },
+  daejeon: {
+    name: "대전광역시",
+    districts: {
+      dong: { name: "동구", dongs: ["중앙동", "신인동", "효동", "판암1동", "판암2동", "대동", "자양동", "가오동", "용운동", "낭월동", "산내동", "대청동"] },
+      jung: { name: "중구", dongs: ["은행선화동", "중촌동", "목동", "용두동", "태평1동", "태평2동", "오류동", "문창동", "석교동", "대사동", "부사동", "용전동", "산성동"] },
+      seo: { name: "서구", dongs: ["변동", "용문동", "탄방동", "둔산1동", "둔산2동", "둔산3동", "갈마1동", "갈마2동", "월평1동", "월평2동", "월평3동", "가수원동", "도마1동", "도마2동", "복수동", "관저1동", "관저2동"] },
+      yuseong: { name: "유성구", dongs: ["진잠동", "온천1동", "온천2동", "노은1동", "노은2동", "노은3동", "신성동", "구즉동", "관평동", "전민동", "반석동"] },
+      daedeok: { name: "대덕구", dongs: ["오정동", "대화동", "회덕동", "비래동", "송촌동", "중리동", "법1동", "법2동", "신탄진동", "석봉동", "덕암동", "목상동"] }
+    }
+  },
+  cheongju: {
+    name: "청주시",
+    districts: {
+      sangdang: { name: "상당구", dongs: ["영운동", "용암1동", "용암2동", "탑대성동", "금천동", "용담명암산성동", "낭성면", "미원면", "가덕면", "남일면", "북이면"] },
+      seowon: { name: "서원구", dongs: ["사직1동", "사직2동", "사창동", "모충동", "산남동", "분평동", "수곡1동", "수곡2동", "현도면", "남이면"] },
+      heungdeok: { name: "흥덕구", dongs: ["운천신봉동", "복대1동", "복대2동", "가경동", "강서1동", "강서2동", "오송읍", "옥산면", "가덕면"] },
+      cheongwon: { name: "청원구", dongs: ["우암동", "내덕1동", "내덕2동", "율량사천동", "오근장동", "내수읍", "북이면", "오창읍"] }
+    }
   }
 };
-
-// 메인 추천 제휴샵 목록 (클릭 링크 없이 정보 및 전화예약만 제공)
+// 메인 추천 제휴샵 목록
 const defaultShops = [
   {
     id: 1,
-    name: "✨ 한국골든테라피",
-    desc: "서울·경기·인천 전지역 신속 케어! VIP 골든 릴렉싱 & 딥티슈 피로회복 전문",
+    name: "✨ 골든테라피",
+    desc: "서울·수도권 및 충청 전지역 신속 케어! VIP 골든 릴렉싱 & 딥티슈 피로회복 전문",
     phone: "0507-1280-3361",
     price: "80,000원부터~",
     image: "/shop1.jpg"
   },
   {
     id: 2,
-    name: "🌸 한국미인테라피",
+    name: "🌸한국미녀테라피",
     desc: "품격 있는 힐링을 선사하는 최고급 천연 오일 스웨디시 & 아로마 맞춤 케어",
     phone: "0507-1280-3303",
     price: "70,000원부터~",
@@ -122,7 +153,7 @@ const defaultShops = [
   },
   {
     id: 3,
-    name: "💎 주주테라피",
+    name: "💎주주테라피",
     desc: "재방문율 1위 만족도! 철저한 위생 관리와 감성 충만 프라이빗 힐링 코스",
     phone: "0507-1280-3193",
     price: "60,000원부터~",
@@ -130,7 +161,7 @@ const defaultShops = [
   },
   {
     id: 4,
-    name: "👑 퀸즈홈테라피",
+    name: "👑퀸즈테라피",
     desc: "여왕처럼 누리는 프리미엄 바디케어! 전문 힐러들의 1:1 VIP 힐링 프로그램",
     phone: "0507-1280-3334",
     price: "60,000원부터~",
@@ -227,22 +258,28 @@ export default function MainClientUI() {
             <div className="absolute inset-0 z-0">
               <img 
                 src="/banner.jpg" 
-                alt="모먼트레스트 프리미엄 힐링 배너" 
+                alt="서라운드테라피 프리미엄 힐링 배너" 
                 className="w-full h-full object-cover filter brightness-[0.85] scale-105 group-hover:scale-110 transition-transform duration-700 opacity-80"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/40 to-transparent"></div>
             </div>
             
             <div className="relative z-10 space-y-3.5">
-              <div className="flex justify-center gap-2 pb-1">
+              <div className="flex flex-wrap justify-center gap-1.5 pb-1 max-w-xl mx-auto">
                 <Link href="/seoul" className="bg-pink-500 hover:bg-pink-600 text-white font-black text-[11px] px-3 py-1 rounded-full shadow-sm transition-transform hover:scale-105">
-                  🏙️ 서울시 전체
+                  🏙️ 서울
                 </Link>
                 <Link href="/gyeonggi" className="bg-pink-500 hover:bg-pink-600 text-white font-black text-[11px] px-3 py-1 rounded-full shadow-sm transition-transform hover:scale-105">
-                  🌳 경기도 전체
+                  🌳 경기
                 </Link>
                 <Link href="/incheon" className="bg-pink-500 hover:bg-pink-600 text-white font-black text-[11px] px-3 py-1 rounded-full shadow-sm transition-transform hover:scale-105">
-                  🌊 인천시 전체
+                  🌊 인천
+                </Link>
+                <Link href="/cheonan" className="bg-pink-500 hover:bg-pink-600 text-white font-black text-[11px] px-3 py-1 rounded-full shadow-sm transition-transform hover:scale-105">
+                  🌟 천안·아산
+                </Link>
+                <Link href="/daejeon" className="bg-pink-500 hover:bg-pink-600 text-white font-black text-[11px] px-3 py-1 rounded-full shadow-sm transition-transform hover:scale-105">
+                  💫 대전·청주
                 </Link>
               </div>
 
@@ -251,28 +288,28 @@ export default function MainClientUI() {
                   <span className="animate-ping absolute inline-flex h-full w-2 rounded-full bg-white opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
                 </span>
-                ✨ 수도권 검증된 프라이빗 힐링 & 테라피 네트워크
+                ✨ 전국 주요 권역 검증된 프라이빗 테라피 네트워크
               </div>
               
               <h1 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tight">
-                서울·경기·인천 <span className="bg-gradient-to-r from-pink-600 to-rose-500 bg-clip-text text-transparent">프리미엄 힐링 테라피</span>
+                서라운드테라피 <span className="bg-gradient-to-r from-pink-600 to-rose-500 bg-clip-text text-transparent">프리미엄 힐링 공간</span>
               </h1>
               
               <p className="text-gray-600 text-xs md:text-sm font-medium max-w-lg mx-auto leading-relaxed">
-                엄선된 전문 테라피스트의 프라이빗 피로회복 & 웰니스 프로그램! <br className="hidden md:inline"/>지금 바로 내 주변 맞춤 케어를 만나보세요.
+                서울, 경기, 인천, 천안·아산, 대전·청주 지역의 엄선된 제휴샵 안내 및 할인 예약 플랫폼입니다. <br className="hidden md:inline"/>지금 바로 편안한 휴식을 만나보세요.
               </p>
             </div>
           </div>
         </section>
 
-        {/* 2. 프리미엄 추천 제휴 파트너 (메인 페이지이므로 샵 카드 링크를 제거하고 전화예약만 제공) */}
+        {/* 2. 프리미엄 추천 제휴 파트너 */}
         <section className="space-y-6">
           <div className="text-center mb-6 space-y-1">
             <span className="text-xs text-pink-600 font-black tracking-widest uppercase bg-pink-100 px-3 py-1 rounded-full border border-pink-300">
               BEST PARTNER SHOPS
             </span>
             <h2 className="text-xl md:text-2xl font-black text-gray-900 mt-2">
-              🏆 모먼트레스트 추천 프리미엄 제휴점
+              🏆 서라운드테라피 추천 프리미엄 제휴점
             </h2>
             <p className="text-xs text-gray-500">페이지를 새로고침할 때마다 새로운 추천 제휴점이 소개됩니다.</p>
           </div>
@@ -389,11 +426,11 @@ export default function MainClientUI() {
           </div>
         </section>
 
-        {/* 4. 모먼트레스트 이용 안내 4단계 */}
+        {/* 4. 서라운드테라피 이용 안내 4단계 */}
         <section className="bg-white border border-pink-200 p-6 md:p-8 rounded-3xl space-y-6 shadow-sm">
           <div className="text-center">
             <span className="text-pink-600 text-xs font-bold tracking-widest uppercase">SERVICE PROCESS</span>
-            <h3 className="text-xl font-black text-gray-900 mt-1">모먼트레스트 간편 이용 안내</h3>
+            <h3 className="text-xl font-black text-gray-900 mt-1">서라운드테라피 간편 이용 안내</h3>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             <div className="bg-pink-50/50 p-5 rounded-2xl border border-pink-100 text-center space-y-1.5 hover:border-pink-300 transition-colors">
@@ -438,7 +475,7 @@ export default function MainClientUI() {
             <div className="bg-white p-5 rounded-2xl border border-pink-200 space-y-2 shadow-sm">
               <div className="flex justify-between items-center">
                 <span className="text-pink-600 font-black text-sm">★★★★★ 5.0</span>
-                <span className="text-[11px] text-gray-400">경기 이용자</span>
+                <span className="text-[11px] text-gray-400">수도권·충청 이용자</span>
               </div>
               <p className="text-xs text-gray-600 leading-relaxed">
                 "친절한 응대와 꼼꼼한 맞춤 테라피 덕분에 몸과 마음이 모두 가벼워졌습니다. 위생 상태도 매우 만족스러웠어요."
@@ -456,7 +493,7 @@ export default function MainClientUI() {
           <div className="space-y-3 max-w-2xl mx-auto">
             <FaqItem 
               question="예약 후 케어 시작까지 소요 시간은 어떻게 되나요?"
-              answer="서울, 경기, 인천 주요 지역 기준 평균 20분~30분 내외로 원활한 매칭 및 케어 진행이 가능합니다."
+              answer="서울, 경기, 인천, 천안, 아산, 대전, 청주 주요 지역 기준 평균 20분~30분 내외로 원활한 매칭 및 케어 진행이 가능합니다."
             />
             <FaqItem 
               question="어떤 프로그램들이 준비되어 있나요?"
@@ -475,11 +512,11 @@ export default function MainClientUI() {
               href="tel:0507-1280-3344" 
               className="inline-flex items-center gap-1.5 bg-pink-50 hover:bg-pink-100 text-pink-600 font-bold px-4 py-2 rounded-xl border border-pink-300 transition-all text-xs shadow-sm"
             >
-              <span>🤝</span> 모먼트레스트 입점 및 제휴문의 (0507-1280-3344)
+              <span>🤝</span> 서라운드테라피 입점 및 제휴문의 (0507-1280-3344)
             </a>
           </div>
-          <p className="text-gray-600 font-bold">모먼트레스트(MomentRest)는 건전하고 안전한 프리미엄 홈케어 & 힐링 테라피 정보 플랫폼입니다.</p>
-          <p className="text-[11px] text-gray-400">COPYRIGHT &copy; MomentRest ALL RIGHTS RESERVED.</p>
+          <p className="text-gray-600 font-bold">서라운드테라피(Surround Therapy)는 건전하고 안전한 프리미엄 힐링 테라피 정보 플랫폼입니다.</p>
+          <p className="text-[11px] text-gray-400">COPYRIGHT &copy; Surround Therapy ALL RIGHTS RESERVED.</p>
         </div>
       </footer>
     </div>

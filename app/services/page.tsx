@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "서비스 코스 안내 | 프라이빗 테라피 & 프리미엄 홈케어 - 모먼트레스트",
-  description: "서울·경기·인천 모먼트레스트 방문 홈케어 서비스 안내! 베이직 건식, 시그니처 아로마, 프리미엄 스웨디시 및 1:1 맞춤 VIP 코스를 지금 확인하세요.",
+  title: "서비스 코스 안내 | 프라이빗 테라피 & 프리미엄 홈케어 - 서라운드테라피",
+  description: "서울·경기·인천 서라운드테라피 방문 홈케어 서비스 안내! 베이직 건식, 시그니처 아로마, 프리미엄 스웨디시 및 1:1 맞춤 VIP 코스를 지금 확인하세요.",
   keywords: [
-    "모먼트레스트서비스",
+    "서라운드테라피서비스",
     "맞춤테라피코스",
     "아로마홈케어프로그램",
     "프라이빗스웨디시",
@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     "1대1맞춤테라피"
   ],
   alternates: {
-    canonical: "https://momentrest.netlify.app/services",
+    canonical: "https://surround-therapy.netlify.app/services",
   },
   openGraph: {
-    title: "서비스 코스 안내 | 모먼트레스트(MomentRest) 맞춤 프라이빗 테라피",
+    title: "서비스 코스 안내 | 서라운드테라피(Surround Therapy) 맞춤 프라이빗 테라피",
     description: "컨디션과 취향에 맞춘 최상의 힐링 프로그램! 테라피, 아로마, 스웨디시 프리미엄 바디케어를 편안하게 만나보세요.",
-    url: "https://momentrest.netlify.app/services",
-    siteName: "모먼트레스트(MomentRest)",
+    url: "https://surround-therapy.netlify.app/services",
+    siteName: "서라운드테라피(Surround Therapy)",
     locale: "ko_KR",
     type: "website",
     images: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
         url: "/og-main.png",
         width: 1200,
         height: 630,
-        alt: "모먼트레스트 서비스 코스 안내",
+        alt: "서라운드테라피 서비스 코스 안내",
       },
     ],
   },
@@ -63,7 +63,7 @@ const serviceList = [
     num: "04",
     title: "하이엔드 1:1 맞춤 스페셜",
     sub: "SIGNATURE 1:1 CUSTOM CARE",
-    desc: "모먼트레스트 최상위 테라피스트가 고객님의 컨디션을 정밀하게 파악하여, 건식과 아로마를 결합한 완벽한 1:1 솔루션을 제공합니다.",
+    desc: "서라운드테라피 최상위 테라피스트가 고객님의 컨디션을 정밀하게 파악하여, 건식과 아로마를 결합한 완벽한 1:1 솔루션을 제공합니다.",
     tags: ["1:1 집중 관리", "하이브리드 케어", "최상위 만족도"],
     recommend: "나만을 위한 특별한 맞춤형 프라이빗 케어를 경험하고 싶으신 분",
   },
@@ -80,7 +80,7 @@ export default function ServicesPage() {
             PREMIUM CARE SERVICE
           </span>
           <h1 className="text-2xl md:text-4xl font-black text-gray-900 tracking-tight">
-            모먼트레스트 프라이빗 테라피 코스 안내
+            서라운드테라피 프라이빗 테라피 코스 안내
           </h1>
           <p className="text-xs md:text-sm text-gray-600 max-w-lg mx-auto leading-relaxed">
             고객님의 현재 컨디션과 취향을 고려하여 최상의 휴식을 선사하는 맞춤형 웰니스 프로그램입니다.
@@ -162,7 +162,7 @@ export default function ServicesPage() {
             어떤 코스를 선택해야 할지 고민되시나요?
           </h3>
           <p className="text-xs text-gray-600 max-w-md mx-auto leading-relaxed">
-            모먼트레스트 전문 상담원이 고객님의 뭉친 부위와 피로도에 딱 맞는 최적의 프로그램을 친절하게 추천해 드립니다.
+            서라운드테라피 전문 상담원이 고객님의 뭉친 부위와 피로도에 딱 맞는 최적의 프로그램을 친절하게 추천해 드립니다.
           </p>
           <div className="pt-1">
             <a 
@@ -180,7 +180,7 @@ export default function ServicesPage() {
             href="/"
             className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-pink-600 transition-colors font-semibold"
           >
-            ← 모먼트레스트 메인 홈으로 이동하기
+            ← 서라운드테라피 메인 홈으로 이동하기
           </Link>
         </div>
 

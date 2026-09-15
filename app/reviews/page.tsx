@@ -84,7 +84,7 @@ const reviews = [
 
 export default function ReviewsPage() {
   return (
-    <div className="bg-[#fff5f7] text-[#2f3542] min-h-screen py-10 px-4 font-sans selection:bg-pink-400 selection:text-white">
+    <main className="bg-[#fff5f7] text-[#2f3542] min-h-screen py-10 px-4 font-sans selection:bg-pink-400 selection:text-white">
       <div className="max-w-3xl mx-auto space-y-8">
         
         {/* 상단 타이틀 헤더 */}
@@ -119,7 +119,7 @@ export default function ReviewsPage() {
         {/* 리뷰 카드 리스트 */}
         <section className="space-y-4">
           {reviews.map((rev, idx) => (
-            <div 
+            <article 
               key={idx} 
               className="bg-white border border-pink-200 hover:border-pink-400 p-5 md:p-6 rounded-2xl space-y-3 transition-all shadow-sm group"
             >
@@ -133,16 +133,16 @@ export default function ReviewsPage() {
                       {rev.badge}
                     </span>
                   </div>
-                  <div className="text-xs text-gray-800 font-bold">
+                  <h2 className="text-xs text-gray-800 font-bold">
                     {rev.name}
-                  </div>
+                  </h2>
                 </div>
 
                 <div className="text-right space-y-1">
                   <span className="text-[11px] text-gray-400 font-medium block">
                     {rev.date}
                   </span>
-                  <span className="text-[10px] text-pink-600 bg-pink-50 px-2 py-0.5 rounded border border-pink-200 font-medium">
+                  <span className="text-[10px] text-pink-600 bg-pink-50 px-2 py-0.5 rounded border border-pink-200 font-medium inline-block">
                     {rev.course}
                   </span>
                 </div>
@@ -151,22 +151,22 @@ export default function ReviewsPage() {
               <p className="text-xs md:text-sm text-gray-600 leading-relaxed pt-1 border-t border-pink-100">
                 &quot;{rev.text}&quot;
               </p>
-            </div>
+            </article>
           ))}
         </section>
 
         {/* 안심 예약 보증 배너 */}
         <section className="bg-white border border-pink-200 p-6 rounded-3xl text-center space-y-3 shadow-sm">
-          <h3 className="text-base font-black text-gray-900">
+          <h2 className="text-base font-black text-gray-900">
             🛡️ 편안하고 안전한 맞춤 웰니스 시스템 운영
-          </h3>
+          </h2>
           <p className="text-xs text-gray-600 max-w-md mx-auto leading-relaxed">
             모먼트레스트는 검증된 테라피스트의 품격 있는 방문 케어를 통해 언제나 만족스러운 휴식을 선사합니다.
           </p>
           <div>
             <a 
               href="tel:0507-1280-3344"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-black text-xs px-6 py-3 rounded-xl shadow transition-all transform active:scale-95"
+              className="inline-flex justify-center items-center gap-2 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-black text-xs px-6 py-3 rounded-xl shadow transition-all transform active:scale-95 w-full md:w-auto"
             >
               📞 지금 바로 실시간 힐링 예약하기
             </a>
@@ -184,6 +184,6 @@ export default function ReviewsPage() {
         </div>
 
       </div>
-    </div>
+    </main>
   );
 }

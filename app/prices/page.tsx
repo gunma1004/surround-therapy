@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "코스별 요금 및 프로그램 안내 | 모먼트레스트 100% 정직한 정찰제",
-  description: "서울·경기·인천 지역 모먼트레스트 전용 프라이빗 힐링 케어 요금표. 맞춤형 스웨디시, 아로마 테라피 가격과 안심 예약 가이드를 제공합니다.",
+  title: "코스별 요금 및 프로그램 안내 | 서라운드테라피 100% 정직한 정찰제",
+  description: "서울·경기·인천 지역 서라운드테라피 전용 프라이빗 힐링 케어 요금표. 맞춤형 스웨디시, 아로마 테라피 가격과 안심 예약 가이드를 제공합니다.",
   keywords: [
     "홈케어요금",
     "프라이빗테라피가격",
@@ -11,16 +11,16 @@ export const metadata: Metadata = {
     "아로마마사지가격",
     "방문바디케어요금",
     "안심예약",
-    "모먼트레스트가격표"
+    "서라운드테라피가격표"
   ],
   alternates: {
-    canonical: "https://momentrest.netlify.app/prices",
+    canonical: "https://surround-therapy.netlify.app/prices",
   },
   openGraph: {
-    title: "코스별 요금 안내 | 모먼트레스트(MomentRest) 투명한 정찰제",
+    title: "코스별 요금 안내 | 서라운드테라피(Surround Therapy) 투명한 정찰제",
     description: "편안하고 안전한 프라이빗 힐링! 맞춤 코스별 요금을 투명하게 비교해 보세요.",
-    url: "https://momentrest.netlify.app/prices",
-    siteName: "모먼트레스트(MomentRest)",
+    url: "https://surround-therapy.netlify.app/prices",
+    siteName: "서라운드테라피(Surround Therapy)",
     locale: "ko_KR",
     type: "website",
     images: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
         url: "/og-main.png",
         width: 1200,
         height: 630,
-        alt: "모먼트레스트 코스별 가격 안내",
+        alt: "서라운드테라피 코스별 가격 안내",
       },
     ],
   },
@@ -56,7 +56,7 @@ const priceList = [
     duration: "60분 / 90분 / 120분",
     price: "90,000원부터~",
     desc: "스트레스 완화와 독소 배출에 탁월한 최고급 VVIP 부드러운 전신 밀착 케어",
-    badge: "모먼트레스트 강력추천",
+    badge: "서라운드테라피 강력추천",
     highlight: true,
   },
   {
@@ -77,10 +77,10 @@ export default function PricesPage() {
         {/* 상단 타이틀 헤더 */}
         <section className="text-center space-y-3 bg-white/85 backdrop-blur-md border border-pink-200 p-8 rounded-3xl shadow-sm">
           <span className="inline-block px-3.5 py-1 rounded-full bg-pink-100 border border-pink-300 text-pink-600 text-xs font-black tracking-widest uppercase">
-            MOMENTREST PRICE GUIDE
+            SURROUND THERAPY PRICE GUIDE
           </span>
           <h1 className="text-2xl md:text-4xl font-black text-gray-900 tracking-tight">
-            모먼트레스트 프라이빗 테라피 요금 안내
+            서라운드테라피 프라이빗 테라피 요금 안내
           </h1>
           <p className="text-xs md:text-sm text-gray-600 max-w-md mx-auto leading-relaxed">
             모든 제휴점은 투명하고 정직한 정찰제를 원칙으로 운영되며, 편안하고 안전한 휴식 환경을 제공합니다.
@@ -97,7 +97,7 @@ export default function PricesPage() {
               안심 보장 · 편안하고 안전한 맞춤 웰니스
             </h2>
             <p className="text-xs text-pink-100/90 leading-relaxed">
-              모먼트레스트를 통해 매칭되는 모든 서비스는 숙련된 테라피스트가 직접 방문하여 품격 있는 힐링을 선사합니다.
+              서라운드테라피를 통해 매칭되는 모든 서비스는 숙련된 테라피스트가 직접 방문하여 품격 있는 힐링을 선사합니다.
             </p>
           </div>
         </section>
@@ -175,7 +175,7 @@ export default function PricesPage() {
               href="/"
               className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-pink-600 transition-colors font-semibold"
             >
-              ← 모먼트레스트 메인 홈으로 돌아가기
+              ← 서라운드테라피 메인 홈으로 돌아가기
             </Link>
           </div>
         </section>

@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "주변 제휴명소 & 맛집·숙소 안내 | 모먼트레스트",
-  description: "서울·경기·인천 힐링 명소와 검증된 맛집, 편안한 휴식 공간 가이드! 모먼트레스트 프라이빗 케어와 함께 즐기는 수도권 추천 스팟 정보를 확인하세요.",
+  title: "주변 제휴명소 & 맛집·숙소 안내 | 서라운드테라피",
+  description: "서울·경기·인천 힐링 명소와 검증된 맛집, 편안한 휴식 공간 가이드! 서라운드테라피 프라이빗 케어와 함께 즐기는 수도권 추천 스팟 정보를 확인하세요.",
   keywords: [
-    "모먼트레스트제휴명소",
+    "서라운드테라피제휴명소",
     "서울맛집숙소",
     "경기힐링스팟",
     "인천휴식공간",
@@ -13,13 +13,13 @@ export const metadata: Metadata = {
     "웰니스푸드"
   ],
   alternates: {
-    canonical: "https://momentrest.netlify.app/places",
+    canonical: "https://surround-therapy.netlify.app/places",
   },
   openGraph: {
-    title: "주변 제휴명소 & 맛집·숙소 안내 | 모먼트레스트",
+    title: "주변 제휴명소 & 맛집·숙소 안내 | 서라운드테라피",
     description: "프라이빗 테라피와 함께 즐기는 서울·경기·인천 핫플레이스! 검증된 맛집과 편안한 휴식처를 한눈에 만나보세요.",
-    url: "https://momentrest.netlify.app/places",
-    siteName: "모먼트레스트(MomentRest)",
+    url: "https://surround-therapy.netlify.app/places",
+    siteName: "서라운드테라피(Surround Therapy)",
     locale: "ko_KR",
     type: "website",
     images: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/og-main.png",
         width: 1200,
         height: 630,
-        alt: "모먼트레스트 주변 제휴명소 안내",
+        alt: "서라운드테라피 주변 제휴명소 안내",
       },
     ],
   },
@@ -42,7 +42,7 @@ const placeCategories = [
         name: "시크릿 가든 티하우스",
         region: "서울 종로 / 중구",
         desc: "바쁜 일상 속 프라이빗한 정원에서 즐기는 프리미엄 블렌딩 티와 수제 디저트",
-        badge: "모먼트레스트 전용 혜택",
+        badge: "서라운드테라피 전용 혜택",
       },
       {
         name: "선셋 뷰 오션 라운지",
@@ -111,10 +111,10 @@ export default function PlacesPage() {
         {/* 메인 안내 배너 */}
         <section className="bg-gradient-to-r from-pink-500 via-rose-400 to-pink-600 text-white p-5 md:p-6 rounded-3xl text-center space-y-2 shadow-lg">
           <p className="text-xs md:text-sm font-bold text-pink-100">
-            ✨ 모먼트레스트 파트너와 함께하는 품격 있는 휴식 플랜
+            ✨ 서라운드테라피 파트너와 함께하는 품격 있는 휴식 플랜
           </p>
           <p className="text-[11px] md:text-xs text-pink-100/90">
-            모먼트레스트는 이용자분들의 건강한 힐링 라이프스타일을 위해 수도권 거점별 명소를 엄선하여 주기적으로 업데이트하고 있습니다.
+            서라운드테라피는 이용자분들의 건강한 힐링 라이프스타일을 위해 수도권 거점별 명소를 엄선하여 주기적으로 업데이트하고 있습니다.
           </p>
         </section>
 
@@ -163,7 +163,7 @@ export default function PlacesPage() {
         {/* 하단 제휴 문의 안내 */}
         <section className="bg-white border border-pink-200 p-6 rounded-3xl text-center space-y-3 shadow-sm">
           <h3 className="text-base font-black text-gray-900">
-            🤝 모먼트레스트 제휴 명소 등록 및 입점 안내
+            🤝 서라운드테라피 제휴 명소 등록 및 입점 안내
           </h3>
           <p className="text-xs text-gray-600 max-w-md mx-auto leading-relaxed">
             서울·경기·인천 지역의 웰니스 매장, 맛집, 숙박 업주분들의 제휴 신청을 받고 있습니다.
@@ -184,7 +184,7 @@ export default function PlacesPage() {
             href="/"
             className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-pink-600 transition-colors font-semibold"
           >
-            ← 모먼트레스트 메인 홈으로 이동하기
+            ← 서라운드테라피 메인 홈으로 이동하기
           </Link>
         </div>
 

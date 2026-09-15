@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "서울 프리미엄 힐링 테라피 & 홈케어 추천 | 모먼트레스트",
+  title: "서울 프리미엄 힐링 테라피 & 홈케어 추천 | 서라운드테라피",
   description: "서울 전지역(강남, 서초, 송파, 마포 등) 프리미엄 힐링 테라피, 스웨디시, 아로마 가이드. 편안하고 안심할 수 있는 제휴처를 만나보세요.",
   keywords: [
     "서울힐링테라피",
@@ -10,16 +10,16 @@ export const metadata: Metadata = {
     "서울홈케어",
     "서울스웨디시테라피",
     "서울아로마테라피",
-    "모먼트레스트서울"
+    "서라운드테라피서울"
   ],
   alternates: {
-    canonical: "https://momentrest.netlify.app/seoul",
+    canonical: "https://surround-therapy.netlify.app/seoul",
   },
   openGraph: {
-    title: "서울 힐링 테라피 & 홈케어 추천 | 모먼트레스트",
+    title: "서울 힐링 테라피 & 홈케어 추천 | 서라운드테라피",
     description: "서울 전지역 신속한 방문과 편안한 휴식! 안심하고 이용할 수 있는 프리미엄 바디케어 서비스를 경험하세요.",
-    url: "https://momentrest.netlify.app/seoul",
-    siteName: "모먼트레스트(MomentRest)",
+    url: "https://surround-therapy.netlify.app/seoul",
+    siteName: "서라운드테라피(Surround Therapy)",
     locale: "ko_KR",
     type: "website",
     images: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/og-main.png",
         width: 1200,
         height: 630,
-        alt: "서울 힐링 테라피 - 모먼트레스트",
+        alt: "서울 힐링 테라피 - 서라운드테라피",
       },
     ],
   },
@@ -43,13 +43,14 @@ interface Shop {
   image: string;
 }
 
+// 🌟 서울 지역 지원 샵 데이터 및 공식 고유 번호 매칭
 const seoulShops: Shop[] = [
   {
     id: 1,
     slug: "golden-therapy",
     name: "✨ 서울 강남·서초 한국골든테라피",
     desc: "VIP 골든 릴렉싱 & 딥티슈 피로회복! 베테랑 테라피스트의 품격 있는 1:1 맞춤 테라피 케어",
-    phone: "0507-1280-3361",
+    phone: "0507-1280-3360",
     price: "80,000원부터~",
     image: "/shop1.jpg"
   },
@@ -58,7 +59,7 @@ const seoulShops: Shop[] = [
     slug: "miin-therapy",
     name: "🌸 서울 마포·용산 한국미인테라피",
     desc: "최고급 천연 오일을 활용한 감성 스웨디시 & 아로마 전신 림프 순환 맞춤 프로그램",
-    phone: "0507-1280-3303",
+    phone: "0507-1280-3201",
     price: "70,000원부터~",
     image: "/shop2.jpg"
   },
@@ -67,7 +68,7 @@ const seoulShops: Shop[] = [
     slug: "juju-therapy",
     name: "💎 서울 송파·강동 주주테라피",
     desc: "재방문율 1위 만족도! 철저한 위생 관리와 프라이빗 힐링 바디케어 서비스",
-    phone: "0507-1280-3193",
+    phone: "0507-1280-3197",
     price: "60,000원부터~",
     image: "/shop3.jpg"
   },
@@ -76,7 +77,7 @@ const seoulShops: Shop[] = [
     slug: "queens-home-therapy",
     name: "👑 서울 영등포·여의도 퀸즈홈테라피",
     desc: "여왕처럼 누리는 VIP 홈케어! 전문 힐러들의 체형 맞춤형 피로회복 프로그램",
-    phone: "0507-1280-3334",
+    phone: "0507-1280-3296",
     price: "60,000원부터~",
     image: "/shop4.jpg"
   },
@@ -85,7 +86,7 @@ const seoulShops: Shop[] = [
     slug: "night-therapy",
     name: "🌙 서울 전지역 오늘밤테라피",
     desc: "편안한 휴식과 안심 힐링! 서울 전지역 신속한 방문으로 지친 일상의 피로 회복",
-    phone: "0507-1280-3223",
+    phone: "0507-1280-3199",
     price: "60,000원부터~",
     image: "/shop5.jpg"
   }
@@ -95,9 +96,9 @@ export default function SeoulPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "서울 힐링 테라피 & 홈케어 안내 - 모먼트레스트",
+    "name": "서울 힐링 테라피 & 홈케어 안내 - 서라운드테라피",
     "description": "서울 지역 프라이빗 테라피 및 힐링 바디케어 제휴업체 정보 제공",
-    "url": "https://momentrest.netlify.app/seoul",
+    "url": "https://surround-therapy.netlify.app/seoul",
     "telephone": "0507-1280-3344",
     "address": {
       "@type": "PostalAddress",
@@ -175,15 +176,15 @@ export default function SeoulPage() {
 
         <div className="text-center pt-4">
           <Link href="/" className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-pink-600 transition-colors font-semibold">
-            ← 모먼트레스트 메인 홈으로 돌아가기
+            ← 서라운드테라피 메인 홈으로 돌아가기
           </Link>
         </div>
       </main>
 
       <footer className="bg-white border-t border-pink-200 py-10 text-center text-gray-500 text-xs mt-auto">
         <div className="max-w-4xl mx-auto px-4 space-y-4">
-          <p className="text-gray-600 font-bold">모먼트레스트(MomentRest)는 건전하고 안전한 프리미엄 홈케어 & 힐링 테라피 정보 플랫폼입니다.</p>
-          <p className="text-[11px] text-gray-400">COPYRIGHT &copy; MomentRest ALL RIGHTS RESERVED.</p>
+          <p className="text-gray-600 font-bold">서라운드테라피(Surround Therapy)는 건전하고 안전한 프리미엄 홈케어 & 힐링 테라피 정보 플랫폼입니다.</p>
+          <p className="text-[11px] text-gray-400">COPYRIGHT &copy; SurroundTherapy ALL RIGHTS RESERVED.</p>
         </div>
       </footer>
     </div>

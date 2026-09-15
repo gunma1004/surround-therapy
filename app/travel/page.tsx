@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "수도권 힐링 여행지 안내 | 서울·경기·인천 추천 명소 - 모먼트레스트",
-  description: "서울·경기·인천 모먼트레스트 추천 수도권 힐링 여행지! 도심 숲길, 호수 드라이브, 오션뷰 일몰 명소와 여행 후 피로를 푸는 프라이빗 홈케어 팁을 확인하세요.",
+  title: "수도권 힐링 여행지 안내 | 서울·경기·인천 추천 명소 - 서라운드테라피",
+  description: "서울·경기·인천 서라운드테라피 추천 수도권 힐링 여행지! 도심 숲길, 호수 드라이브, 오션뷰 일몰 명소와 여행 후 피로를 푸는 프라이빗 홈케어 팁을 확인하세요.",
   keywords: [
-    "모먼트레스트여행가이드",
+    "서라운드테라피여행가이드",
     "수도권힐링여행",
     "서울야경명소",
     "경기드라이브코스",
@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     "여행피로회복"
   ],
   alternates: {
-    canonical: "https://momentrest.netlify.app/travel",
+    canonical: "https://surround-therapy.netlify.app/travel",
   },
   openGraph: {
-    title: "수도권 힐링 여행지 안내 | 모먼트레스트(MomentRest) 추천 명소",
+    title: "수도권 힐링 여행지 안내 | 서라운드테라피(Surround Therapy) 추천 명소",
     description: "피로를 비워내는 서울·경기·인천 시그니처 힐링 여행 코스! 맑은 자연과 함께하는 웰니스 라이프를 만나보세요.",
-    url: "https://momentrest.netlify.app/travel",
-    siteName: "모먼트레스트(MomentRest)",
+    url: "https://surround-therapy.netlify.app/travel",
+    siteName: "서라운드테라피(Surround Therapy)",
     locale: "ko_KR",
     type: "website",
     images: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
         url: "/og-main.png",
         width: 1200,
         height: 630,
-        alt: "모먼트레스트 수도권 힐링 여행지 안내",
+        alt: "서라운드테라피 수도권 힐링 여행지 안내",
       },
     ],
   },
@@ -124,9 +124,9 @@ export default function TravelPage() {
                 ))}
               </div>
 
-              {/* 모먼트레스트 웰니스 팁 */}
+              {/* 서라운드테라피 웰니스 팁 */}
               <div className="bg-pink-50/50 p-3.5 rounded-2xl border border-pink-100 text-[11px] text-gray-600 leading-relaxed">
-                <strong className="text-pink-600 font-bold">🌿 모먼트레스트 릴렉스 팁:</strong> {spot.tip}
+                <strong className="text-pink-600 font-bold">🌿 서라운드테라피 릴렉스 팁:</strong> {spot.tip}
               </div>
             </div>
           ))}
@@ -147,7 +147,7 @@ export default function TravelPage() {
               href="tel:0507-1280-3344"
               className="inline-flex items-center gap-2 bg-white text-pink-600 hover:bg-pink-50 font-black text-xs px-6 py-3 rounded-xl shadow-md transition-all transform active:scale-95"
             >
-              📞 모먼트레스트 실시간 방문 케어 예약하기
+              📞 서라운드테라피 실시간 방문 케어 예약하기
             </a>
           </div>
         </section>
@@ -158,7 +158,7 @@ export default function TravelPage() {
             href="/"
             className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-pink-600 transition-colors font-semibold"
           >
-            ← 모먼트레스트 메인 홈으로 이동하기
+            ← 서라운드테라피 메인 홈으로 이동하기
           </Link>
         </div>
 

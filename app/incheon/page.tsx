@@ -1,27 +1,73 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+// 🌟 인천 지역 지원 샵 데이터 및 공식 고유 번호 매칭
 const incheonShops = [
-  { id: 1, slug: "golden-therapy", name: "✨ 한국골든테라피", desc: "송도, 청라, 연수구 등 인천 전지역 25분 내 신속 방문 프리미엄 힐링 테라피", phone: "0507-1280-3361", price: "80,000원부터~", image: "/shop1.jpg", badge: "BEST" },
-  { id: 2, slug: "miin-therapy", name: "🌸 한국미인테라피", desc: "인천 전역 품격 있는 프라이빗 스웨디시 및 천연 아로마 맞춤 웰니스 코스", phone: "0507-1280-3303", price: "70,000원부터~", image: "/shop2.jpg", badge: "추천" },
-  { id: 3, slug: "juju-therapy", name: "💎 주주테라피", desc: "부평, 구월동, 서구 전지역 신속 도착 아로마 바디케어! 재방문율 높은 제휴점", phone: "0507-1280-3193", price: "60,000원부터~", image: "/shop3.jpg", badge: "인기" },
-  { id: 4, slug: "queens-home-therapy", name: "👑 퀸즈홈테라피", desc: "인천 지역 전문 매니저의 1:1 맞춤형 프리미엄 바디케어 프로그램", phone: "0507-1280-3334", price: "60,000원부터~", image: "/shop4.jpg", badge: "VIP" },
-  { id: 5, slug: "night-therapy", name: "🌙 오늘밤테라피", desc: "편안한 휴식과 안심 힐링! 인천 맞춤형 심야 웰니스 테라피", phone: "0507-1280-3223", price: "60,000원부터~", image: "/shop5.jpg", badge: "추천" }
+  { 
+    id: 1, 
+    slug: "golden-therapy", 
+    name: "✨ 한국골든테라피", 
+    desc: "송도, 청라, 연수구 등 인천 전지역 25분 내 신속 방문 프리미엄 힐링 테라피", 
+    phone: "0507-1280-3360", 
+    price: "80,000원부터~", 
+    image: "/shop1.jpg", 
+    badge: "BEST" 
+  },
+  { 
+    id: 2, 
+    slug: "miin-therapy", 
+    name: "🌸 한국미인테라피", 
+    desc: "인천 전역 품격 있는 프라이빗 스웨디시 및 천연 아로마 맞춤 웰니스 코스", 
+    phone: "0507-1280-3201", 
+    price: "70,000원부터~", 
+    image: "/shop2.jpg", 
+    badge: "추천" 
+  },
+  { 
+    id: 3, 
+    slug: "juju-therapy", 
+    name: "💎 주주테라피", 
+    desc: "부평, 구월동, 서구 전지역 신속 도착 아로마 바디케어! 재방문율 높은 제휴점", 
+    phone: "0507-1280-3197", 
+    price: "60,000원부터~", 
+    image: "/shop3.jpg", 
+    badge: "인기" 
+  },
+  { 
+    id: 4, 
+    slug: "queens-home-therapy", 
+    name: "👑 퀸즈홈테라피", 
+    desc: "인천 지역 전문 매니저의 1:1 맞춤형 프리미엄 바디케어 프로그램", 
+    phone: "0507-1280-3296", 
+    price: "60,000원부터~", 
+    image: "/shop4.jpg", 
+    badge: "VIP" 
+  },
+  { 
+    id: 5, 
+    slug: "night-therapy", 
+    name: "🌙 오늘밤테라피", 
+    desc: "편안한 휴식과 안심 힐링! 인천 맞춤형 심야 웰니스 테라피", 
+    phone: "0507-1280-3199", 
+    price: "60,000원부터~", 
+    image: "/shop5.jpg", 
+    badge: "추천" 
+  }
 ];
 
 export const metadata: Metadata = {
-  title: "인천광역시 프리미엄 힐링 테라피 가이드 | 모먼트레스트",
-  description: "송도, 청라, 연수구, 부평 등 인천 전지역 신속한 방문과 편안한 휴식을 제공하는 모먼트레스트 제휴점 정보입니다.",
-  keywords: ["인천힐링테라피", "인천스웨디시", "송도청라홈케어", "모먼트레스트인천"],
-  alternates: { canonical: "https://momentrest.netlify.app/incheon" },
+  title: "인천광역시 프리미엄 힐링 테라피 가이드 | 서라운드테라피",
+  description: "송도, 청라, 연수구, 부평 등 인천 전지역 신속한 방문과 편안한 휴식을 제공하는 서라운드테라피 제휴점 정보입니다.",
+  keywords: ["인천힐링테라피", "인천스웨디시", "송도청라홈케어", "서라운드테라피인천"],
+  alternates: { canonical: "https://surround-therapy.netlify.app/incheon" },
   openGraph: {
-    title: "인천광역시 프리미엄 힐링 테라피 제휴샵 | 모먼트레스트",
+    title: "인천광역시 프리미엄 힐링 테라피 제휴샵 | 서라운드테라피",
     description: "인천광역시 전지역 실시간 방문 제휴 샵 안내. 편안한 휴식과 힐링을 누려보세요.",
-    url: "https://momentrest.netlify.app/incheon",
-    siteName: "모먼트레스트(MomentRest)",
+    url: "https://surround-therapy.netlify.app/incheon",
+    siteName: "서라운드테라피(Surround Therapy)",
     locale: "ko_KR",
     type: "website",
-    images: [{ url: "/og-main.png", width: 1200, height: 630, alt: "모먼트레스트 인천 제휴" }],
+    images: [{ url: "/og-main.png", width: 1200, height: 630, alt: "서라운드테라피 인천 제휴" }],
   },
 };
 
@@ -85,7 +131,7 @@ export default function IncheonMainPage() {
             🛡️ 인천 전지역 편안하고 안전한 프리미엄 웰니스 케어
           </h3>
           <p className="text-xs text-pink-100 max-w-md mx-auto leading-relaxed">
-            모먼트레스트는 투명하고 정직한 운영을 지향하며, 인천 전역에 신속하고 편안한 힐링 서비스를 제공합니다.
+            서라운드테라피는 투명하고 정직한 운영을 지향하며, 인천 전역에 신속하고 편안한 힐링 서비스를 제공합니다.
           </p>
           <div>
             <a 
@@ -99,7 +145,7 @@ export default function IncheonMainPage() {
 
         <div className="text-center pt-2">
           <Link href="/" className="text-xs text-gray-500 hover:text-pink-600 transition-colors font-semibold">
-            ← 모먼트레스트 메인 홈으로 돌아가기
+            ← 서라운드테라피 메인 홈으로 돌아가기
           </Link>
         </div>
       </div>
