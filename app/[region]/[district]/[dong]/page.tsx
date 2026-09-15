@@ -5,16 +5,11 @@ interface PageProps {
   params: Promise<{
     region: string;
     district: string;
+    dong: string;
   }>;
 }
 
-const shopData: Record<string, {
-  name: string;
-  phone: string;
-  image: string;
-  desc: string;
-  supportedRegions: string[];
-}> = {
+const shopData = {
   "golden-therapy": { name: "한국골든테라피", phone: "0507-1280-3360", image: "/shop1.jpg", desc: "골든 품격의 감성 릴렉싱! 전문 관리사와 프리미엄 힐러진이 선사하는 맞춤형 바디케어.", supportedRegions: ["seoul", "gyeonggi", "incheon"] },
   "miin-therapy": { name: "한국미인테라피", phone: "0507-1280-3201", image: "/shop2.jpg", desc: "천연 오일과 전문 테라피스트의 섬세한 터치로 지친 일상의 피로를 말끔히 풀어드립니다.", supportedRegions: ["seoul", "gyeonggi", "incheon", "cheonan", "asan", "daejeon", "cheongju"] },
   "night-therapy": { name: "오늘밤테라피", phone: "0507-1280-3199", image: "/shop5.jpg", desc: "편안한 휴식과 안심 힐링! 수도권 전지역 신속한 방문으로 지친 일상의 피로 회복.", supportedRegions: ["seoul", "gyeonggi", "incheon"] },
@@ -40,13 +35,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const resolvedParams = await params;
   const region = resolvedParams?.region || "";
   const district = decodeURIComponent(resolvedParams?.district || "");
+  const dong = decodeURIComponent(resolvedParams?.dong || "");
   const regionName = getRegionName(region);
-  const fullTitle = `${regionName} ${district}`;
+  const fullTitle = `${regionName} ${district} ${dong}`;
 
   return {
     title: `${fullTitle} 출장 전문 힐링 마사지 - 서라운드테라피`,
-    description: `${fullTitle} 프리미엄 힐링 테라피 제휴 안내. 신속한 매칭과 전신 근육 이완 서비스.`,
-    alternates: { canonical: `https://surround-therapy.netlify.app/${region}/${resolvedParams.district}` },
+    description: `${fullTitle} 프리미엄 힐링 테라피 제휴 안내.`,
+    alternates: { canonical: `https://surround-therapy.netlify.app/${region}/${resolvedParams.district}/${resolvedParams.dong}` },
   };
 }
 
@@ -54,14 +50,16 @@ export async function generateStaticParams() {
   return [];
 }
 
-export default async function DistrictDetailPage({ params }: PageProps) {
+export default async function DongDetailPage({ params }: PageProps) {
   const resolvedParams = await params;
   const region = resolvedParams?.region || "";
   const rawDistrict = resolvedParams?.district || "";
   const district = decodeURIComponent(rawDistrict);
+  const rawDong = resolvedParams?.dong || "";
+  const dong = decodeURIComponent(rawDong);
   
   const regionName = getRegionName(region);
-  const fullTitle = `${regionName} ${district}`;
+  const fullTitle = `${regionName} ${district} ${dong}`;
 
   const localShops = Object.entries(shopData)
     .filter(([_, shop]) => shop.supportedRegions.includes(region))
@@ -95,7 +93,7 @@ export default async function DistrictDetailPage({ params }: PageProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {localShops.map((lShop) => (
               <div key={lShop.id} className="bg-white border border-pink-200 hover:border-pink-400 rounded-2xl p-4 flex gap-4 items-center shadow-md transition-all group relative">
-                <Link href={`/${region}/${rawDistrict}/SHOP/${lShop.slug}`} className="absolute inset-0 z-10" aria-label={lShop.name} />
+                <Link href={`/${region}/${rawDistrict}/${rawDong}/SHOP/${lShop.slug}`} className="absolute inset-0 z-10" aria-label={lShop.name} />
                 <img src={lShop.image} alt={lShop.name} className="w-20 h-20 md:w-24 md:h-24 rounded-xl object-cover border border-pink-100" />
                 <div className="flex-1 min-w-0">
                   <h3 className="font-extrabold text-sm md:text-base text-gray-900 truncate group-hover:text-pink-600">{lShop.name}</h3>
@@ -111,8 +109,8 @@ export default async function DistrictDetailPage({ params }: PageProps) {
         </section>
 
         <div className="text-center pt-2">
-          <Link href={`/${region}`} className="text-xs text-gray-500 hover:text-pink-600 transition-colors font-semibold">
-            ← 상위 지역 메인으로 돌아가기
+          <Link href={`/${region}/${rawDistrict}`} className="text-xs text-gray-500 hover:text-pink-600 transition-colors font-semibold">
+            ← {district} 메인 페이지로 돌아가기
           </Link>
         </div>
       </main>

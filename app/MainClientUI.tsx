@@ -231,10 +231,9 @@ export default function MainClientUI() {
       alert("원하시는 지역(구/시/군)을 먼저 선택해주세요!");
       return;
     }
-    const districtObj = regionData[selectedRegion]?.districts[selectedDistrict];
-    const districtName = districtObj ? districtObj.name : selectedDistrict;
     
-    const baseUrl = `/${selectedRegion}/${encodeURIComponent(districtName)}`;
+    // 🌟 영문 키값(예: jongno, ansan_sangnok 등)을 URL 경로로 직접 사용
+    const baseUrl = `/${selectedRegion}/${selectedDistrict}`;
     const targetUrl = selectedDong 
       ? `${baseUrl}/${encodeURIComponent(selectedDong)}` 
       : baseUrl;
