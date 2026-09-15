@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ClientTextMixerInline } from "../ClientTextMixerInline";
 
 interface PageProps {
   params: Promise<{
@@ -10,6 +9,17 @@ interface PageProps {
   searchParams: Promise<{
     dong?: string;
   }>;
+}
+
+// 🌟 인라인으로 선언하여 경로 에러 원천 차단
+function ClientTextMixerInline({ locationText }: { locationText: string }) {
+  return (
+    <div className="bg-white border border-pink-200 rounded-2xl p-4 text-center shadow-sm">
+      <p className="text-xs text-gray-600">
+        ✨ <strong className="text-pink-600">{locationText}</strong> 지역 검증된 프리미엄 힐링 가이드와 신속한 제휴 서비스를 만나보세요.
+      </p>
+    </div>
+  );
 }
 
 const shopData: Record<string, {
@@ -107,7 +117,6 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
   const regionName = getRegionName(region);
 
   const simpleLocation = dongName ? `${districtName} ${dongName}` : districtName;
-
   const charSum = (regionName + simpleLocation + "surround_therapy_clean_mix").split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
   const variantIndex = charSum % 50;
 
@@ -116,35 +125,22 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
     `${simpleLocation} 맞춤형 웰니스 테라피 (${regionName}) 프라이빗 케어`,
     `${regionName} ${simpleLocation} 프라이빗 아로마 & 스웨디시 가이드`,
     `${simpleLocation} 프리미엄 제휴 테라피 · 서라운드테라피`,
-    `프리미엄 힐링 ${regionName} ${simpleLocation} 맞춤 테라피`,
-    `서라운드테라피 | ${simpleLocation} 안심 릴렉싱 바디케어 (${regionName})`,
-    `${regionName} ${simpleLocation} 프라이빗 힐링 서비스 예약`,
-    `${simpleLocation} 감성 릴렉스 테라피 (${regionName})`,
-    `${regionName} ${simpleLocation} 스웨디시 1:1 맞춤 케어`,
-    `[서라운드테라피] ${simpleLocation} 프리미엄 테라피 (${regionName})`
+    `프리미엄 힐링 ${regionName} ${simpleLocation} 맞춤 테라피`
   ];
 
   const descriptionVariants = [
     `${regionName} ${simpleLocation} 프리미엄 힐링 테라피 안내. 편안하고 신속한 제휴 샵 방문 서비스를 서라운드테라피에서 확인하세요.`,
-    `프라이빗 힐링! ${simpleLocation} 감성 테라피 (${regionName}) 안내 가이드. 전문 관리사의 맞춤형 제휴 정보를 연결해 드립니다.`,
-    `${regionName} ${simpleLocation} 스웨디시 테라피 예약 안내. 편안하고 정직한 서비스를 공식 사이트에서 제공합니다.`,
-    `${simpleLocation} 프리미엄 제휴 테라피 (${regionName}) 안심 서비스. 스웨디시, 아로마 릴렉싱 프로그램으로 편안한 휴식을 누려보세요.`,
-    `${regionName} ${simpleLocation} 힐링 테라피 찾으시나요? 안심하고 이용하는 품격 있는 바디케어 가이드입니다.`
+    `프라이빗 힐링! ${simpleLocation} 감성 테라피 (${regionName}) 안내 가이드. 전문 관리사의 맞춤형 제휴 정보를 연결해 드립니다.`
   ];
 
   const finalTitle = titleVariants[variantIndex % titleVariants.length];
   const finalDescription = descriptionVariants[variantIndex % descriptionVariants.length];
-
   const fullLocationKeyword = `${regionName} ${districtName} ${dongName}`.trim();
 
   return {
     title: finalTitle,
     description: finalDescription,
-    keywords: [
-      `${fullLocationKeyword} 힐링 테라피`,
-      `${fullLocationKeyword} 프라이빗 테라피`,
-      "서라운드테라피"
-    ],
+    keywords: [`${fullLocationKeyword} 힐링 테라피`, "서라운드테라피"],
     alternates: {
       canonical: `https://surround-therapy.netlify.app/${region}/${encodeURIComponent(districtName)}${dongName ? `?dong=${encodeURIComponent(dongName)}` : ""}`,
     },
