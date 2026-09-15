@@ -295,7 +295,7 @@ export default function MainClientUI() {
               </h1>
               
               <p className="text-gray-600 text-xs md:text-sm font-medium max-w-lg mx-auto leading-relaxed">
-                서울, 경기, 인천, 천안·아산, 대전·청주 지역의 엄선된 제휴샵 안내 및 할인 예약 플랫폼입니다. <br className="hidden md:inline"/>지금 바로 편안한 휴식을 만나보세요.
+                서울·수도권 및 충청 전 지역 신속 방문과 편안한 휴식을 선사하는 프리미엄 테라피 가이드입니다. <br className="hidden md:inline"/>지금 바로 편안한 휴식을 만나보세요.
               </p>
             </div>
           </div>
