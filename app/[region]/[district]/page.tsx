@@ -112,14 +112,14 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
     const resolvedSearchParams = await searchParams;
     
     const region = resolvedParams?.region || "";
-    const district = resolvedParams?.district || "";
+    const rawDistrict = resolvedParams?.district || "";
     const dongName = resolvedSearchParams?.dong ? decodeURIComponent(resolvedSearchParams.dong) : "";
     
-    let districtName = "";
+    let districtName = rawDistrict;
     try {
-      districtName = decodeURIComponent(district);
+      districtName = decodeURIComponent(rawDistrict);
     } catch {
-      districtName = district;
+      districtName = rawDistrict;
     }
 
     const regionName = getRegionName(region);
@@ -131,12 +131,12 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
       description: `${fullLocationKeyword} 프리미엄 힐링 테라피 안내. 편안하고 신속한 제휴 샵 방문 서비스를 서라운드테라피에서 확인하세요.`,
       keywords: [`${fullLocationKeyword} 힐링 테라피`, "서라운드테라피"],
       alternates: {
-        canonical: `https://surround-therapy.netlify.app/${region}/${district}${dongName ? `?dong=${encodeURIComponent(dongName)}` : ""}`,
+        canonical: `https://surround-therapy.netlify.app/${region}/${rawDistrict}${dongName ? `?dong=${encodeURIComponent(dongName)}` : ""}`,
       },
       openGraph: {
         title: `${fullLocationKeyword} 프리미엄 힐링 테라피 안내 - 서라운드테라피`,
         description: `${fullLocationKeyword} 프리미엄 힐링 테라피 안내.`,
-        url: `https://surround-therapy.netlify.app/${region}/${district}${dongName ? `?dong=${encodeURIComponent(dongName)}` : ""}`,
+        url: `https://surround-therapy.netlify.app/${region}/${rawDistrict}${dongName ? `?dong=${encodeURIComponent(dongName)}` : ""}`,
         siteName: "서라운드테라피(Surround Therapy)",
         locale: "ko_KR",
         type: "website",
@@ -160,14 +160,14 @@ export default async function RegionalDetailPage({ params, searchParams }: PageP
     const resolvedSearchParams = await searchParams;
 
     const region = resolvedParams?.region || "";
-    const district = resolvedParams?.district || "";
+    const rawDistrict = resolvedParams?.district || "";
     const dongName = resolvedSearchParams?.dong ? decodeURIComponent(resolvedSearchParams.dong) : "";
     
-    let districtName = "";
+    let districtName = rawDistrict;
     try {
-      districtName = decodeURIComponent(district);
+      districtName = decodeURIComponent(rawDistrict);
     } catch {
-      districtName = district;
+      districtName = rawDistrict;
     }
 
     const regionName = getRegionName(region);
@@ -208,7 +208,7 @@ export default async function RegionalDetailPage({ params, searchParams }: PageP
               {localShops.map((lShop) => (
                 <div key={lShop.id} className="bg-white border border-pink-200 hover:border-pink-400 rounded-2xl p-4 flex gap-4 items-center shadow-md transition-all group relative">
                   <Link 
-                    href={`/${region}/${district}/SHOP/${lShop.slug}${dongName ? `?dong=${encodeURIComponent(dongName)}` : ""}`} 
+                    href={`/${region}/${rawDistrict}/SHOP/${lShop.slug}${dongName ? `?dong=${encodeURIComponent(dongName)}` : ""}`} 
                     className="absolute inset-0 z-10" 
                     aria-label={lShop.name} 
                   />
