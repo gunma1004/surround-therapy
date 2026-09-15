@@ -117,37 +117,22 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
   const regionName = getRegionName(region);
 
   const simpleLocation = dongName ? `${districtName} ${dongName}` : districtName;
-  const charSum = (regionName + simpleLocation + "surround_therapy_clean_mix").split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  const variantIndex = charSum % 50;
-
-  const titleVariants = [
-    `${regionName} ${simpleLocation} 프리미엄 힐링 테라피 안내 - 서라운드테라피`,
-    `${simpleLocation} 맞춤형 웰니스 테라피 (${regionName}) 프라이빗 케어`
-  ];
-
-  const descriptionVariants = [
-    `${regionName} ${simpleLocation} 프리미엄 힐링 테라피 안내. 편안하고 신속한 제휴 샵 방문 서비스를 서라운드테라피에서 확인하세요.`
-  ];
-
-  const finalTitle = titleVariants[variantIndex % titleVariants.length];
-  const finalDescription = descriptionVariants[variantIndex % descriptionVariants.length];
   const fullLocationKeyword = `${regionName} ${districtName} ${dongName}`.trim();
 
   return {
-    title: finalTitle,
-    description: finalDescription,
+    title: `${regionName} ${simpleLocation} 프리미엄 힐링 테라피 안내 - 서라운드테라피`,
+    description: `${regionName} ${simpleLocation} 프리미엄 힐링 테라피 안내. 편안하고 신속한 제휴 샵 방문 서비스를 서라운드테라피에서 확인하세요.`,
     keywords: [`${fullLocationKeyword} 힐링 테라피`, "서라운드테라피"],
     alternates: {
       canonical: `https://surround-therapy.netlify.app/${region}/${encodeURIComponent(districtName)}${dongName ? `?dong=${encodeURIComponent(dongName)}` : ""}`,
     },
     openGraph: {
-      title: finalTitle,
-      description: finalDescription,
+      title: `${regionName} ${simpleLocation} 프리미엄 힐링 테라피 안내 - 서라운드테라피`,
+      description: `${regionName} ${simpleLocation} 프리미엄 힐링 테라피 안내.`,
       url: `https://surround-therapy.netlify.app/${region}/${encodeURIComponent(districtName)}${dongName ? `?dong=${encodeURIComponent(dongName)}` : ""}`,
       siteName: "서라운드테라피(Surround Therapy)",
       locale: "ko_KR",
       type: "website",
-      images: [{ url: "/og-main.png", width: 1200, height: 630, alt: `${fullLocationKeyword} 힐링 테라피` }],
     },
   };
 }
@@ -201,7 +186,7 @@ export default async function RegionalDetailPage({ params, searchParams }: PageP
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {localShops.map((lShop) => (
               <div key={lShop.id} className="bg-white border border-pink-200 hover:border-pink-400 rounded-2xl p-4 flex gap-4 items-center shadow-md transition-all group relative">
-                {/* 🌟 구 단위 페이지에서 샵 상세페이지로 연결되는 정확한 경로 매핑 */}
+                {/* 🌟 구 단위 페이지에서 샵 상세페이지(SHOP/[shopName])로 연결되는 정확한 경로 */}
                 <Link 
                   href={`/${region}/${encodeURIComponent(districtName)}/SHOP/${lShop.slug}${dongName ? `?dong=${encodeURIComponent(dongName)}` : ""}`} 
                   className="absolute inset-0 z-10" 
