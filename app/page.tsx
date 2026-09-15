@@ -3,7 +3,7 @@ import MainClientUI from "./MainClientUI";
 
 export const metadata: Metadata = {
   title: "서라운드테라피 | 서울·경기·인천·충청 프리미엄 힐링 테라피 플랫폼",
-  description: "서울, 경기, 인천, 천안, 아산, 대전, 청주 전 지역 신속한 안내 및 편안한 휴식을 제공하는 서라운드테라피 프리미엄 힐링 테라피 플랫폼입니다.",
+  description: "서울·수도권 및 충청 전 지역 신속 방문과 편안한 휴식을 선사하는 프리미엄 테라피 가이드입니다.",
   keywords: [
     "서라운드테라피",
     "SurroundTherapy",
