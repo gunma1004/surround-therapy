@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ClientTextMixerInline } from "../../ClientTextMixerInline";
+import { ClientTextMixerInline } from "@/app/ClientTextMixerInline"; // 🌟 경로를 절대 경로(@/)로 고정
 
 interface PageProps {
   params: Promise<{
