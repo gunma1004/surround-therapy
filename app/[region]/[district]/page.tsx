@@ -5,6 +5,7 @@ interface PageProps {
   params: Promise<{
     region: string;
     district: string;
+    dong?: string;
   }>;
   searchParams: Promise<{
     dong?: string;
@@ -113,13 +114,14 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
     
     const region = resolvedParams?.region || "";
     const rawDistrict = resolvedParams?.district || "";
-    const dongName = resolvedSearchParams?.dong ? decodeURIComponent(resolvedSearchParams.dong) : "";
+    const rawDong = resolvedParams?.dong || resolvedSearchParams?.dong || "";
     
     let districtName = rawDistrict;
-    try {
-      districtName = decodeURIComponent(rawDistrict);
-    } catch {
-      districtName = rawDistrict;
+    try { districtName = decodeURIComponent(rawDistrict); } catch {}
+
+    let dongName = "";
+    if (rawDong) {
+      try { dongName = decodeURIComponent(rawDong); } catch { dongName = rawDong; }
     }
 
     const regionName = getRegionName(region);
@@ -131,12 +133,12 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
       description: `${fullLocationKeyword} 프리미엄 힐링 테라피 안내. 편안하고 신속한 제휴 샵 방문 서비스를 서라운드테라피에서 확인하세요.`,
       keywords: [`${fullLocationKeyword} 힐링 테라피`, "서라운드테라피"],
       alternates: {
-        canonical: `https://surround-therapy.netlify.app/${region}/${rawDistrict}${dongName ? `?dong=${encodeURIComponent(dongName)}` : ""}`,
+        canonical: `https://surround-therapy.netlify.app/${region}/${rawDistrict}${dongName ? `/${encodeURIComponent(dongName)}` : ""}`,
       },
       openGraph: {
         title: `${fullLocationKeyword} 프리미엄 힐링 테라피 안내 - 서라운드테라피`,
         description: `${fullLocationKeyword} 프리미엄 힐링 테라피 안내.`,
-        url: `https://surround-therapy.netlify.app/${region}/${rawDistrict}${dongName ? `?dong=${encodeURIComponent(dongName)}` : ""}`,
+        url: `https://surround-therapy.netlify.app/${region}/${rawDistrict}${dongName ? `/${encodeURIComponent(dongName)}` : ""}`,
         siteName: "서라운드테라피(Surround Therapy)",
         locale: "ko_KR",
         type: "website",
@@ -161,13 +163,14 @@ export default async function RegionalDetailPage({ params, searchParams }: PageP
 
     const region = resolvedParams?.region || "";
     const rawDistrict = resolvedParams?.district || "";
-    const dongName = resolvedSearchParams?.dong ? decodeURIComponent(resolvedSearchParams.dong) : "";
+    const rawDong = resolvedParams?.dong || resolvedSearchParams?.dong || "";
     
     let districtName = rawDistrict;
-    try {
-      districtName = decodeURIComponent(rawDistrict);
-    } catch {
-      districtName = rawDistrict;
+    try { districtName = decodeURIComponent(rawDistrict); } catch {}
+
+    let dongName = "";
+    if (rawDong) {
+      try { dongName = decodeURIComponent(rawDong); } catch { dongName = rawDong; }
     }
 
     const regionName = getRegionName(region);

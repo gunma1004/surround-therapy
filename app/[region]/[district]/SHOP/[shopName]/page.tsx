@@ -12,7 +12,7 @@ interface PageProps {
   }>;
 }
 
-// 🌟 제휴샵 전체 데이터 (S슬림테라피 상세 코스 및 요금표 포함)
+// 🌟 제휴샵 전체 상세 정보 및 코스별 요금표 데이터
 const shopData: Record<string, {
   name: string;
   phone: string;
@@ -176,7 +176,7 @@ const shopData: Record<string, {
     phone: "0507-1280-3358",
     location: "대전·청주·천안·아산 및 중부권 광역 방문",
     badge: "중부권 특화 제휴",
-    image: "/shop6.jpg",
+    image: "/shop1.jpg",
     desc: "충청 및 중부 주요 권역을 아우르는 체계적이고 전문적인 S슬림 홈케어 프로그램.",
     supportedRegions: ["daejeon", "cheongju", "cheonan", "asan"],
     courses: [
@@ -234,6 +234,19 @@ const shopData: Record<string, {
   }
 };
 
+function getRegionName(regionCode: string): string {
+  switch (regionCode) {
+    case "seoul": return "서울";
+    case "gyeonggi": return "경기";
+    case "incheon": return "인천";
+    case "cheonan": return "천안";
+    case "asan": return "아산";
+    case "daejeon": return "대전";
+    case "cheongju": return "청주";
+    default: return regionCode || "";
+  }
+}
+
 export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const resolvedSearchParams = await searchParams;
@@ -251,7 +264,6 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
   const charSum = (locationPrefix + shop.name + "surround_therapy_bypass_mix").split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
   const variantIndex = charSum % 30;
 
-  // 🌟 스팸 회피형 타이틀 패턴 ("출장"과 "마사지" 분리)
   const titleVariants = [
     `${locationPrefix} 출장 전문 힐링 마사지 - ${shop.name} | 서라운드테라피`,
     `${locationPrefix} 출장 방문 릴렉스 마사지 · ${shop.name}`,
@@ -285,7 +297,6 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
     `${locationPrefix} 출장 최고급 감성 마사지 · ${shop.name}`
   ];
 
-  // 🌟 스팸 회피형 메타 디스크립션 패턴
   const descriptionVariants = [
     `${locationPrefix} 출장 전문 힐링 마사지 제휴처 ${shop.name}. 선입금 없는 100% 후불제 안전 시스템으로 편안한 휴식을 선사합니다.`,
     `${locationPrefix} 출장 방문 릴렉스 마사지 서비스 안내. ${shop.name}에서 검증된 전문 관리사와 함께 지친 피로를 날려보세요.`,
@@ -395,7 +406,7 @@ export default async function ShopDetailPage({ params, searchParams }: PageProps
           </div>
         </section>
 
-        {/* 코스 및 가격 안내 (S슬림 포함) */}
+        {/* 코스 및 가격 안내 (S슬림 포함 전체 요금표) */}
         <section className="space-y-4">
           <h2 className="text-lg font-black text-gray-900 px-1">💰 프로그램 및 코스 요금표</h2>
           <div className="space-y-4">
@@ -428,7 +439,7 @@ export default async function ShopDetailPage({ params, searchParams }: PageProps
           </div>
         </section>
 
-        {/* 전화 예약 버튼 바 */}
+        {/* 하단 고정 전화 예약 버튼 바 */}
         <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-pink-200 p-4 shadow-lg z-50">
           <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
             <div>
