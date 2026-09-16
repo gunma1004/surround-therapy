@@ -10,6 +10,44 @@ interface PageProps {
   }>;
 }
 
+// 🌟 영문 구 코드를 한글 명칭으로 정확하게 변환해 주는 매핑 딕셔너리
+const districtNameMap: Record<string, string> = {
+  // 서울
+  jongno: "종로구", jung: "중구", yongsan: "용산구", seongdong: "성동구", gwangjin: "광진구",
+  dongdaemun: "동대문구", jungnang: "중랑구", seongbuk: "성북구", gangbuk: "강북구", dobong: "도봉구",
+  nowon: "노원구", eunpyeong: "은평구", seodaemun: "서대문구", mapo: "마포구", yangcheon: "양천구",
+  gangseo: "강서구", guro: "구로구", geumcheon: "금천구", yeongdeungpo: "영등포구", dongjak: "동작구",
+  gwanak: "관악구", seocho: "서초구", gangnam: "강남구", songpa: "송파구", gangdong: "강동구",
+  
+  // 경기
+  suwon_jangan: "수원시 장안구", suwon_gwonseon: "수원시 권선구", suwon_paldal: "수원시 팔달구", suwon_yeongtong: "수원시 영통구",
+  seongnam_sujeong: "성남시 수정구", seongnam_jungwon: "성남시 중원구", seongnam_bundang: "성남시 분당구",
+  uijeongbu: "의정부시", anyang_manan: "안양시 만안구", anyang_dongan: "안양시 동안구",
+  bucheon_wonmi: "부천시 원미구", bucheon_sosa: "부천시 소사구", bucheon_ojeong: "부천시 오정구",
+  gwangmyeong: "광명시", pyeongtaek: "평택시", dongducheon: "동두천시",
+  ansan_sangnok: "안산시 상록구", ansan_danwon: "안산시 단원구",
+  goyang_deogyang: "고양시 덕양구", goyang_ilsandong: "고양시 일산동구", goyang_ilsanseo: "고양시 일산서구",
+  gwacheon: "과천시", guri: "구리시", namyangju: "남양주시", osan: "오산시", siheung: "시흥시",
+  gunpo: "군포시", uiwang: "의왕시", hanam: "하남시",
+  yongin_cheoin: "용인시 처인구", yongin_giheung: "용인시 기흥구", yongin_suji: "용인시 수지구",
+  paju: "파주시", icheon: "이천시", anseong: "안성시", gimpo: "김포시", hwaseong: "화성시",
+  gwangju: "광주시", yangju: "양주시", pochon: "포천시", yeoju: "여주시", yeoncheon: "연천군", gapyeong: "가평군", yangpyeong: "양평군",
+
+  // 인천
+  jemulpo: "제물포구", yeongjong: "영종구", michuhol: "미추홀구", yeonsu: "연수구",
+  namdong: "남동구", bupyeong: "부평구", gyeyang: "계양구", seohae: "서해구", geomdan: "검단구", ganghwa: "강화군", ongjin: "옹진군",
+
+  // 충청 / 대전 / 청주
+  dongnam: "동남구", seobuk: "서북구", asan_city: "아산시",
+  dong: "동구", jung_gu: "중구", seo: "서구", yuseong: "유성구", daedeok: "대덕구",
+  sangdang: "상당구", seowon: "서원구", heungdeok: "흥덕구", cheongwon: "청원구"
+};
+
+function getDistrictDisplayName(rawDistrict: string): string {
+  const decoded = decodeURIComponent(rawDistrict);
+  return districtNameMap[decoded] || decoded;
+}
+
 // 🌟 제휴샵 전체 상세 정보 및 코스별 요금표 데이터
 const shopData: Record<string, {
   name: string;
@@ -249,81 +287,83 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   try {
     const resolvedParams = await params;
     const region = resolvedParams?.region || "";
-    const district = decodeURIComponent(resolvedParams?.district || "");
+    const rawDistrict = resolvedParams?.district || "";
+    const district = getDistrictDisplayName(rawDistrict);
     const dong = resolvedParams?.dong ? decodeURIComponent(resolvedParams.dong) : "";
     const shopNameSlug = decodeURIComponent(resolvedParams?.shopName || "");
 
     const regionName = getRegionName(region);
     const shop = shopData[shopNameSlug] || { name: "서라운드테라피 제휴점", phone: "0507-1280-3344" };
-    const locationPrefix = dong ? `${district} ${dong}` : district;
+    const locationPrefix = `${regionName} ${district}${dong ? ` ${dong}` : ""}`;
     
-    const charSum = (locationPrefix + shop.name + "surround_therapy_mix").split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    // 🌟 '출장'과 '마사지'가 절대 붙지 않고 분산된 30개 고유 패턴 (샵 이름 제외)
+    const charSum = (locationPrefix + "surround_therapy_mix").split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
     const variantIndex = charSum % 30;
 
     const titleVariants = [
-      `${locationPrefix} 출장 전문 힐링 마사지 - ${shop.name} | 서라운드테라피`,
-      `${locationPrefix} 출장 방문 릴렉스 마사지 · ${shop.name}`,
-      `${locationPrefix} 출장 프라이빗 맞춤 마사지 - ${shop.name}`,
-      `${locationPrefix} 출장 웰니스 바디 마사지 | ${shop.name}`,
-      `${locationPrefix} 출장 케어 전신 마사지 - ${shop.name}`,
-      `${locationPrefix} 출장 스웨디시 감성 마사지 · ${shop.name}`,
-      `${locationPrefix} 출장 아로마 오일 마사지 - ${shop.name}`,
-      `${locationPrefix} 출장 홈케어 맞춤 마사지 | ${shop.name}`,
-      `${locationPrefix} 출장 럭셔리 스파 마사지 - ${shop.name}`,
-      `${locationPrefix} 출장 감성 테라피 마사지 · ${shop.name}`,
-      `${locationPrefix} 출장 정통 바디 마사지 - ${shop.name}`,
-      `${locationPrefix} 출장 1:1 커스텀 마사지 | ${shop.name}`,
-      `${locationPrefix} 출장 안심 힐링 마사지 - ${shop.name}`,
-      `${locationPrefix} 출장 프리미엄 제휴 마사지 · ${shop.name}`,
-      `${locationPrefix} 출장 소프트 릴렉싱 마사지 - ${shop.name}`,
-      `${locationPrefix} 출장 신속 방문 스웨디시 마사지 | ${shop.name}`,
-      `${locationPrefix} 출장 전문 웰니스 마사지 - ${shop.name}`,
-      `${locationPrefix} 출장 딥티슈 바디 마사지 · ${shop.name}`,
-      `${locationPrefix} 출장 커스텀 아로마 마사지 - ${shop.name}`,
-      `${locationPrefix} 출장 VIP 힐링 마사지 | ${shop.name}`,
-      `${locationPrefix} 출장 스페셜 맞춤 마사지 - ${shop.name}`,
-      `${locationPrefix} 출장 안심 홈케어 마사지 · ${shop.name}`,
-      `${locationPrefix} 출장 프리미엄 릴렉스 마사지 - ${shop.name}`,
-      `${locationPrefix} 출장 피로해소 전신 마사지 | ${shop.name}`,
-      `${locationPrefix} 출장 맞춤형 스웨디시 마사지 - ${shop.name}`,
-      `${locationPrefix} 출장 힐링 가이드 마사지 · ${shop.name}`,
-      `${locationPrefix} 출장 실속형 바디 마사지 - ${shop.name}`,
-      `${locationPrefix} 출장 쾌적한 방문 마사지 | ${shop.name}`,
-      `${locationPrefix} 출장 종합 웰니스 마사지 - ${shop.name}`,
-      `${locationPrefix} 출장 최고급 감성 마사지 · ${shop.name}`
+      `${locationPrefix} 출장 전문 힐링 마사지 안내 - 서라운드테라피`,
+      `${locationPrefix} 출장 방문 릴렉스 마사지 서비스 · 서라운드테라피`,
+      `${locationPrefix} 출장 프라이빗 맞춤 마사지 가이드 | 서라운드테라피`,
+      `${locationPrefix} 출장 웰니스 바디 마사지 제휴샵 - 서라운드테라피`,
+      `${locationPrefix} 출장 케어 전신 마사지 프로그램 · 서라운드테라피`,
+      `${locationPrefix} 출장 스웨디시 감성 마사지 안내 - 서라운드테라피`,
+      `${locationPrefix} 출장 아로마 오일 마사지 제휴처 · 서라운드테라피`,
+      `${locationPrefix} 출장 홈케어 맞춤 마사지 가이드 | 서라운드테라피`,
+      `${locationPrefix} 출장 럭셔리 스파 마사지 안내 - 서라운드테라피`,
+      `${locationPrefix} 출장 감성 테라피 마사지 제휴점 · 서라운드테라피`,
+      `${locationPrefix} 출장 정통 바디 마사지 코스 안내 - 서라운드테라피`,
+      `${locationPrefix} 출장 1:1 커스텀 마사지 힐링 가이드 | 서라운드테라피`,
+      `${locationPrefix} 출장 안심 힐링 마사지 서비스 - 서라운드테라피`,
+      `${locationPrefix} 출장 프리미엄 제휴 마사지 안내 · 서라운드테라피`,
+      `${locationPrefix} 출장 소프트 릴렉싱 마사지 가이드 - 서라운드테라피`,
+      `${locationPrefix} 출장 신속 방문 스웨디시 마사지 | 서라운드테라피`,
+      `${locationPrefix} 출장 전문 웰니스 마사지 안내 - 서라운드테라피`,
+      `${locationPrefix} 출장 딥티슈 바디 마사지 제휴처 · 서라운드테라피`,
+      `${locationPrefix} 출장 커스텀 아로마 마사지 가이드 - 서라운드테라피`,
+      `${locationPrefix} 출장 VIP 힐링 마사지 프로그램 | 서라운드테라피`,
+      `${locationPrefix} 출장 스페셜 맞춤 마사지 안내 - 서라운드테라피`,
+      `${locationPrefix} 출장 안심 홈케어 마사지 제휴샵 · 서라운드테라피`,
+      `${locationPrefix} 출장 프리미엄 릴렉스 마사지 안내 - 서라운드테라피`,
+      `${locationPrefix} 출장 피로해소 전신 마사지 가이드 | 서라운드테라피`,
+      `${locationPrefix} 출장 맞춤형 스웨디시 마사지 서비스 - 서라운드테라피`,
+      `${locationPrefix} 출장 힐링 가이드 마사지 제휴처 · 서라운드테라피`,
+      `${locationPrefix} 출장 실속형 바디 마사지 코스 안내 - 서라운드테라피`,
+      `${locationPrefix} 출장 쾌적한 방문 마사지 서비스 | 서라운드테라피`,
+      `${locationPrefix} 출장 종합 웰니스 마사지 안내 - 서라운드테라피`,
+      `${locationPrefix} 출장 최고급 감성 마사지 제휴점 · 서라운드테라피`
     ];
 
     const descriptionVariants = [
-      `${locationPrefix} 출장 전문 힐링 마사지 제휴처 ${shop.name}. 선입금 없는 100% 후불제 안전 시스템으로 편안한 휴식을 선사합니다.`,
-      `${locationPrefix} 출장 방문 릴렉스 마사지 서비스 안내. ${shop.name}에서 검증된 전문 관리사와 함께 지친 피로를 날려보세요.`,
-      `${locationPrefix} 출장 프라이빗 맞춤 마사지 솔루션. ${shop.name}의 품격 있는 1:1 커스텀 코스를 지금 바로 만나보세요.`,
-      `${locationPrefix} 출장 웰니스 바디 마사지 전문점 ${shop.name}. 신속한 방문과 정직한 정찰제로 안심하고 이용하실 수 있습니다.`,
-      `${locationPrefix} 출장 케어 전신 마사지 안내. ${shop.name}에서 제공하는 프라이빗 프로그램으로 일상의 스트레스를 해소하세요.`,
-      `${locationPrefix} 출장 스웨디시 힐링 마사지 제휴점 ${shop.name}. 향기로운 아로마와 부드러운 터치로 최고의 휴식을 경험하세요.`,
-      `${locationPrefix} 출장 아로마 오일 마사지 전문 ${shop.name}. 숙련된 관리사의 품격 있는 바디케어 서비스를 제공합니다.`,
-      `${locationPrefix} 출장 홈케어 맞춤 마사지 안내. ${shop.name}와 함께 편안한 공간에서 힐링 타임을 누려보세요.`,
-      `${locationPrefix} 출장 럭셔리 스파 마사지 제휴샵 ${shop.name}. 철저한 위생 관리와 고객 만족 중심의 맞춤형 케어.`,
-      `${locationPrefix} 출장 감성 테라피 마사지 전문 ${shop.name}. 몸과 마음의 피로를 편안하게 채워드립니다.`,
-      `${locationPrefix} 출장 정통 바디 마사지 안내. ${shop.name}에서 신속하고 안전한 방문 서비스를 받아보세요.`,
-      `${locationPrefix} 출장 1:1 커스텀 마사지 제휴처 ${shop.name}. 정직한 후불제 시스템으로 믿을 수 있는 웰니스 케어.`,
-      `${locationPrefix} 출장 안심 힐링 마사지 서비스 ${shop.name}. 지친 몸에 활력을 불어넣어 주는 프리미엄 솔루션.`,
-      `${locationPrefix} 출장 프리미엄 케어 마사지 전문 ${shop.name}. 뭉친 근육을 시원하게 풀어주는 커스텀 프로그램을 만나보세요.`,
-      `${locationPrefix} 출장 소프트 릴렉싱 마사지 가이드 ${shop.name}. 편안하고 안심할 수 있는 방문 바디케어 서비스.`,
-      `${locationPrefix} 출장 신속 방문 스웨디시 마사지 제휴점 ${shop.name}. 전문 힐러들의 손길로 완벽한 피로 회복을 선사합니다.`,
-      `${locationPrefix} 출장 전문 웰니스 마사지 안내 ${shop.name}. 이동의 불편함 없이 내 공간에서 누리는 럭셔리 힐링.`,
-      `${locationPrefix} 출장 딥티슈 바디 마사지 전문 ${shop.name}. 부드러운 오일 케어로 심신의 안정을 찾아드립니다.`,
-      `${locationPrefix} 출장 커스텀 아로마 마사지 제휴샵 ${shop.name}. 투명하고 정직한 요금으로 품격 있는 케어를 제공합니다.`,
-      `${locationPrefix} 출장 VIP 힐링 마사지 ${shop.name}. 고객 맞춤형 힐링 프로그램으로 최상의 만족도를 드립니다.`,
-      `${locationPrefix} 출장 스페셜 맞춤 마사지 ${shop.name}. 최고급 퀄리티의 마사지로 일상의 품격을 높여보세요.`,
-      `${locationPrefix} 출장 안심 홈케어 마사지 제휴점 ${shop.name}. 지친 일상 끝에 찾아오는 완벽한 휴식의 시간.`,
-      `${locationPrefix} 출장 프리미엄 릴렉스 마사지 서비스 ${shop.name}. 철저한 검증을 거친 제휴점의 안전한 방문 케어.`,
-      `${locationPrefix} 출장 피로해소 전신 마사지 ${shop.name}. 세심하고 정성스러운 터치로 묵은 피로를 해소하세요.`,
-      `${locationPrefix} 출장 맞춤형 스웨디시 마사지 안내 ${shop.name}. 편안하고 아늑한 힐링 테라피를 지금 경험해 보세요.`,
-      `${locationPrefix} 출장 힐링 테라피 마사지 제휴처 ${shop.name}. 빠르고 친절한 매칭으로 만족도를 더했습니다.`,
-      `${locationPrefix} 출장 실속형 바디 마사지 솔루션 ${shop.name}. 체계적인 마사지 프로그램으로 활력을 되찾으세요.`,
-      `${locationPrefix} 출장 쾌적한 방문 마사지 ${shop.name}. 깊은 근육까지 시원하게 이완시켜 주는 프리미엄 케어.`,
-      `${locationPrefix} 출장 종합 웰니스 마사지 제휴샵 ${shop.name}. 정성과 실력을 갖춘 전문 관리사의 방문 서비스.`,
-      `${locationPrefix} 출장 최고급 감성 마사지 ${shop.name}. 몸과 마음의 균형을 되찾아주는 안심 웰니스 솔루션.`
+      `${locationPrefix} 출장 전문 힐링 마사지 제휴처. 선입금 없는 100% 후불제 안전 시스템으로 편안한 휴식을 선사합니다.`,
+      `${locationPrefix} 출장 방문 릴렉스 마사지 서비스 안내. 검증된 전문 관리사와 함께 지친 피로를 날려보세요.`,
+      `${locationPrefix} 출장 프라이빗 맞춤 마사지 솔루션. 품격 있는 1:1 커스텀 코스를 지금 바로 만나보세요.`,
+      `${locationPrefix} 출장 웰니스 바디 마사지 전문점. 신속한 방문과 정직한 정찰제로 안심하고 이용하실 수 있습니다.`,
+      `${locationPrefix} 출장 케어 전신 마사지 안내. 제공되는 프라이빗 프로그램으로 일상의 스트레스를 해소하세요.`,
+      `${locationPrefix} 출장 스웨디시 힐링 마사지 제휴점. 향기로운 아로마와 부드러운 터치로 최고의 휴식을 경험하세요.`,
+      `${locationPrefix} 출장 아로마 오일 마사지 전문. 숙련된 관리사의 품격 있는 바디케어 서비스를 제공합니다.`,
+      `${locationPrefix} 출장 홈케어 맞춤 마사지 안내. 편안한 공간에서 힐링 타임을 누려보세요.`,
+      `${locationPrefix} 출장 럭셔리 스파 마사지 제휴샵. 철저한 위생 관리와 고객 만족 중심의 맞춤형 케어.`,
+      `${locationPrefix} 출장 감성 테라피 마사지 전문. 몸과 마음의 피로를 편안하게 채워드립니다.`,
+      `${locationPrefix} 출장 정통 바디 마사지 안내. 신속하고 안전한 방문 서비스를 받아보세요.`,
+      `${locationPrefix} 출장 1:1 커스텀 마사지 제휴처. 정직한 후불제 시스템으로 믿을 수 있는 웰니스 케어.`,
+      `${locationPrefix} 출장 안심 힐링 마사지 서비스. 지친 몸에 활력을 불어넣어 주는 프리미엄 솔루션.`,
+      `${locationPrefix} 출장 프리미엄 케어 마사지 전문. 뭉친 근육을 시원하게 풀어주는 커스텀 프로그램을 만나보세요.`,
+      `${locationPrefix} 출장 소프트 릴렉싱 마사지 가이드. 편안하고 안심할 수 있는 방문 바디케어 서비스.`,
+      `${locationPrefix} 출장 신속 방문 스웨디시 마사지 제휴점. 전문 힐러들의 손길로 완벽한 피로 회복을 선사합니다.`,
+      `${locationPrefix} 출장 전문 웰니스 마사지 안내. 이동의 불편함 없이 내 공간에서 누리는 럭셔리 힐링.`,
+      `${locationPrefix} 출장 딥티슈 바디 마사지 전문. 부드러운 오일 케어로 심신의 안정을 찾아드립니다.`,
+      `${locationPrefix} 출장 커스텀 아로마 마사지 제휴샵. 투명하고 정직한 요금으로 품격 있는 케어를 제공합니다.`,
+      `${locationPrefix} 출장 VIP 힐링 마사지. 고객 맞춤형 힐링 프로그램으로 최상의 만족도를 드립니다.`,
+      `${locationPrefix} 출장 스페셜 맞춤 마사지. 최고급 퀄리티의 마사지로 일상의 품격을 높여보세요.`,
+      `${locationPrefix} 출장 안심 홈케어 마사지 제휴점. 지친 일상 끝에 찾아오는 완벽한 휴식의 시간.`,
+      `${locationPrefix} 출장 프리미엄 릴렉스 마사지 서비스. 철저한 검증을 거친 제휴점의 안전한 방문 케어.`,
+      `${locationPrefix} 출장 피로해소 전신 마사지. 세심하고 정성스러운 터치로 묵은 피로를 해소하세요.`,
+      `${locationPrefix} 출장 맞춤형 스웨디시 마사지 안내. 편안하고 아늑한 힐링 테라피를 지금 경험해 보세요.`,
+      `${locationPrefix} 출장 힐링 테라피 마사지 제휴처. 빠르고 친절한 매칭으로 만족도를 더했습니다.`,
+      `${locationPrefix} 출장 실속형 바디 마사지 솔루션. 체계적인 마사지 프로그램으로 활력을 되찾으세요.`,
+      `${locationPrefix} 출장 쾌적한 방문 마사지. 깊은 근육까지 시원하게 이완시켜 주는 프리미엄 케어.`,
+      `${locationPrefix} 출장 종합 웰니스 마사지 제휴샵. 정성과 실력을 갖춘 전문 관리사의 방문 서비스.`,
+      `${locationPrefix} 출장 최고급 감성 마사지. 몸과 마음의 균형을 되찾아주는 안심 웰니스 솔루션.`
     ];
 
     const pageTitle = titleVariants[variantIndex];
@@ -359,7 +399,7 @@ export default async function ShopDetailPage({ params }: PageProps) {
     const resolvedParams = await params;
     const region = resolvedParams?.region || "";
     const rawDistrict = resolvedParams?.district || "";
-    const district = decodeURIComponent(rawDistrict);
+    const district = getDistrictDisplayName(rawDistrict);
     const rawDong = resolvedParams?.dong || "";
     const dong = rawDong ? decodeURIComponent(rawDong) : "";
     const rawShopName = resolvedParams?.shopName || "";
@@ -367,7 +407,7 @@ export default async function ShopDetailPage({ params }: PageProps) {
 
     const regionName = getRegionName(region);
     const shop = shopData[shopNameSlug] || shopData["golden-therapy"];
-    const locationPrefix = dong ? `${district} ${dong}` : district;
+    const locationPrefix = `${regionName} ${district}${dong ? ` ${dong}` : ""}`;
     const backUrl = dong ? `/${region}/${rawDistrict}/${rawDong}` : `/${region}/${rawDistrict}`;
 
     return (
@@ -377,7 +417,7 @@ export default async function ShopDetailPage({ params }: PageProps) {
         <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-xl border-b border-pink-200 px-4 py-3 shadow-sm">
           <div className="max-w-4xl mx-auto flex justify-between items-center">
             <Link href="/" className="text-base font-black text-pink-600">서라운드테라피</Link>
-            <span className="text-xs text-gray-500 font-semibold">📍 위치: {regionName} {locationPrefix}</span>
+            <span className="text-xs text-gray-500 font-semibold">📍 위치: {locationPrefix}</span>
           </div>
         </header>
 
