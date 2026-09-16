@@ -25,13 +25,13 @@ const daejeonShops = [
 ];
 
 export const metadata: Metadata = {
-  title: "대전광역시 프리미엄 힐링 테라피 가이드 | 서라운드테라피",
+  title: "대전광역시 프리미엄 마사지 테라피 가이드 | 서라운드테라피",
   description: "둔산동, 유성구, 서구, 중구 등 대전 전지역 신속한 방문과 편안한 휴식을 제공하는 서라운드테라피 제휴점 정보입니다.",
-  keywords: ["대전힐링테라피", "대전스웨디시", "둔산동유성홈케어", "서라운드테라피대전"],
+  keywords: ["대전마사지테라피", "대전스웨디시", "둔산동유성홈케어", "서라운드테라피대전"],
   alternates: { canonical: "https://surround-therapy.netlify.app/daejeon" },
   openGraph: {
-    title: "대전광역시 프리미엄 힐링 테라피 제휴샵 | 서라운드테라피",
-    description: "대전광역시 전지역 실시간 방문 제휴 샵 안내. 편안한 휴식과 힐링을 누려보세요.",
+    title: "대전광역시 프리미엄 마사지 테라피 제휴샵 | 서라운드테라피",
+    description: "대전광역시 전지역 실시간 방문 제휴 샵 안내. 편안한 휴식과 마사지를 누려보세요.",
     url: "https://surround-therapy.netlify.app/daejeon",
     siteName: "서라운드테라피(Surround Therapy)",
     locale: "ko_KR",

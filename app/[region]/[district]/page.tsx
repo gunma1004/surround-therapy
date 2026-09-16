@@ -53,12 +53,12 @@ const shopData: Record<string, {
   desc: string;
   supportedRegions: string[];
 }> = {
-  "golden-therapy": { name: "한국골든테라피", phone: "0507-1280-3360", image: "/shop1.jpg", desc: "골든 품격의 감성 릴렉싱! 전문 관리사와 프리미엄 힐러진이 선사하는 맞춤형 바디케어.", supportedRegions: ["seoul", "gyeonggi", "incheon"] },
-  "miin-therapy": { name: "한국미인테라피", phone: "0507-1280-3201", image: "/shop2.jpg", desc: "천연 오일과 전문 테라피스트의 섬세한 터치로 지친 일상의 피로를 말끔히 풀어드립니다.", supportedRegions: ["seoul", "gyeonggi", "incheon", "cheonan", "asan", "daejeon", "cheongju"] },
-  "night-therapy": { name: "오늘밤테라피", phone: "0507-1280-3199", image: "/shop5.jpg", desc: "편안한 휴식과 안심 힐링! 수도권 전지역 신속한 방문으로 지친 일상의 피로 회복.", supportedRegions: ["seoul", "gyeonggi", "incheon"] },
-  "juju-therapy": { name: "주주테라피", phone: "0507-1280-3197", image: "/shop3.jpg", desc: "철저한 위생 관리와 프라이빗 힐링 바디케어 서비스로 높은 만족도를 선사합니다.", supportedRegions: ["seoul", "gyeonggi", "incheon", "cheonan", "asan"] },
-  "queens-home-therapy": { name: "퀸즈홈테라피", phone: "0507-1280-3296", image: "/shop4.jpg", desc: "여왕처럼 누리는 VIP 홈케어! 전문 힐러들의 체형 맞춤형 피로회복 프로그램.", supportedRegions: ["seoul", "gyeonggi", "incheon"] },
-  "s-slim-therapy": { name: "S슬림테라피", phone: "0507-1280-3358", image: "/shop1.jpg", desc: "충청 및 중부 주요 권역을 아우르는 체계적이고 전문적인 S슬림 홈케어 프로그램.", supportedRegions: ["daejeon", "cheongju", "cheonan", "asan"] }
+  "golden-therapy": { name: "한국골든테라피", phone: "0507-1280-3360", image: "/shop1.jpg", desc: "골든 품격의 감성 릴렉싱! 전문 관리사와 프리미엄 힐러진이 선사하는 맞춤형 바디 마사지.", supportedRegions: ["seoul", "gyeonggi", "incheon"] },
+  "miin-therapy": { name: "한국미인테라피", phone: "0507-1280-3201", image: "/shop2.jpg", desc: "천연 오일과 전문 테라피스트의 섬세한 터치로 지친 일상의 피로를 말끔히 풀어주는 마사지.", supportedRegions: ["seoul", "gyeonggi", "incheon", "cheonan", "asan", "daejeon", "cheongju"] },
+  "night-therapy": { name: "오늘밤테라피", phone: "0507-1280-3199", image: "/shop5.jpg", desc: "편안한 휴식과 안심 힐링! 수도권 전지역 신속한 방문으로 지친 일상의 피로를 회복하는 마사지.", supportedRegions: ["seoul", "gyeonggi", "incheon"] },
+  "juju-therapy": { name: "주주테라피", phone: "0507-1280-3197", image: "/shop3.jpg", desc: "철저한 위생 관리와 프라이빗 힐링 바디케어 마사지 서비스로 높은 만족도를 선사합니다.", supportedRegions: ["seoul", "gyeonggi", "incheon", "cheonan", "asan"] },
+  "queens-home-therapy": { name: "퀸즈홈테라피", phone: "0507-1280-3296", image: "/shop4.jpg", desc: "여왕처럼 누리는 VIP 홈케어! 전문 힐러들의 체형 맞춤형 피로회복 마사지 프로그램.", supportedRegions: ["seoul", "gyeonggi", "incheon"] },
+  "s-slim-therapy": { name: "S슬림테라피", phone: "0507-1280-3358", image: "/shop1.jpg", desc: "충청 및 중부 주요 권역을 아우르는 체계적이고 전문적인 S슬림 홈케어 마사지 프로그램.", supportedRegions: ["daejeon", "cheongju", "cheonan", "asan"] }
 };
 
 function getRegionName(regionCode: string): string {
@@ -84,34 +84,34 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     
     const fullLocation = `${regionName} ${district}`;
 
-    // 스팸 키워드 없는 자연스러운 10가지 랜덤 순환 패턴
+    // 🌟 '출장' 단어 완전 배제 및 '마사지' 키워드가 필수로 들어가는 10가지 패턴 (서라운드테라피 적용)
     const charSum = fullLocation.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
     const variantIndex = charSum % 10;
 
     const titleVariants = [
-      `${fullLocation} 프리미엄 힐링 테라피 안내 - 서라운드테라피`,
-      `${fullLocation} 맞춤형 웰니스 바디케어 서비스`,
-      `${fullLocation} 편안한 휴식을 위한 힐링 가이드`,
-      `서라운드테라피 | ${fullLocation} 전문 제휴 샵 안내`,
-      `${fullLocation} 일상 속 피로 회복을 위한 릴렉싱 케어`,
-      `${fullLocation} 프라이빗 맞춤형 웰니스 프로그램`,
-      `${fullLocation} 신속하고 편안한 방문 힐링 케어`,
-      `엄선된 제휴 네트워크 | ${fullLocation} 테라피 안내`,
-      `${fullLocation} 몸과 마음의 안정을 찾는 힐링 스페이스`,
-      `${fullLocation} 프리미엄 바디 릴렉싱 제휴 서비스`
+      `${fullLocation} 프리미엄 힐링 테라피 및 마사지 안내 - 서라운드테라피`,
+      `${fullLocation} 맞춤형 웰니스 바디케어 마사지 서비스 · 서라운드테라피`,
+      `${fullLocation} 편안한 휴식을 위한 힐링 마사지 가이드 | 서라운드테라피`,
+      `서라운드테라피 | ${fullLocation} 전문 제휴 마사지 샵 안내`,
+      `${fullLocation} 일상 속 피로 회복을 위한 릴렉싱 마사지 케어`,
+      `${fullLocation} 프라이빗 맞춤형 웰니스 마사지 프로그램`,
+      `${fullLocation} 신속하고 편안한 방문 힐링 마사지 케어`,
+      `엄선된 제휴 네트워크 | ${fullLocation} 마사지 테라피 안내`,
+      `${fullLocation} 몸과 마음의 안정을 찾는 힐링 마사지 스페이스`,
+      `${fullLocation} 프리미엄 바디 릴렉싱 제휴 마사지 서비스`
     ];
 
     const descriptionVariants = [
-      `${fullLocation} 지역 검증된 프리미엄 힐링 테라피 가이드. 편안하고 신속한 제휴 서비스로 일상의 피로를 풀어보세요.`,
-      `${fullLocation} 맞춤형 웰니스 케어 플랫폼. 전문적인 바디케어 프로그램과 신속한 제휴 서비스를 안내해 드립니다.`,
-      `지친 일상에 편안한 휴식을 선사하는 ${fullLocation} 프리미엄 힐링 테라피 네트워크입니다.`,
-      `${fullLocation} 제휴 샵 실시간 안내 및 예약 가이드. 몸과 마음의 피로를 부드럽게 케어해 드립니다.`,
-      `투명하고 정직한 운영으로 신뢰를 더하는 ${fullLocation} 프리미엄 테라피 안내 플랫폼입니다.`,
-      `엄선된 전문 관리사의 손길로 ${fullLocation} 지역에서 누리는 품격 있는 힐링 타임.`,
-      `편안한 공간과 신속한 방문 서비스로 ${fullLocation} 주민분들께 최상의 휴식을 제안합니다.`,
-      `${fullLocation} 지역별 신속한 제휴 매칭 및 체계적인 피로 회복 프로그램을 만나보세요.`,
-      `일상의 긴장을 편안하게 풀어주는 ${fullLocation} 맞춤형 웰니스 바디케어 가이드.`,
-      `${fullLocation} 서라운드테라피가 엄선한 프리미엄 제휴점 안내 및 힐링 서비스.`
+      `${fullLocation} 지역 검증된 프리미엄 힐링 마사지 가이드. 편안하고 신속한 제휴 서비스로 일상의 마사지 피로를 풀어보세요.`,
+      `${fullLocation} 맞춤형 웰니스 케어 마사지 플랫폼. 전문적인 바디케어 프로그램과 신속한 제휴 서비스를 안내해 드립니다.`,
+      `지친 일상에 편안한 휴식을 선사하는 ${fullLocation} 프리미엄 힐링 테라피 및 마사지 네트워크입니다.`,
+      `${fullLocation} 제휴 마사지 샵 실시간 안내 및 예약 가이드. 몸과 마음의 마사지 피로를 부드럽게 케어해 드립니다.`,
+      `투명하고 정직한 운영으로 신뢰를 더하는 ${fullLocation} 프리미엄 테라피 및 마사지 안내 플랫폼입니다.`,
+      `엄선된 전문 관리사의 손길로 ${fullLocation} 지역에서 누리는 품격 있는 마사지 힐링 타임.`,
+      `편안한 공간과 신속한 방문 서비스로 ${fullLocation} 주민분들께 최상의 마사지 휴식을 제안합니다.`,
+      `${fullLocation} 지역별 신속한 제휴 매칭 및 체계적인 피로 회복 마사지 프로그램을 만나보세요.`,
+      `일상의 긴장을 편안하게 풀어주는 ${fullLocation} 맞춤형 웰니스 바디케어 마사지 가이드.`,
+      `${fullLocation} 서라운드테라피가 엄선한 프리미엄 제휴점 안내 및 마사지 힐링 서비스.`
     ];
 
     const pageTitle = titleVariants[variantIndex];
@@ -133,7 +133,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       },
     };
   } catch {
-    return { title: "서라운드테라피", description: "프리미엄 힐링 테라피 안내" };
+    return { title: "서라운드테라피", description: "프리미엄 힐링 테라피 및 마사지 안내" };
   }
 }
 
@@ -171,7 +171,7 @@ export default async function DistrictDetailPage({ params }: PageProps) {
             <img src="/banner.jpg" alt={fullTitle} className="w-full h-56 md:h-72 object-cover opacity-80" />
             <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/50 to-transparent flex flex-col justify-end p-6 md:p-8">
               <span className="text-pink-600 text-xs font-black tracking-widest uppercase mb-1">LOCAL HEALING GUIDE</span>
-              <h1 className="text-2xl md:text-4xl font-black text-gray-900 tracking-tight">{fullTitle} 힐링 테라피 안내</h1>
+              <h1 className="text-2xl md:text-4xl font-black text-gray-900 tracking-tight">{fullTitle} 힐링 테라피 및 마사지 안내</h1>
             </div>
           </section>
 
@@ -217,7 +217,7 @@ export default async function DistrictDetailPage({ params }: PageProps) {
       <div className="min-h-screen flex items-center justify-center bg-[#fff5f7] text-gray-800">
         <div className="text-center p-6 bg-white rounded-3xl border border-pink-200 shadow-sm">
           <h1 className="text-base font-black text-pink-600">페이지를 불러오지 못했습니다.</h1>
-          <Link href="/" className="inline-block mt-3 bg-pink-500 text-white text-xs px-4 py-2 rounded-xl">메인으로</Link>
+          <Link href={`/${region}`} className="inline-block mt-3 bg-pink-500 text-white text-xs px-4 py-2 rounded-xl">메인으로</Link>
         </div>
       </div>
     );

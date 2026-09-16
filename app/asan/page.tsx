@@ -25,12 +25,12 @@ const asanShops = [
 ];
 
 export const metadata: Metadata = {
-  title: "아산시 프리미엄 힐링 테라피 가이드 | 서라운드테라피",
+  title: "아산시 프리미엄 마사지 테라피 가이드 | 서라운드테라피",
   description: "온양온천, 배방, 탕정 등 아산 전지역 신속한 방문과 편안한 휴식을 제공하는 서라운드테라피 제휴점 정보입니다.",
   keywords: ["아산힐링테라피", "아산스웨디시", "온양배방홈케어", "서라운드테라피아산"],
   alternates: { canonical: "https://surround-therapy.netlify.app/asan" },
   openGraph: {
-    title: "아산시 프리미엄 힐링 테라피 제휴샵 | 서라운드테라피",
+    title: "아산시 프리미엄 마사지 테라피 제휴샵 | 서라운드테라피",
     description: "아산시 전지역 실시간 방문 제휴 샵 안내. 편안한 휴식과 힐링을 누려보세요.",
     url: "https://surround-therapy.netlify.app/asan",
     siteName: "서라운드테라피(Surround Therapy)",

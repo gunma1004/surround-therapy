@@ -35,13 +35,13 @@ const cheonanShops = [
 ];
 
 export const metadata: Metadata = {
-  title: "천안시 프리미엄 힐링 테라피 가이드 | 서라운드테라피",
+  title: "천안시 프리미엄 힐링 마사지 테라피 가이드 | 서라운드테라피",
   description: "불당동, 두정동, 성정동, 백석동 등 천안 전지역 신속한 방문과 편안한 휴식을 제공하는 서라운드테라피 제휴점 정보입니다.",
   keywords: ["천안힐링테라피", "천안스웨디시", "불당동두정동홈케어", "서라운드테라피천안"],
   alternates: { canonical: "https://surround-therapy.netlify.app/cheonan" },
   openGraph: {
-    title: "천안시 프리미엄 힐링 테라피 제휴샵 | 서라운드테라피",
-    description: "천안시 전지역 실시간 방문 제휴 샵 안내. 편안한 휴식과 힐링을 누려보세요.",
+    title: "천안시 프리미엄 마사지 테라피 제휴샵 | 서라운드테라피",
+    description: "천안시 전지역 실시간 방문 제휴 샵 안내. 편안한 휴식과 마사지를 누려보세요.",
     url: "https://surround-therapy.netlify.app/cheonan",
     siteName: "서라운드테라피(Surround Therapy)",
     locale: "ko_KR",

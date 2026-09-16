@@ -25,12 +25,12 @@ const cheongjuShops = [
 ];
 
 export const metadata: Metadata = {
-  title: "청주시 프리미엄 힐링 테라피 가이드 | 서라운드테라피",
+  title: "청주시 프리미엄 힐링 마사지가이드 | 서라운드테라피",
   description: "복대동, 율량동, 가흥동 등 청주 전지역 신속한 방문과 편안한 휴식을 제공하는 서라운드테라피 제휴점 정보입니다.",
   keywords: ["청주힐링테라피", "청주스웨디시", "복대동율량동홈케어", "서라운드테라피청주"],
   alternates: { canonical: "https://surround-therapy.netlify.app/cheongju" },
   openGraph: {
-    title: "청주시 프리미엄 힐링 테라피 제휴샵 | 서라운드테라피",
+    title: "청주시 프리미엄 힐링 마사지 제휴샵 | 서라운드테라피",
     description: "청주시 전지역 실시간 방문 제휴 샵 안내. 편안한 휴식과 힐링을 누려보세요.",
     url: "https://surround-therapy.netlify.app/cheongju",
     siteName: "서라운드테라피(Surround Therapy)",

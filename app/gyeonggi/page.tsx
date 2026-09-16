@@ -56,13 +56,13 @@ const gyeonggiShops = [
 ];
 
 export const metadata: Metadata = {
-  title: "경기도 프리미엄 힐링 테라피 가격비교 | 서라운드테라피",
+  title: "경기도 프리미엄 마사지 테라피 가격비교 | 서라운드테라피",
   description: "수원, 성남 분당, 고양 일산, 화성 동탄 등 경기도 전역 신속한 방문과 편안한 휴식을 제공하는 서라운드테라피 제휴점 정보입니다.",
-  keywords: ["경기도힐링테라피", "경기스웨디시", "수원분당홈케어", "서라운드테라피경기"],
+  keywords: ["경기도마사지테라피", "경기스웨디시", "수원분당홈케어", "서라운드테라피경기"],
   alternates: { canonical: "https://surround-therapy.netlify.app/gyeonggi" },
   openGraph: {
-    title: "경기도 프리미엄 힐링 테라피 제휴샵 | 서라운드테라피",
-    description: "경기도 전지역 실시간 방문 제휴 샵 안내. 편안한 휴식과 힐링을 누려보세요.",
+    title: "경기도 프리미엄 마사지 테라피 제휴샵 | 서라운드테라피",
+    description: "경기도 전지역 실시간 방문 제휴 샵 안내. 편안한 휴식과 마사지를 누려보세요.",
     url: "https://surround-therapy.netlify.app/gyeonggi",
     siteName: "서라운드테라피(Surround Therapy)",
     locale: "ko_KR",

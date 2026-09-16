@@ -56,13 +56,13 @@ const incheonShops = [
 ];
 
 export const metadata: Metadata = {
-  title: "인천광역시 프리미엄 힐링 테라피 가이드 | 서라운드테라피",
+  title: "인천광역시 프리미엄 마사지 테라피 가이드 | 서라운드테라피",
   description: "송도, 청라, 연수구, 부평 등 인천 전지역 신속한 방문과 편안한 휴식을 제공하는 서라운드테라피 제휴점 정보입니다.",
-  keywords: ["인천힐링테라피", "인천스웨디시", "송도청라홈케어", "서라운드테라피인천"],
+  keywords: ["인천마사지테라피", "인천스웨디시", "송도청라홈케어", "서라운드테라피인천"],
   alternates: { canonical: "https://surround-therapy.netlify.app/incheon" },
   openGraph: {
-    title: "인천광역시 프리미엄 힐링 테라피 제휴샵 | 서라운드테라피",
-    description: "인천광역시 전지역 실시간 방문 제휴 샵 안내. 편안한 휴식과 힐링을 누려보세요.",
+    title: "인천광역시 프리미엄 마사지 테라피 제휴샵 | 서라운드테라피",
+    description: "인천광역시 전지역 실시간 방문 제휴 샵 안내. 편안한 휴식과 마사지를 누려보세요.",
     url: "https://surround-therapy.netlify.app/incheon",
     siteName: "서라운드테라피(Surround Therapy)",
     locale: "ko_KR",
