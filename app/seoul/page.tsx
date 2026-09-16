@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "서울 프리미엄 힐링 테라피 & 홈케어 추천 | 서라운드테라피",
+  title: "서울 프리미엄 힐링 테라피 & 마사지 추천 | 서라운드테라피",
   description: "서울 전지역(강남, 서초, 송파, 마포 등) 프리미엄 힐링 테라피, 스웨디시, 아로마 가이드. 편안하고 안심할 수 있는 제휴처를 만나보세요.",
   keywords: [
     "서울힐링테라피",
     "서울프라이빗테라피",
-    "서울홈케어",
+    "서울마사지",
     "서울스웨디시테라피",
     "서울아로마테라피",
     "서라운드테라피서울"
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     canonical: "https://surround-therapy.netlify.app/seoul",
   },
   openGraph: {
-    title: "서울 힐링 테라피 & 홈케어 추천 | 서라운드테라피",
+    title: "서울 힐링 테라피 & 마사지 추천 | 서라운드테라피",
     description: "서울 전지역 신속한 방문과 편안한 휴식! 안심하고 이용할 수 있는 프리미엄 바디케어 서비스를 경험하세요.",
     url: "https://surround-therapy.netlify.app/seoul",
     siteName: "서라운드테라피(Surround Therapy)",
@@ -96,7 +96,7 @@ export default function SeoulPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "서울 힐링 테라피 & 홈케어 안내 - 서라운드테라피",
+    "name": "서울 힐링 테라피 & 마사지 안내 - 서라운드테라피",
     "description": "서울 지역 프라이빗 테라피 및 힐링 바디케어 제휴업체 정보 제공",
     "url": "https://surround-therapy.netlify.app/seoul",
     "telephone": "0507-1280-3344",

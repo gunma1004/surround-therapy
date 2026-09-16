@@ -84,9 +84,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     
     const fullLocation = `${regionName} ${district}`;
 
-    // 🌟 '출장' 단어 완전 배제 및 '마사지' 키워드가 필수로 들어가는 10가지 패턴 (서라운드테라피 적용)
+    // 🌟 20개 고유 패턴 생성 (출장 완전 배제, 마사지 필수 포함)
     const charSum = fullLocation.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-    const variantIndex = charSum % 10;
+    const variantIndex = charSum % 20;
 
     const titleVariants = [
       `${fullLocation} 프리미엄 힐링 테라피 및 마사지 안내 - 서라운드테라피`,
@@ -98,7 +98,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       `${fullLocation} 신속하고 편안한 방문 힐링 마사지 케어`,
       `엄선된 제휴 네트워크 | ${fullLocation} 마사지 테라피 안내`,
       `${fullLocation} 몸과 마음의 안정을 찾는 힐링 마사지 스페이스`,
-      `${fullLocation} 프리미엄 바디 릴렉싱 제휴 마사지 서비스`
+      `${fullLocation} 프리미엄 바디 릴렉싱 제휴 마사지 서비스`,
+      `${fullLocation} 정통 아로마 & 스웨디시 마사지 가이드 - 서라운드테라피`,
+      `${fullLocation} 전문 관리사의 1:1 맞춤형 마사지 프로그램`,
+      `${fullLocation} 쾌적하고 안락한 바디케어 마사지 제휴처`,
+      `서라운드테라피 추천 | ${fullLocation} 감성 마사지 힐링 스팟`,
+      `${fullLocation} 지친 몸을 깨우는 리프레시 마사지 테라피`,
+      `${fullLocation} 투명하고 정직한 정찰제 마사지 코스 안내`,
+      `${fullLocation} 힐링과 여유를 선물하는 프라이빗 마사지 공간`,
+      `${fullLocation} 몸의 긴장을 풀어주는 전문 바디 마사지 케어`,
+      `${fullLocation} 일상 탈출을 위한 스페셜 마사지 웰니스 프로그램`,
+      `${fullLocation} 신뢰할 수 있는 제휴 샵 맞춤형 마사지 정보`
     ];
 
     const descriptionVariants = [
@@ -111,7 +121,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       `편안한 공간과 신속한 방문 서비스로 ${fullLocation} 주민분들께 최상의 마사지 휴식을 제안합니다.`,
       `${fullLocation} 지역별 신속한 제휴 매칭 및 체계적인 피로 회복 마사지 프로그램을 만나보세요.`,
       `일상의 긴장을 편안하게 풀어주는 ${fullLocation} 맞춤형 웰니스 바디케어 마사지 가이드.`,
-      `${fullLocation} 서라운드테라피가 엄선한 프리미엄 제휴점 안내 및 마사지 힐링 서비스.`
+      `${fullLocation} 서라운드테라피가 엄선한 프리미엄 제휴점 안내 및 마사지 힐링 서비스.`,
+      `소중한 나를 위한 특별한 휴식, ${fullLocation}에서 만나는 전문 마사지 테라피와 힐링 프로그램.`,
+      `정성 어린 손길로 전신에 활력을 불어넣어 주는 ${fullLocation} 맞춤형 바디 마사지 제휴 안내.`,
+      `안락한 환경에서 품격 있는 케어를 제공하는 ${fullLocation} 프리미엄 마사지 스팟 가이드.`,
+      `일상의 스트레스를 말끔히 씻어내 주는 ${fullLocation} 힐링 테라피 및 마사지 서비스 네트워크.`,
+      `체계적인 바디 밸런스 케어로 건강한 활력을 되찾아주는 ${fullLocation} 마사지 정보 플랫폼.`,
+      `깊은 안정감과 부드러운 이완을 선사하는 ${fullLocation} 맞춤형 마사지 프로그램 안내.`,
+      `신속하고 정확한 매칭 시스템을 통해 ${fullLocation} 주민분들께 만족도 높은 마사지를 제안합니다.`,
+      `엄격하게 선별된 제휴 샵의 다채로운 마사지 코스와 정찰제 요금 정보를 확인해 보세요.`,
+      `몸과 마음의 긴장을 부드럽게 완화해 주는 ${fullLocation} 프리미엄 마사지 테라피 가이드.`,
+      `언제나 편안하고 쾌적한 휴식을 보장하는 ${fullLocation} 맞춤형 웰니스 마사지 제휴 센터.`
     ];
 
     const pageTitle = titleVariants[variantIndex];
@@ -217,7 +237,7 @@ export default async function DistrictDetailPage({ params }: PageProps) {
       <div className="min-h-screen flex items-center justify-center bg-[#fff5f7] text-gray-800">
         <div className="text-center p-6 bg-white rounded-3xl border border-pink-200 shadow-sm">
           <h1 className="text-base font-black text-pink-600">페이지를 불러오지 못했습니다.</h1>
-          <Link href={`/${region}`} className="inline-block mt-3 bg-pink-500 text-white text-xs px-4 py-2 rounded-xl">메인으로</Link>
+          <Link href="/" className="inline-block mt-3 bg-pink-500 text-white text-xs px-4 py-2 rounded-xl">메인으로</Link>
         </div>
       </div>
     );
