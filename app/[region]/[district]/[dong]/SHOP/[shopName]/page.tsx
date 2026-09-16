@@ -386,7 +386,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       },
     };
   } catch {
-    return { title: "제휴 샵 안내 - 서라운드테라피", description: "프리미엄 힐링 테라피 제휴점 상세 정보" };
+    return { title: "제휴 샵 안내", description: "프리미엄 힐링 테라피 제휴점 상세 정보" };
   }
 }
 
