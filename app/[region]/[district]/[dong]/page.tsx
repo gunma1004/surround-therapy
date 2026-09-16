@@ -9,6 +9,44 @@ interface PageProps {
   }>;
 }
 
+// 🌟 영문 구 코드를 한글 명칭으로 정확하게 변환해 주는 매핑 딕셔너리 보완
+const districtNameMap: Record<string, string> = {
+  // 서울
+  jongno: "종로구", jung: "중구", yongsan: "용산구", seongdong: "성동구", gwangjin: "광진구",
+  dongdaemun: "동대문구", jungnang: "중랑구", seongbuk: "성북구", gangbuk: "강북구", dobong: "도봉구",
+  nowon: "노원구", eunpyeong: "은평구", seodaemun: "서대문구", mapo: "마포구", yangcheon: "양천구",
+  gangseo: "강서구", guro: "구로구", geumcheon: "금천구", yeongdeungpo: "영등포구", dongjak: "동작구",
+  gwanak: "관악구", seocho: "서초구", gangnam: "강남구", songpa: "송파구", gangdong: "강동구",
+  
+  // 경기
+  suwon_jangan: "수원시 장안구", suwon_gwonseon: "수원시 권선구", suwon_paldal: "수원시 팔달구", suwon_yeongtong: "수원시 영통구",
+  seongnam_sujeong: "성남시 수정구", seongnam_jungwon: "성남시 중원구", seongnam_bundang: "성남시 분당구",
+  uijeongbu: "의정부시", anyang_manan: "안양시 만안구", anyang_dongan: "안양시 동안구",
+  bucheon_wonmi: "부천시 원미구", bucheon_sosa: "부천시 소사구", bucheon_ojeong: "부천시 오정구",
+  gwangmyeong: "광명시", pyeongtaek: "평택시", dongducheon: "동두천시",
+  ansan_sangnok: "안산시 상록구", ansan_danwon: "안산시 단원구",
+  goyang_deogyang: "고양시 덕양구", goyang_ilsandong: "고양시 일산동구", goyang_ilsanseo: "고양시 일산서구",
+  gwacheon: "과천시", guri: "구리시", namyangju: "남양주시", osan: "오산시", siheung: "시흥시",
+  gunpo: "군포시", uiwang: "의왕시", hanam: "하남시",
+  yongin_cheoin: "용인시 처인구", yongin_giheung: "용인시 기흥구", yongin_suji: "용인시 수지구",
+  paju: "파주시", icheon: "이천시", anseong: "안성시", gimpo: "김포시", hwaseong: "화성시",
+  gwangju: "광주시", yangju: "양주시", pochon: "포천시", yeoju: "여주시", yeoncheon: "연천군", gapyeong: "가평군", yangpyeong: "양평군",
+
+  // 인천
+  jemulpo: "제물포구", yeongjong: "영종구", michuhol: "미추홀구", yeonsu: "연수구",
+  namdong: "남동구", bupyeong: "부평구", gyeyang: "계양구", seohae: "서해구", geomdan: "검단구", ganghwa: "강화군", ongjin: "옹진군",
+
+  // 충청 / 대전 / 청주
+  dongnam: "동남구", seobuk: "서북구", asan_city: "아산시",
+  dong: "동구", jung_gu: "중구", seo: "서구", yuseong: "유성구", daedeok: "대덕구",
+  sangdang: "상당구", seowon: "서원구", heungdeok: "흥덕구", cheongwon: "청원구"
+};
+
+function getDistrictDisplayName(rawDistrict: string): string {
+  const decoded = decodeURIComponent(rawDistrict);
+  return districtNameMap[decoded] || decoded;
+}
+
 const shopData = {
   "golden-therapy": { name: "한국골든테라피", phone: "0507-1280-3360", image: "/shop1.jpg", desc: "골든 품격의 감성 릴렉싱! 전문 관리사와 프리미엄 힐러진이 선사하는 맞춤형 바디 마사지.", supportedRegions: ["seoul", "gyeonggi", "incheon"] },
   "miin-therapy": { name: "한국미인테라피", phone: "0507-1280-3201", image: "/shop2.jpg", desc: "천연 오일과 전문 테라피스트의 섬세한 터치로 지친 일상의 피로를 말끔히 풀어주는 마사지.", supportedRegions: ["seoul", "gyeonggi", "incheon", "cheonan", "asan", "daejeon", "cheongju"] },
@@ -34,8 +72,11 @@ function getRegionName(regionCode: string): string {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const region = resolvedParams?.region || "";
-  const district = decodeURIComponent(resolvedParams?.district || "");
-  const dong = decodeURIComponent(resolvedParams?.dong || "");
+  const rawDistrict = resolvedParams?.district || "";
+  const district = getDistrictDisplayName(rawDistrict);
+  const rawDong = resolvedParams?.dong || "";
+  const dong = decodeURIComponent(rawDong);
+  
   const regionName = getRegionName(region);
   const fullTitle = `${regionName} ${district} ${dong}`;
 
@@ -95,11 +136,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: pageTitle,
     description: pageDescription,
-    alternates: { canonical: `https://surround-therapy.netlify.app/${region}/${resolvedParams.district}/${resolvedParams.dong}` },
+    alternates: { canonical: `https://surround-therapy.netlify.app/${region}/${rawDistrict}/${rawDong}` },
     openGraph: {
       title: pageTitle,
       description: pageDescription,
-      url: `https://surround-therapy.netlify.app/${region}/${resolvedParams.district}/${resolvedParams.dong}`,
+      url: `https://surround-therapy.netlify.app/${region}/${rawDistrict}/${rawDong}`,
       siteName: "서라운드테라피(Surround Therapy)",
       locale: "ko_KR",
       type: "website",
@@ -115,7 +156,7 @@ export default async function DongDetailPage({ params }: PageProps) {
   const resolvedParams = await params;
   const region = resolvedParams?.region || "";
   const rawDistrict = resolvedParams?.district || "";
-  const district = decodeURIComponent(rawDistrict);
+  const district = getDistrictDisplayName(rawDistrict);
   const rawDong = resolvedParams?.dong || "";
   const dong = decodeURIComponent(rawDong);
   
