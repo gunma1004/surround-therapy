@@ -33,7 +33,7 @@ def generate_sitemap():
             "changefreq": "weekly"
         })
 
-    # 4. 시/도별 -> 영문 구/시 슬러그(District) -> 세부 동 전체 계층 매핑 데이터 (인천 geomdan 포함 전체 보완)
+    # 4. 시/도별 -> 영문 구/시 슬러그(District) -> 세부 동 전체 계층 매핑 데이터 (suwon_gwonseon 정확히 반영)
     region_hierarchy = {
         "seoul": {
             "jongno": ["효자동", "사직동", "삼청동", "부암동", "평창동", "무악동", "교남동", "가회동", "종로1.2.3.4가동", "종로5.6가동", "이화동", "혜화동", "창신1동", "숭인1동"],
@@ -64,7 +64,7 @@ def generate_sitemap():
         },
         "gyeonggi": {
             "suwon_jangan": ["파장동", "정자1동", "정자2동", "영화동", "송죽동", "조원1동", "율천동"],
-            "suwon_gwonsun": ["세류1동", "평동", "호매실동", "곡반정동", "구운동"],
+            "suwon_gwonseon": ["세류1동", "평동", "호매실동", "곡반정동", "구운동"], # 🌟 suwon_gwonseon 스펠링 정확히 교정 반영
             "suwon_paldal": ["매교동", "고등동", "행궁동", "인계동"],
             "suwon_yeongtong": ["매탄1동", "영통1동", "광교1동"],
             "seongnam_sujeong": ["신흥1동", "태평1동", "상대원1동"],
@@ -117,7 +117,7 @@ def generate_sitemap():
             "bupyeong": ["부평1동", "부평2동", "산곡1동", "청천1동", "갈산1동", "삼산1동"],
             "gyeyang": ["효성1동", "작전동", "계산1동"],
             "seohae": ["검암경서동", "연희동", "청라1동", "가정1동", "석남1동"],
-            "geomdan": ["불로대곡동", "원당동", "당하동", "마전동", "아라동"], # 🌟 인천 geomdan 슬러그 및 세부 동 완벽 반영
+            "geomdan": ["불로대곡동", "원당동", "당하동", "마전동", "아라동"],
             "ganghwa": ["강화읍", "선원면", "길상면"],
             "ongjin": ["북도면", "연평면", "백령면"]
         },
@@ -148,18 +148,18 @@ def generate_sitemap():
         'queens-home-therapy', 'night-therapy', 's-slim-therapy'
     ]
 
-    # 5. 계층 구조 전체 순회하며 실제 라우팅 규칙인 /SHOP/ 대문자 반영하여 조합 생성
+    # 5. 계층 구조 순회하며 /SHOP/ 대문자 경로 및 동/샵 상세 주소 생성
     for region, districts in region_hierarchy.items():
         for district_slug, dongs in districts.items():
             
-            # 5-1. 구/시 단위 페이지 추가 (예: /incheon/geomdan)
+            # 5-1. 구/시 단위 페이지 추가
             url_entries.append({
                 "loc": f"{base_url}/{region}/{district_slug}",
                 "priority": "0.9",
                 "changefreq": "daily"
             })
 
-            # 5-2. 구 단위 하위 샵 상세 페이지 추가 (🌟 /SHOP/ 대문자 적용)
+            # 5-2. 구 단위 하위 샵 상세 페이지 추가 (/SHOP/)
             for slug in shop_slugs:
                 url_entries.append({
                     "loc": f"{base_url}/{region}/{district_slug}/SHOP/{slug}",
@@ -171,14 +171,14 @@ def generate_sitemap():
             for dong in dongs:
                 encoded_dong = urllib.parse.quote(dong)
 
-                # 동 단위 페이지 추가 (예: /incheon/geomdan/불로대곡동)
+                # 동 단위 페이지 추가
                 url_entries.append({
                     "loc": f"{base_url}/{region}/{district_slug}/{encoded_dong}",
                     "priority": "0.85",
                     "changefreq": "daily"
                 })
 
-                # 동 단위 하위 샵 상세 페이지 추가 (🌟 /SHOP/ 대문자 적용)
+                # 동 단위 하위 샵 상세 페이지 추가 (/SHOP/)
                 for slug in shop_slugs:
                     url_entries.append({
                         "loc": f"{base_url}/{region}/{district_slug}/{encoded_dong}/SHOP/{slug}",
@@ -200,13 +200,13 @@ def generate_sitemap():
 
     xml_content.append("</urlset>")
 
-    # public 폴더 아래에 저장
+    # public 폴더 아래 저장
     os.makedirs("public", exist_ok=True)
     file_name = "public/sitemap.xml"
     with open(file_name, "w", encoding="utf-8") as f:
         f.write("\n".join(xml_content))
 
-    print(f"🎉 대문자 /SHOP/ 경로와 세부 동/샵 페이지를 모두 반영하여 총 {len(url_entries)}개의 URL이 public/sitemap.xml로 생성되었습니다!")
+    print(f"🎉 수원 권선구(suwon_gwonseon)를 포함한 모든 계층과 /SHOP/ 경로가 완벽히 반영되어 총 {len(url_entries)}개의 URL이 생성되었습니다!")
 
 if __name__ == "__main__":
     generate_sitemap()
