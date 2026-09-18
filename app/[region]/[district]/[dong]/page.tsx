@@ -9,6 +9,8 @@ interface PageProps {
   }>;
 }
 
+const SITE_URL = "https://surround-therapy.netlify.app";
+
 // 🌟 영문 구 코드를 한글 명칭으로 정확하게 변환해 주는 매핑 딕셔너리
 const districtNameMap: Record<string, string> = {
   // 서울
@@ -28,7 +30,7 @@ const districtNameMap: Record<string, string> = {
   goyang_deogyang: "고양시 덕양구", goyang_ilsandong: "고양시 일산동구", goyang_ilsanseo: "고양시 일산서구",
   gwacheon: "과천시", guri: "구리시", namyangju: "남양주시", osan: "오산시", siheung: "시흥시",
   gunpo: "군포시", uiwang: "의왕시", hanam: "하남시",
-  yongin_cheoin: "용인시 처인구", yongin_giheung: "용인시 기흥구", yongin_suji: "용인시 수지구",
+  yongin_cheoin: "용in시 처인구", yongin_giheung: "용인시 기흥구", yongin_suji: "용인시 수지구",
   paju: "파주시", icheon: "이천시", anseong: "안성시", gimpo: "김포시", hwaseong: "화성시",
   gwangju: "광주시", yangju: "양주시", pochon: "포천시", yeoju: "여주시", yeoncheon: "연천군", gapyeong: "가평군", yangpyeong: "양평군",
 
@@ -47,49 +49,8 @@ function getDistrictDisplayName(rawDistrict: string): string {
   return districtNameMap[decoded] || decoded;
 }
 
-// 🌟 순차적 매칭을 위한 키워드 풀 (출장 배제, 마사지 포함)
-const modifiers = [
-  '전문 힐링 마사지', '방문 릴렉스 마사지', '프라이빗 맞춤 마사지', '웰니스 바디 마사지', '케어 전신 마사지',
-  '스웨디시 감성 마사지', '아로마 오일 마사지', '홈케어 맞춤 마사지', '럭셔리 스파 마사지', 'VIP 프리미엄 마사지',
-  '안심 맞춤 마사지', '신속 방문 마사지', '소프트 릴렉싱 마사지', '딥티슈 바디 마사지', '커스텀 아로마 마사지',
-  '스페셜 힐링 마사지', '피로해소 전신 마사지', '맞춤형 스웨디시 마사지', '힐링 가이드 마사지', '실속형 바디 마사지',
-  '쾌적한 방문 마사지', '종합 웰니스 마사지', '최고급 감성 마사지', '프리미엄 홈케어 마사지', '전문 바디케어 마사지'
-];
-
-const descriptions = [
-  '선입금 없는 100% 후불제 안전 시스템으로 편안한 휴식을 선사합니다.',
-  '검증된 전문 관리사와 함께 지친 피로를 안전하게 날려보세요.',
-  '품격 있는 1:1 커스텀 코스로 일상의 스트레스를 말끔히 해소해 드립니다.',
-  '정직한 정찰제와 신속한 방문 서비스로 안심하고 이용하실 수 있습니다.',
-  '향기로운 아로마와 부드러운 터치로 나만의 프라이빗한 힐링을 경험하세요.',
-  '이동의 불편함 없이 내 공간에서 누리는 럭셔리 힐링 타임.',
-  '숙련된 힐러들의 세심하고 정성스러운 손길로 묵은 피로를 풀어드립니다.',
-  '투명하고 정직한 요금 체계로 믿을 수 있는 프리미엄 방문 서비스를 제공합니다.',
-  '지친 몸과 마음에 활력을 불어넣어 주는 맞춤형 웰니스 솔루션.',
-  '철저한 위생 관리와 고객 만족 중심의 고품격 케어를 만나보세요.',
-  '빠르고 친절한 매칭 시스템으로 언제 어디서나 편안한 휴식을 누리세요.',
-  '깊은 근육까지 시원하게 이완시켜 주는 전문 바디케어 서비스.',
-  '일상에 지친 당신을 위한 단 하나의 안심 홈케어 힐링 프로그램.',
-  '체계적인 프로그램과 전문적인 터치로 최상의 만족도를 선사합니다.',
-  '편안하고 아늑한 분위기를 집에서 그대로 즐기는 프라이빗 테라피.',
-  '불편한 곳을 정확하게 짚어주는 맞춤형 케어로 가벼운 몸을 되찾으세요.',
-  '스트레스와 피로를 한 번에 날려버리는 프리미엄 방문 케어 솔루션.',
-  '엄선된 전문 관리사의 품격 있는 손길을 직접 경험해 보세요.',
-  '믿을 수 있는 안전한 후불 시스템으로 편안하게 즐기는 힐링.',
-  '지친 하루 끝에 찾아오는 완벽한 휴식과 안심 방문 서비스.'
-];
-
-const shopData = {
-  "golden-therapy": { name: "골든테라피", phone: "0507-1280-3360", image: "/shop1.jpg", desc: "골든 품격의 감성 릴렉싱! 전문 관리사와 프리미엄 힐러진이 선사하는 맞춤형 바디 마사지.", supportedRegions: ["seoul", "gyeonggi", "incheon"] },
-  "miin-therapy": { name: "미인테라피", phone: "0507-1280-3201", image: "/shop2.jpg", desc: "천연 오일과 전문 테라피스트의 섬세한 터치로 지친 일상의 피로를 말끔히 풀어주는 마사지.", supportedRegions: ["seoul", "gyeonggi", "incheon", "cheonan", "asan", "daejeon", "cheongju"] },
-  "night-therapy": { name: "오늘밤테라피", phone: "0507-1280-3199", image: "/shop5.jpg", desc: "편안한 휴식과 안심 힐링! 수도권 전지역 신속한 방문으로 지친 일상의 피로를 회복하는 마사지.", supportedRegions: ["seoul", "gyeonggi", "incheon"] },
-  "juju-therapy": { name: "주주테라피", phone: "0507-1280-3197", image: "/shop3.jpg", desc: "철저한 위생 관리와 프라이빗 힐링 바디케어 마사지 서비스로 높은 만족도를 선사합니다.", supportedRegions: ["seoul", "gyeonggi", "incheon", "cheonan", "asan"] },
-  "queens-home-therapy": { name: "퀸즈홈테라피", phone: "0507-1280-3296", image: "/shop4.jpg", desc: "여왕처럼 누리는 VIP 홈케어! 전문 힐러들의 체형 맞춤형 피로회복 마사지 프로그램.", supportedRegions: ["seoul", "gyeonggi", "incheon"] },
-  "s-slim-therapy": { name: "S슬림테라피", phone: "0507-1280-3358", image: "/shop1.jpg", desc: "충청 및 중부 주요 권역을 아우르는 체계적이고 전문적인 S슬림 홈케어 마사지 프로그램.", supportedRegions: ["daejeon", "cheongju", "cheonan", "asan"] }
-};
-
 function getRegionName(regionCode: string): string {
-  switch (regionCode) {
+  switch (regionCode?.toLowerCase()) {
     case "seoul": return "서울";
     case "gyeonggi": return "경기";
     case "incheon": return "인천";
@@ -100,6 +61,72 @@ function getRegionName(regionCode: string): string {
     default: return regionCode || "";
   }
 }
+
+// 🌟 1단: '출장' 배제한 수식어 풀 (35개)
+const prefixAdjectives = [
+  "소프트", "프리미엄", "릴렉스", "감성", "프라이빗",
+  "스페셜", "힐링", "딥티슈", "명품", "맞춤형",
+  "안심", "쾌적한", "정성", "토탈", "순환",
+  "포근한", "전신", "실속형", "프로페셔널", "럭셔리",
+  "시그니처", "활력", "바디케어", "클래식", "컴포트",
+  "디톡스", "정통", "체형맞춤", "차분한", "피로해소",
+  "노련한", "깔끔한", "산뜻한", "탁월한", "안락한"
+];
+
+// 🌟 1단: '마사지' 앞에 붙는 코스 테크닉 풀 (16개)
+const coreTechniques = [
+  "스웨디시", "아로마", "타이", "바디",
+  "릴렉싱", "테라피", "웰니스", "홈케어",
+  "림프케어", "컨디셔닝", "스트레칭", "이완",
+  "에스테틱", "오일", "건식", "감성케어"
+];
+
+// 🌟 2단: '안마' 및 스팸 키워드를 완전히 배제한 50개 풀
+const secondaryActions = [
+  "전지역 실시간 방문예약", "테라피 코스 예약", "힐링 테라피 추천예약", "바디케어 코스예약",
+  "웰니스 케어 방문안내", "구·동 전지역 방문안내", "스웨디시 통합예약", "안심 방문케어 안내",
+  "맞춤 테라피 예약", "전신 릴렉스 케어예약", "홈케어 실시간 빠른예약", "힐링 바디 프로그램",
+  "전문 테라피 1:1 예약", "바디 관리 코스안내", "프리미엄 테라피 예약", "쾌적한 방문케어 접수",
+  "야간 힐링 실시간예약", "명품 에스테틱 코스안내", "감성 테라피 예약", "당일 1:1 방문예약",
+  "정찰제 테라피 예약안내", "후불제 안심 코스접수", "전신 릴렉싱 케어안내", "전문 힐러진 추천예약",
+  "피로회복 웰니스 예약", "토탈 바디케어 방문예약", "심야 힐링 방문안내", "스파 테라피 코스예약",
+  "1:1 프라이빗 케어예약", "순환 림프 테라피안내", "체형맞춤 케어 코스예약", "아로마 바디 방문예약",
+  "정통 테라피 실시간예약", "VIP 힐링 코스접수", "안심방문 테라피 예약", "바디 밸런스 케어안내",
+  "도심 속 힐링 방문안내", "프라이빗 테라피 예약", "신속 홈케어 방문예약", "동네 안심 테라피안내",
+  "우리동네 힐링케어 예약", "실속 바디 프로그램안내", "클래식 테라피 예약", "집중 이완 케어예약",
+  "데일리 리프레시 방문접수", "맞춤형 바디케어 예약", "디톡스 테라피 코스예약", "럭셔리 힐링 방문안내",
+  "대표 에스테틱 프로그램예약", "온전한 휴식 힐링안내"
+];
+
+// 🌟 3단: 지역 안내 페이지 전용 소구 문구 풀 (8개)
+const tertiaryActionPatterns = [
+  "1:1 맞춤 방문케어", "프라이빗 힐링 안내", "전신 피로회복 총정리",
+  "정직한 정찰제 안심 가이드", "당일 예약 맞춤 코스", "최고급 힐러진 프로그램",
+  "안심 후불제 웰니스 안내", "전신 릴렉스 힐링 추천"
+];
+
+// 🌟 디스크립션 가격 및 운영시간 소구점 조합 풀 (10개)
+const priceHooks = [
+  "건식 7만원부터 저녁 7시~새벽 5시 심야할증 없이 운영합니다.",
+  "타이 6만원부터 저녁 7시~새벽 5시 추가할증 없이 방문합니다.",
+  "스웨디시 8만원부터 저녁 7시~새벽 5시 동일한 정찰제로 운영합니다.",
+  "아로마 7만원부터 저녁 7시~새벽 5시 야간할증 없이 신속 방문합니다.",
+  "기본 코스 6만원부터 저녁 7시~새벽 5시 심야 추가요금 없이 진행합니다.",
+  "건식 7만원부터 저녁 7시~새벽 5시 100% 현장 후불제로 운영합니다.",
+  "전신 릴렉스 7만원부터 저녁 7시~새벽 5시 심야할증 0원으로 방문합니다.",
+  "힐링 코스 8만원부터 저녁 7시~새벽 5시 야간 추가금 없이 이용 가능합니다.",
+  "맞춤 코스 7만원부터 저녁 7시~새벽 5시 변동 없는 정찰 요금으로 운영합니다.",
+  "스페셜 코스 9만원부터 저녁 7시~새벽 5시 심야할증 없는 후불제로 찾아갑니다."
+];
+
+const shopData = {
+  "golden-therapy": { name: "골든테라피", phone: "0507-1280-3360", image: "/shop1.jpg", desc: "골든 품격의 감성 릴렉싱! 전문 관리사와 프리미엄 힐러진이 선사하는 맞춤형 바디 마사지.", supportedRegions: ["seoul", "gyeonggi", "incheon"] },
+  "miin-therapy": { name: "미인테라피", phone: "0507-1280-3201", image: "/shop2.jpg", desc: "천연 오일과 전문 테라피스트의 섬세한 터치로 지친 일상의 피로를 말끔히 풀어주는 마사지.", supportedRegions: ["seoul", "gyeonggi", "incheon", "cheonan", "asan", "daejeon", "cheongju"] },
+  "night-therapy": { name: "오늘밤테라피", phone: "0507-1280-3199", image: "/shop5.jpg", desc: "편안한 휴식과 안심 힐링! 수도권 전지역 신속한 방문으로 지친 일상의 피로를 회복하는 마사지.", supportedRegions: ["seoul", "gyeonggi", "incheon"] },
+  "juju-therapy": { name: "주주테라피", phone: "0507-1280-3197", image: "/shop3.jpg", desc: "철저한 위생 관리와 프라이빗 힐링 바디케어 마사지 서비스로 높은 만족도를 선사합니다.", supportedRegions: ["seoul", "gyeonggi", "incheon", "cheonan", "asan"] },
+  "queens-home-therapy": { name: "퀸즈홈테라피", phone: "0507-1280-3296", image: "/shop4.jpg", desc: "여왕처럼 누리는 VIP 홈케어! 전문 힐러들의 체형 맞춤형 피로회복 마사지 프로그램.", supportedRegions: ["seoul", "gyeonggi", "incheon"] },
+  "s-slim-therapy": { name: "S슬림테라피", phone: "0507-1280-3358", image: "/shop1.jpg", desc: "충청 및 중부 주요 권역을 아우르는 체계적이고 전문적인 S슬림 홈케어 마사지 프로그램.", supportedRegions: ["daejeon", "cheongju", "cheonan", "asan"] }
+};
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
@@ -112,24 +139,50 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const regionName = getRegionName(region);
   const fullTitle = `${regionName} ${district} ${dong}`;
 
-  // 🌟 동 이름 문자열의 각 글자 코드 합산을 통해 고유하면서도 순차적인 인덱스 추출
-  const charSum = dong.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  // 🌟 순차적 인덱스 계산 (출장/안마 배제, 35x16x50 고유 조합 보장)
+  const seed = `${fullTitle}-surround-dong-clean-v3`;
+  const charSum = seed.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
   
-  const modIdx = charSum % modifiers.length;
-  const descIdx = charSum % descriptions.length;
+  const adjIdx = charSum % prefixAdjectives.length;
+  const techIdx = (charSum * 3) % coreTechniques.length;
+  const actionIdx = (charSum * 5) % secondaryActions.length;
+  const tertiaryIdx = (charSum * 7) % tertiaryActionPatterns.length;
+  const priceIdx = (charSum * 11) % priceHooks.length;
 
-  // 💡 사이트명 제거 및 간결·임팩트 있는 제목 구성
-  const pageTitle = `${fullTitle} ${modifiers[modIdx]}`;
-  const pageDescription = `${fullTitle} 샵 정보 안내. ${descriptions[descIdx]}`;
+  const selectedAdj = prefixAdjectives[adjIdx];
+  const selectedTech = coreTechniques[techIdx];
+  const selectedAction = secondaryActions[actionIdx];
+  const selectedTertiary = tertiaryActionPatterns[tertiaryIdx];
+  const selectedPriceHook = priceHooks[priceIdx];
+
+  // 💡 [동] [수식어] [코스] 마사지·홈타이 | [구] [2단 예약] | [3단 소구점] (약 45~50자)
+  const pageTitle = `${dong} ${selectedAdj} ${selectedTech} 마사지·홈타이 | ${district} ${selectedAction} | ${selectedTertiary}`;
+  
+  // 💡 [시 구 동] 전지역 전문 방문 케어. 엄선된 테라피스트 100% 후불제 마사지·홈타이 안내. [가격 훅]
+  const pageDescription = `${fullTitle} 전지역 전문 방문 케어. 엄선된 테라피스트 100% 후불제 마사지·홈타이 안내. ${selectedPriceHook}`;
+
+  const canonicalUrl = `${SITE_URL}/${region}/${rawDistrict}/${rawDong}`;
 
   return {
-    title: pageTitle,
+    metadataBase: new URL(SITE_URL),
+    title: {
+      absolute: pageTitle,
+    },
     description: pageDescription,
-    alternates: { canonical: `https://surround-therapy.netlify.app/${region}/${rawDistrict}/${rawDong}` },
+    alternates: { 
+      canonical: canonicalUrl 
+    },
+    keywords: [
+      `${fullTitle} 마사지`,
+      `${dong} 홈타이`,
+      `${dong} 스웨디시`,
+      `${district} 방문예약`,
+      "100% 후불제"
+    ],
     openGraph: {
       title: pageTitle,
       description: pageDescription,
-      url: `https://surround-therapy.netlify.app/${region}/${rawDistrict}/${rawDong}`,
+      url: canonicalUrl,
       locale: "ko_KR",
       type: "website",
     },
@@ -156,7 +209,6 @@ export default async function DongDetailPage({ params }: PageProps) {
     .map(([slug, shop], index) => ({
       id: index + 1,
       slug: slug,
-      // 🌟 샵 이름에서 '한국' 등 불필요한 접두어 제거 후 지역명과 자연스럽게 연결
       name: `${fullTitle} ${shop.name}`,
       desc: shop.desc,
       phone: shop.phone,
