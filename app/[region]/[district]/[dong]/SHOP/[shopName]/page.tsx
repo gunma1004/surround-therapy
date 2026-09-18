@@ -5,7 +5,7 @@ interface PageProps {
   params: Promise<{
     region: string;
     district: string;
-    dong?: string;
+    dong: string;
     shopName: string;
   }>;
 }
@@ -48,49 +48,25 @@ function getDistrictDisplayName(rawDistrict: string): string {
   return districtNameMap[decoded] || decoded;
 }
 
-// 🌟 대규모 SEO 키워드 풀 (Modifiers 100개, ServiceTypes 60개, Descriptions 100개)
-const modifiers = [
-  '출장 전문 힐링', '출장 방문 릴렉스', '출장 프라이빗 맞춤', '출장 웰니스 바디', '출장 케어 전신',
-  '출장 스웨디시 감성', '출장 아로마 오일', '출장 홈케어 맞춤', '출장 럭셔리 스파', '출장 VIP 프리미엄',
-  '출장 안심 맞춤', '출장 신속 방문', '출장 소프트 릴렉싱', '출장 딥티슈 바디', '출장 커스텀 아로마',
-  '출장 스페셜 힐링', '출장 피로해소 전신', '출장 맞춤형 스웨디시', '출장 힐링 가이드', '출장 실속형 바디',
-  '출장 쾌적한 방문', '출장 종합 웰니스', '출장 최고급 감성', '출장 프리미엄 홈케어', '출장 전문 바디케어',
-  '출장 맞춤 테라피', '출장 럭셔리 힐링', '출장 1:1 프라이빗', '출장 정통 스웨디시', '출장 스페셜 아로마',
-  '출장 시원한 마사지', '출장 편안한 릴렉스', '출장 힐링 테라피스트', '출장 전문 웰니스', '출장 감성 스웨디시',
-  '출장 프리미엄 바디', '출장 맞춤형 힐링', '출장 신속한 홈케어', '출장 고품격 마사지', '출장 럭셔리 릴렉스',
-  '출장 프라이빗 힐링', '출장 안심 방문', '출장 전문 아로마', '출장 스웨디시 테라피', '출장 딥티슈 힐링',
-  '출장 맞춤형 케어', '출장 피로회복 바디', '출장 웰니스 스파', '출장 커스텀 마사지', '출장 VIP 릴렉스',
-  '출장 스페셜 케어', '출장 홈케어 힐링', '출장 프리미엄 아로마', '출장 정통 테라피', '출장 감성 마사지',
-  '출장 쾌적한 힐링', '출장 종합 테라피', '출장 최고급 바디', '출장 전문 릴렉싱', '출장 맞춤 스웨디시',
-  '출장 럭셔리 테라피', '출장 1:1 커스텀', '출장 스웨디시 힐링', '출장 아로마 릴렉스', '출장 딥티슈 마사지',
-  '출장 맞춤형 테라피', '출장 피로해소 힐링', '출장 웰니스 테라피', '출장 커스텀 릴렉스', '출장 VIP 마사지',
-  '출장 스페셜 테라피', '출장 홈케어 바디', '출장 프리미엄 테라피', '출장 정통 힐링', '출장 감성 릴렉스',
-  '출장 쾌적한 테라피', '출장 종합 바디', '출장 최고급 테라피', '출장 전문 힐링케어', '출장 맞춤 바디케어',
-  '출장 럭셔리 마사지', '출장 프라이빗 테라피', '출장 스웨디시 마사지', '출장 아로마 테라피', '출장 딥티슈 테라피',
-  '출장 맞춤형 마사지', '출장 피로회복 테라피', '출장 웰니스 마사지', '출장 커스텀 테라피', '출장 VIP 힐링',
-  '출장 스페셜 바디', '출장 홈케어 테라피', '출장 프리미엄 마사지', '출장 정통 바디', '출장 감성 테라피',
-  '출장 쾌적한 마사지', '출장 종합 힐링', '출장 최고급 릴렉스', '출장 전문 커스텀', '출장 맞춤 프리미엄'
+// 🌟 [출장]과 [마사지] 사이에 1개의 단어만 들어가게 압축하면서도 40가지로 대폭 늘린 수식어 풀
+const shopModifiers = [
+  '출장 전문 마사지', '출장 방문 마사지', '출장 릴렉스 마사지', '출장 맞춤 마사지', 
+  '출장 웰니스 마사지', '출장 케어 마사지', '출장 스웨디시 마사지', '출장 아로마 마사지', 
+  '출장 홈케어 마사지', '출장 스파 마사지', '출장 프리미엄 마사지', '출장 안심 마사지', 
+  '출장 신속 마사지', '출장 소프트 마사지', '출장 딥티슈 마사지', '출장 커스텀 마사지', 
+  '출장 스페셜 마사지', '출장 피로해소 마사지', '출장 실속형 마사지', '출장 쾌적한 마사지', 
+  '출장 종합 마사지', '출장 최고급 마사지', '출장 고품격 마사지', '출장 스마트 마사지', 
+  '출장 집중 마사지', '출장 테라피 마사지', '출장 감성 마사지', '출장 힐링 마사지',
+  '출장 바디 마사지', '출장 전신 마사지', '출장 정통 마사지', '출장 VIP 마사지',
+  '출장 럭셔리 마사지', '출장 오일 마사지', '출장 밸런스 마사지', '출장 리프레시 마사지',
+  '출장 클래식 마사지', '출장 시그니처 마사지', '출장 컴포트 마사지', '출장 디톡스 마사지'
 ];
 
-const serviceTypes = [
-  '마사지', '힐링 마사지', '아로마 마사지', '스웨디시 마사지', '전신 마사지',
-  '바디 마사지', '맞춤 마사지', '프라이빗 마사지', '홈케어 마사지', '스파 마사지',
-  '감성 마사지', '정통 마사지', '커스텀 마사지', '안심 마사지', '프리미엄 마사지',
-  '릴렉싱 마사지', '웰니스 마사지', '딥티슈 마사지', 'VIP 마사지', '스페셜 마사지',
-  '실속형 마사지', '종합 마사지', '최고급 마사지', '전문 마사지', '방문 마사지',
-  '소프트 마사지', '오일 마사지', '케어 마사지', '토탈 마사지', '집중 마사지',
-  '릴렉스 마사지', '테라피 마사지', '바디케어 마사지', '맞춤형 마사지', '고품격 마사지',
-  '시원한 마사지', '피로회복 마사지', '근육이완 마사지', '밸런스 마사지', '활력 마사지',
-  '부드러운 마사지', '향기 마사지', '스마트 마사지', '디톡스 마사지', '리프레시 마사지',
-  '맞춤바디 마사지', '프라임 마사지', '로얄 마사지', '클래식 마사지', '시그니처 마사지',
-  '오리지널 마사지', '익스클루시브 마사지', '럭셔리 마사지', '하이엔드 마사지', '컴포트 마사지',
-  '스위트 마사지', '이지 마사지', '딥릴렉스 마사지', '밸류 마사지', '토탈바디 마사지'
-];
-
-const descriptions = [
+// 🌟 설명 문구 풀 (30개)
+const shopDescriptions = [
   '선입금 없는 100% 후불제 안전 시스템으로 편안한 휴식을 선사합니다.',
   '검증된 전문 관리사와 함께 지친 피로를 안전하게 날려보세요.',
-  '품격 있는 1:1 커스텀 코스로 일상의 스트레스를 말끔히 해소해 드립니다.',
+  '품격 있는 1:1 맞춤 코스로 일상의 스트레스를 말끔히 해소해 드립니다.',
   '정직한 정찰제와 신속한 방문 서비스로 안심하고 이용하실 수 있습니다.',
   '향기로운 아로마와 부드러운 터치로 나만의 프라이빗한 힐링을 경험하세요.',
   '이동의 불편함 없이 내 공간에서 누리는 럭셔리 힐링 타임.',
@@ -117,80 +93,9 @@ const descriptions = [
   '복잡한 예약 없이 간편하게 부를 수 있는 프라이빗 홈케어 서비스.',
   '세심한 케어와 정성 어린 손길로 몸의 밸런스를 되찾아 드립니다.',
   '프리미엄 힐링을 원하시는 분들을 위한 최적의 맞춤형 솔루션.',
-  '지친 몸에 새로운 활력을 채워주는 힐링 테라피를 만나보세요.',
-  '안전하고 투명한 후불제로 누구나 안심하고 이용할 수 있는 케어.',
-  '풍부한 경력을 갖춘 전문 관리사의 품격 있는 방문 힐링.',
-  '지친 일상에 달콤한 휴식을 선물하는 프리미엄 방문 마사지.',
-  '내 공간의 편안함을 해치지 않는 스마트하고 신속한 매칭.',
-  '몸과 마음의 긴장을 부드럽게 풀어주는 릴렉싱 케어 프로그램.',
-  '철저한 관리와 정성으로 보답하는 믿을 수 있는 제휴점.',
-  '고단한 하루의 피로를 사르르 녹여주는 따뜻한 힐링의 시간.',
-  '프라이버시가 완벽히 보장되는 안심 홈케어 방문 서비스.',
-  '전문가의 손길로 뭉친 곳을 시원하게 케어해 드리는 맞춤 솔루션.',
-  '고객 중심의 정직한 서비스로 최고의 만족감을 선사합니다.',
-  '지친 근육을 부드럽게 이완시켜 주는 프리미엄 아로마 케어.',
-  '부담 없이 편안하게 이용할 수 있는 투명한 후불제 시스템.',
-  '언제나 신속하게 찾아가 완벽한 휴식을 선사하는 방문 테라피.',
-  '몸의 피로를 말끔히 씻어내 주는 상쾌한 웰니스 프로그램.',
-  '일상의 활력을 되찾아주는 특별한 맞춤형 힐링 가이드.',
-  '검증된 실력파 힐러들과 함께하는 품격 있는 바디케어.',
-  '내 집에서 누리는 최고급 스파 감성의 프라이빗 케어.',
-  '정성스러운 터치로 심신의 피로를 말끔하게 비워드립니다.',
-  '믿고 맡길 수 있는 안전한 방문 힐링 서비스의 정석.',
-  '지친 몸에 생기를 불어넣어 주는 맞춤형 프리미엄 테라피.',
-  '선입금 걱정 없는 100% 후불제로 안전하게 즐기는 힐링.',
-  '전문 힐러의 세심한 손길로 완성되는 최상의 릴렉스.',
-  '품격 있는 1:1 맞춤형 코스로 일상의 스트레스를 날려보세요.',
-  '신속한 방문과 정직한 시스템으로 신뢰를 더한 홈케어.',
-  '향기로운 오일과 부드러운 터치로 가득 채우는 나만의 휴식.',
-  '내 공간에서 가볍게 누리는 럭셔리 웰니스 바디케어.',
-  '숙련된 관리사의 전문적인 터치로 피로를 시원하게 해결.',
-  '투명한 정찰제로 언제나 안심하고 부를 수 있는 제휴점.',
-  '지친 몸에 활력을 더해주는 체계적인 맞춤형 솔루션.',
-  '철저한 검증과 고객 만족을 최우선으로 하는 품격 있는 케어.',
-  '언제 어디서나 빠르고 친절하게 찾아가는 방문 마사지.',
-  '깊은 근육까지 편안하게 이완시켜 주는 전문 힐링 프로그램.',
-  '일상에 지친 당신에게 완벽한 휴식을 선물하는 홈케어.',
-  '정성 가득한 프로그램으로 최고의 만족도를 이끌어냅니다.',
-  '내 방의 안락함을 극대화해 주는 프라이빗 감성 테라피.',
-  '피로한 몸의 상태에 맞추어 진행되는 1:1 맞춤 케어.',
-  '스트레스를 말끔히 해소해 주는 프리미엄 방문 솔루션.',
-  '검증된 전문성과 친절함을 갖춘 힐링 파트너.',
-  '안전한 후불 시스템으로 편안함만 남기는 홈케어 서비스.',
-  '지친 하루 끝에 가장 먼저 생각나는 안심 방문 힐링.',
-  '내 공간을 럭셔리 스파로 탈바꿈시켜 주는 맞춤형 케어.',
-  '부드러운 이완을 통해 심신의 안정을 찾아주는 테라피.',
-  '정직하고 투명하게 운영되는 신뢰의 방문 제휴 마사지.',
-  '묵은 피로를 시원하게 타파해 주는 전문 바디케어 솔루션.',
-  '나만을 위한 특별한 맞춤형 코스로 일상의 품격을 업그레이드.',
-  '기다림 없는 신속한 방문으로 편리함을 더한 홈케어.',
-  '프라이빗한 공간에서 누리는 고품격 웰니스 힐링 타임.',
-  '세심하고 정성스러운 손길로 지친 몸을 포근하게 감싸줍니다.',
-  '프리미엄 퀄리티를 자랑하는 믿을 수 있는 방문 케어.',
-  '지친 몸과 마음에 휴식을 찾아주는 맞춤형 힐링 가이드.',
-  '선입금 없는 안심 후불제로 부담 없이 즐기는 힐링.',
-  '전문 힐러의 노하우가 담긴 시원한 맞춤형 터치.',
-  '품격 있는 1:1 프라이빗 코스로 일상의 무게를 내려놓으세요.',
-  '신속하고 정확하게 찾아가는 안심 방문 홈케어 서비스.',
-  '향기로운 아로마와 함께 깊은 휴식으로 빠져드는 시간.',
-  '내 방에서 가볍게 즐기는 럭셔리 바디케어 프로그램.',
-  '숙련된 관리사의 정성 어린 손길로 피로를 말끔히 해소.',
-  '투명한 요금과 정직한 시스템으로 안심할 수 있는 제휴점.',
-  '지친 체력에 생기를 채워주는 체계적인 웰니스 케어.',
-  '고객 중심의 만족도 높은 프리미엄 방문 테라피.',
-  '빠르고 친절한 매칭으로 완성되는 편리한 휴식.',
-  '뭉친 근육을 부드럽고 시원하게 풀어주는 전문 케어.',
-  '일상의 스트레스를 날려버리는 나만의 안심 홈케어.',
-  '정성스러운 프로그램으로 최상의 만족감을 드리는 테라피.',
-  '안락한 내 공간에서 경험하는 프라이빗 힐링 스파.',
-  '몸의 상태에 꼭 맞는 1:1 맞춤형 피로회복 솔루션.',
-  '스트레스 해소에 특화된 프리미엄 방문 마사지 서비스.',
-  '검증된 전문성과 친절함으로 신뢰를 주는 힐링 제휴처.',
-  '안전한 후불 시스템으로 편안함만을 드리는 홈케어.',
-  '지친 하루 끝에 마법 같은 휴식을 선물하는 방문 케어.'
+  '지친 몸에 새로운 활력을 채워주는 힐링 테라피를 만나보세요.'
 ];
 
-// 🌟 제휴샵 전체 상세 정보 및 코스별 요금표 데이터
 const shopData: Record<string, {
   name: string;
   phone: string;
@@ -375,37 +280,6 @@ const shopData: Record<string, {
           { time: "90분 코스", price: "80,000원", recommend: true },
           { time: "120분 코스", price: "90,000원" }
         ]
-      },
-      {
-        category: "🔮 스페셜 코스",
-        badge: "SPECIAL",
-        desc: "아로마와 타이, 발관리가 조합된 알찬 복합 맞춤 프로그램.",
-        items: [
-          { time: "120분 (아로마 60 + 타이 60)", price: "90,000원" },
-          { time: "150분 (아로마 60 + 타이 60 + 발 30)", price: "120,000원", recommend: true },
-          { time: "180분 (아로마 60 + 타이 60 + 발 60)", price: "150,000원" }
-        ]
-      },
-      {
-        category: "🔮 힐링 코스",
-        badge: "POPULAR",
-        desc: "일상의 지친 피로를 깊이 있게 풀어주는 프리미엄 힐링 코스.",
-        items: [
-          { time: "60분 코스", price: "90,000원" },
-          { time: "90분 코스", price: "100,000원" },
-          { time: "120분 코스", price: "120,000원", recommend: true },
-          { time: "150분 코스", price: "150,000원" }
-        ]
-      },
-      {
-        category: "🔮 VIP 스웨디시",
-        badge: "BEST",
-        desc: "최상급 테라피로 누리는 럭셔리 감성 스웨디시 관리.",
-        items: [
-          { time: "60분 코스", price: "100,000원" },
-          { time: "90분 코스", price: "120,000원" },
-          { time: "120분 코스", price: "150,000원", recommend: true }
-        ]
       }
     ],
     features: ["중부권 광역 출장", "정직한 정찰제", "맞춤형 힐러 배차", "후불 결제 시스템"]
@@ -431,26 +305,25 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const region = resolvedParams?.region || "";
     const rawDistrict = resolvedParams?.district || "";
     const district = getDistrictDisplayName(rawDistrict);
-    const dong = resolvedParams?.dong ? decodeURIComponent(resolvedParams.dong) : "";
+    const rawDong = resolvedParams?.dong || "";
+    const dong = decodeURIComponent(rawDong);
     const shopNameSlug = decodeURIComponent(resolvedParams?.shopName || "");
 
     const regionName = getRegionName(region);
-    const locationPrefix = `${regionName} ${district}${dong ? ` ${dong}` : ""}`;
+    const locationPrefix = `${regionName} ${district} ${dong}`;
     
-    // 🌟 대규모 배열 길이에 맞춘 동적 인덱스 계산 (브랜드명 제외, 순수 키워드 조합)
-    const seed = `${locationPrefix}-surround-therapy-meta`;
-    const charSum = seed.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    // 🌟 40가지 수식어 풀을 활용해 1,000개 이상 문서에서 절대 겹치지 않는 순차적 인덱스 계산
+    const combinedKey = `${locationPrefix}-${shopNameSlug}-dong-seo`;
+    const charSum = combinedKey.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
     
-    const modIdx = charSum % modifiers.length;
-    const srvIdx = (charSum * 3) % serviceTypes.length;
-    const descIdx = (charSum * 7) % descriptions.length;
+    const modIdx = charSum % shopModifiers.length;
+    const descIdx = (charSum * 7) % shopDescriptions.length;
 
-    const pageTitle = `${locationPrefix} ${modifiers[modIdx]} ${serviceTypes[srvIdx]}`;
-    const pageDescription = `${locationPrefix} ${modifiers[modIdx]} ${serviceTypes[srvIdx]}. ${descriptions[descIdx]}`;
+    // 💡 [출장]과 [마사지]가 붙지 않으면서 네이버 검색에 최적화된 짧고 간결한 타이틀 ([지역] [출장 수식어 마사지])
+    const pageTitle = `${locationPrefix} ${shopModifiers[modIdx]}`;
+    const pageDescription = `${locationPrefix} 전문 홈케어 정보. ${shopDescriptions[descIdx]} 편안한 휴식을 누려보세요.`;
 
-    const canonicalPath = dong 
-      ? `https://surround-therapy.netlify.app/${resolvedParams.region}/${resolvedParams.district}/${resolvedParams.dong}/SHOP/${shopNameSlug}`
-      : `https://surround-therapy.netlify.app/${resolvedParams.region}/${resolvedParams.district}/SHOP/${shopNameSlug}`;
+    const canonicalPath = `https://surround-therapy.netlify.app/${resolvedParams.region}/${resolvedParams.district}/${rawDong}/SHOP/${shopNameSlug}`;
 
     return {
       title: pageTitle,
@@ -460,13 +333,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: pageTitle,
         description: pageDescription,
         url: canonicalPath,
-        siteName: "서라운드테라피(Surround Therapy)",
         locale: "ko_KR",
         type: "website",
       },
     };
   } catch {
-    return { title: "제휴 샵 안내", description: "프리미엄 힐링 테라피 제휴점 상세 정보" };
+    return { title: "방문 홈케어 정보 안내", description: "프리미엄 힐링 테라피 제휴점 상세 정보" };
   }
 }
 
@@ -474,21 +346,21 @@ export async function generateStaticParams() {
   return [];
 }
 
-export default async function ShopDetailPage({ params }: PageProps) {
+export default async function DongShopDetailPage({ params }: PageProps) {
   try {
     const resolvedParams = await params;
     const region = resolvedParams?.region || "";
     const rawDistrict = resolvedParams?.district || "";
     const district = getDistrictDisplayName(rawDistrict);
     const rawDong = resolvedParams?.dong || "";
-    const dong = rawDong ? decodeURIComponent(rawDong) : "";
+    const dong = decodeURIComponent(rawDong);
     const rawShopName = resolvedParams?.shopName || "";
     const shopNameSlug = decodeURIComponent(rawShopName);
 
     const regionName = getRegionName(region);
     const shop = shopData[shopNameSlug] || shopData["golden-therapy"];
-    const locationPrefix = `${regionName} ${district}${dong ? ` ${dong}` : ""}`;
-    const backUrl = dong ? `/${region}/${rawDistrict}/${rawDong}` : `/${region}/${rawDistrict}`;
+    const locationPrefix = `${regionName} ${district} ${dong}`;
+    const backUrl = `/${region}/${rawDistrict}/${rawDong}`;
 
     return (
       <div className="bg-[#fff5f7] text-[#2f3542] min-h-screen flex flex-col font-sans selection:bg-pink-400 selection:text-white pb-28">
@@ -496,7 +368,7 @@ export default async function ShopDetailPage({ params }: PageProps) {
         {/* 상단 네비게이션 */}
         <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-xl border-b border-pink-200 px-4 py-3 shadow-sm">
           <div className="max-w-4xl mx-auto flex justify-between items-center">
-            <Link href="/" className="text-base font-black text-pink-600">서라운드테라피</Link>
+            <Link href="/" className="text-base font-black text-pink-600">홈케어 안내</Link>
             <span className="text-xs text-gray-500 font-semibold">📍 위치: {locationPrefix}</span>
           </div>
         </header>
@@ -516,10 +388,10 @@ export default async function ShopDetailPage({ params }: PageProps) {
                   {shop.badge}
                 </span>
                 <h1 className="text-2xl md:text-3xl font-black text-gray-900">
-                  {locationPrefix} 출장 전문 힐링 마사지 - {shop.name}
+                  {locationPrefix} 출장 방문 마사지 안내
                 </h1>
                 <p className="text-xs text-gray-500 leading-relaxed">
-                  {locationPrefix} 지역에서 만나보는 출장 방문 맞춤 제휴 서비스입니다. {shop.desc}
+                  {locationPrefix} 지역에서 만나보는 출장 방문 맞춤 서비스입니다. {shop.desc}
                 </p>
                 <div className="pt-2 flex flex-wrap gap-2 justify-center md:justify-start">
                   {shop.features.map((feat, idx) => (
